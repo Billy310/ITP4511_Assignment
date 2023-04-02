@@ -14,7 +14,7 @@
     <body>
 
         <form name="myForm" id="myForm" action="MemberDashboard/index.jsp" method="GET">
-            <input type="hidden" name="userid" value=<%=request.getAttribute("userid") %> />
+            <input type="hidden" name="J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5" value=<%=request.getAttribute("userid") %> />
         </form>
     </body>
     <script type="text/javascript">
