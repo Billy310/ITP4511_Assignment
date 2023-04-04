@@ -9,6 +9,8 @@ import ict.bean.VenueBean;
 import ict.bean.VenueBookingBean;
 import ict.bean.VenueLocationBean;
 import ict.db.BookingDB;
+import ict.db.GuessDB;
+import ict.db.GuessListDB;
 import ict.db.UserDB;
 import ict.db.VenueBookingDB;
 import ict.db.VenueDB;
@@ -35,7 +37,7 @@ public class TestDB {
 //        CreateDB();
 //        UserBean userbean = db.QueryUserByName("Ronaldo".toLowerCase());
 //        CreateDB();
-Testing();
+        CreateDB();
 //        if (userbean != null) {
 //            if (userbean.getPassword().equals("SIU")) {
 //                RequestDispatcher rd;
@@ -56,18 +58,23 @@ Testing();
 
     public static void CreateDB() {
 
-        UserDB UserDB_ = new UserDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        UserDB_.createUserTable();
-        System.out.print(UserDB_.QueryUserByName("billy0310").getUserID());
-        BookingDB BookingDB_ = new BookingDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        BookingDB_.createBookingTable();
-        VenueDB VenueDB_ = new VenueDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        VenueDB_.createVenueTable();
-        VenueTypeDB VTB = new VenueTypeDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        VTB.createVenueTypeTable();
-        VenueLocationDB VLB = new VenueLocationDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        VLB.createVenueLocationTable();
-        VLB.Init();
+//        UserDB UserDB_ = new UserDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        UserDB_.createUserTable();
+//        System.out.print(UserDB_.QueryUserByName("billy0310").getUserID());
+//        BookingDB BookingDB_ = new BookingDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        BookingDB_.createBookingTable();
+//        VenueDB VenueDB_ = new VenueDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        VenueDB_.createVenueTable();
+//        VenueTypeDB VTB = new VenueTypeDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        VTB.createVenueTypeTable();
+//        VenueLocationDB VLB = new VenueLocationDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        VLB.createVenueLocationTable();
+//        GuessListDB GuessListDB_ = new GuessListDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        GuessListDB_.createTable();
+         GuessDB GuessDB_ = new GuessDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+        GuessDB_.createTable();
+
+//        VLB.Init();
 
     }
 
@@ -78,6 +85,7 @@ Testing();
         VenueBookingDB db = new VenueBookingDB(dbUrl, dbUser, dbPassword);
         VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
         VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
+        GuessListDB GuessListDB_ = new GuessListDB(dbUrl, dbUser, dbPassword);
         String UserID = "2xQ5XXW390PxG5ujkrJCYHhc1";
 
         ArrayList<VenueBookingBean> venueBookings = db.QueryVenueBookingByUserID(UserID);
