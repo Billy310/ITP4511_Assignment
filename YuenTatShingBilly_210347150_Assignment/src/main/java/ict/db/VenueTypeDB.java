@@ -4,6 +4,7 @@
  */
 package ict.db;
 
+import ict.bean.UserBean;
 import ict.bean.VenueTypeBean;
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 /**
  *
  * @author user
@@ -160,6 +162,48 @@ public class VenueTypeDB {
         
         return isSuccess;
 
+    }
+        public ArrayList<VenueTypeBean> QueryAllVenueType() {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        VenueTypeBean VTB = null;
+        ArrayList<VenueTypeBean> venueTypeBeans = new ArrayList<VenueTypeBean>();
+        try {
+
+            String preQueryStatement = "SELECT * FROM VENUETYPE";
+            cnnct = getConnection();
+            ResultSet rs = null;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            rs = pStmnt.executeQuery();
+
+            while(rs.next()) {
+                VenueTypeBean venuetypebean;
+                VTB = new VenueTypeBean(
+                        rs.getInt("VenueTypeID"),
+                        rs.getString("VenueTypeName"),
+                        rs.getInt("Enable")
+                );
+                venueTypeBeans.add(VTB);
+
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return venueTypeBeans;
     }
 
 }

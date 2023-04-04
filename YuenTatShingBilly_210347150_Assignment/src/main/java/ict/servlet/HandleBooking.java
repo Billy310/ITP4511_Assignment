@@ -57,7 +57,8 @@ public class HandleBooking extends HttpServlet {
             RandomString tickets = new RandomString(25, new SecureRandom(), easy);
             String BookingID = tickets.nextString();
             String userID = request.getParameter("userid");
-            db.AddRecord(BookingID, userID, 1, null, "2023-05-01", "13:45:00", 3);
+            int VenueID = Integer.parseInt(request.getParameter("venue"));
+            db.AddRecord(BookingID, userID, VenueID, null, "2023-05-01", "13:45:00", 3);
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
             rd = getServletContext().getRequestDispatcher("/login.jsp");

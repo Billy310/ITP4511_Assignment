@@ -29,7 +29,10 @@ import javax.servlet.RequestDispatcher;
 public class TestDB {
 
     public static void main(String[] args) throws ParseException {
-        CreateDB();
+//        CreateDB();
+        VenueLocationDB VLB = new VenueLocationDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+        VLB.createTable();
+//        VLB.QueryLocation();
     }
 
     public static void givenUsingPlainJava_whenGeneratingRandomStringUnbounded_thenCorrect() {

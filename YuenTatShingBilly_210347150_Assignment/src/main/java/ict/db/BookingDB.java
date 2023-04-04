@@ -97,7 +97,7 @@ public class BookingDB {
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
             
             String formattedTime = "13:45:00";
-            java.sql.Date date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
+            java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
             java.sql.Time time = new java.sql.Time(timeFormat.parse(formattedTime).getTime());
             cnnct = getConnection();
             String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?)";
@@ -106,7 +106,7 @@ public class BookingDB {
             pStmnt.setString(2, UserID);
             pStmnt.setInt(3, VenueID);
             pStmnt.setString(4, null);
-            pStmnt.setDate(5, new java.sql.Date(currentDate.getTime()));
+            pStmnt.setDate(5, bookingdate);
             pStmnt.setTime(6, time);
             pStmnt.setDate(7, new java.sql.Date(currentDate.getTime()));
             pStmnt.setDouble(8, 80.0);

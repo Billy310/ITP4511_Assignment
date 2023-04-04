@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean" %>
+<%
+    String dbUser = this.getServletContext().getInitParameter("dbUser");
+    String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+    String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+//    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
+//    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
+    VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
+    ArrayList<VenueLocationBean> VenueLocations = vlb.QueryLocation();
+    VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
+    ArrayList<VenueBean> vbs = vb.QueryVenue();
+%>
 <%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";%>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
@@ -15,6 +27,34 @@
             defer
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKIm352enWiDL0qbvU5Cy2GABBiFkvVIk"></script>
+        <script>
+            function initMap(x_Cord, y_Cord) {
+                var myLatLng = {lat: parseFloat(x_Cord), lng: parseFloat(y_Cord)};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: myLatLng
+                });
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Hello World!'
+                });
+            }
+        </script>
+        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
+        <script>
+            function getvalue() {
+                var selected = $("#venue")[0].selectedIndex;
+                var venuecordX = document.getElementById("venuecordx");
+                var venuecordY = document.getElementById("venuecordy");
+                var venuelocationid = document.getElementById("venuelocationid");
+                var selectedLocationID = venuelocationid.options[selected].value;
+                var selectedvalue_X = venuecordX.options[selectedLocationID-1].value;
+                var selectedvalue_Y = venuecordY.options[selectedLocationID-1].value;
+                initMap(selectedvalue_X, selectedvalue_Y);
+            }
+        </script>
     </head>
     <body>
         <div
@@ -90,36 +130,55 @@
                                                                     </label>
                                                                 </div>
                                                             </div>-->
-
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">
-                                    Requested Limit
+                                    Venue Location
                                 </span>
-                                <select
-                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                    >
-                                    <option>$1,000</option>
-                                    <option>$5,000</option>
-                                    <option>$10,000</option>
-                                    <option>$25,000</option>
+                                <select name="venue" id="venue"
+                                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                        onchange="getvalue()"
+                                        >
+                                    <%
+                                        for (int x = 0; x < vbs.size(); x++) {
+                                            VenueBean v = vbs.get(x);
+                                            out.print("<option value=" + v.getVenueID() + ">" + v.getVenueName() + "</option>");
+                                        }
+
+                                    %>
+                                </select>
+                                <select name="venue-hidden" id="venuelocationid" >
+                                    <%                                      
+                                            for (int x = 0; x < vbs.size(); x++) {
+                                            VenueBean v = vbs.get(x);
+                                            out.print("<option value=" + v.getVenueLocationID()+ ">" +v.getVenueLocationID() + "</option>");
+                                        }
+                                    %> 
+                                </select>
+                                <select name="venue-hidden" id="venuecordx" >
+                                    <%                                      for (int x = 0; x < VenueLocations.size(); x++) {
+                                            VenueLocationBean v = VenueLocations.get(x);
+                                            out.print("<option value=" + v.getVenueLocation_X() + ">" + v.getVenueLocation_X() + "</option>");
+                                        }
+                                    %> 
+                                </select>
+                                <select name="venue-hidden" id="venuecordy">
+                                    <%
+                                        for (int x = 0; x < VenueLocations.size(); x++) {
+                                            VenueLocationBean v = VenueLocations.get(x);
+                                            out.print("<option value=" + v.getVenueLocation_Y() + ">" + v.getVenueLocation_Y() + "</option>");
+                                        }
+                                    %> 
                                 </select>
                             </label>
 
-                            <!--                                <label class="block mt-4 text-sm">
-                                                                <span class="text-gray-700 dark:text-gray-400">
-                                                                    Multiselect
-                                                                </span>
-                                                                <select
-                                                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                                    multiple
-                                                                    >
-                                                                    <option>Option 1</option>
-                                                                    <option>Option 2</option>
-                                                                    <option>Option 3</option>
-                                                                    <option>Option 4</option>
-                                                                    <option>Option 5</option>
-                                                                </select>
-                                                            </label>-->
+                            <label class="block mt-4 text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">
+                                    Venue Location
+                                </span>
+
+                                <div id="map" style="height: 500px;" ></div>
+                            </label>
+
 
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Message</span>

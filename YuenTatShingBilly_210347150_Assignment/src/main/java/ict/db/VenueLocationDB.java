@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class VenueLocationDB {
 
@@ -51,6 +52,8 @@ public class VenueLocationDB {
                     = "CREATE TABLE IF NOT EXISTS VenueLocation("
                     + "VenueLocationID int(1) NOT NULL,"
                     + "VenueLocationName varchar(45) NOT NULL,"
+                    + "VenueLocation_X double(10,5) NOT NULL,"
+                    + "VenueLocation_Y double(10,5) NOT NULL,"
                     + "Enable INT(1) NOT NULL,"
                     + "PRIMARY KEY (VenueLocationID)"
                     + ")";
@@ -84,12 +87,14 @@ public class VenueLocationDB {
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setInt(1, LocationID);
             rs = pStmnt.executeQuery();
- 
+
             if (rs.next()) {
 
                 VLB = new VenueLocationBean(
                         rs.getInt("VenueLocationID"),
                         rs.getString("VenueLocationName"),
+                        rs.getDouble("VenueLocation_X"),
+                        rs.getDouble("VenueLocation_Y"),
                         rs.getInt("Enable")
                 );
 
@@ -114,7 +119,7 @@ public class VenueLocationDB {
 
     }
 
-    public boolean Init() {
+    public boolean AddRecord() {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
@@ -152,6 +157,50 @@ public class VenueLocationDB {
         }
 
         return isSuccess;
+
+    }
+
+    public ArrayList<VenueLocationBean> QueryLocation() {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<VenueLocationBean> userbeans = new ArrayList<VenueLocationBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM VENUELOCATION";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                VenueLocationBean userbean;
+                userbean = new VenueLocationBean(
+                        rs.getInt("VenueLocationID"),
+                        rs.getString("VenueLocationName"),
+                        rs.getDouble("VenueLocation_X"),
+                        rs.getDouble("VenueLocation_Y"),
+                        rs.getInt("Enable")
+                );
+                userbeans.add(userbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return userbeans;
 
     }
 }

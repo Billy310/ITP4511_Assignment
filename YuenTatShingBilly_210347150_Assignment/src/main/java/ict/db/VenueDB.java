@@ -4,8 +4,8 @@
  */
 package ict.db;
 
-import ict.bean.UserBean;
 import ict.bean.VenueBean;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -123,5 +125,50 @@ public class VenueDB {
 
         return venueBean;
     }
+    public ArrayList<VenueBean> QueryVenue() {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<VenueBean> userbeans = new ArrayList<VenueBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM VENUE";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                VenueBean userbean;
+                userbean = new VenueBean(
+                        rs.getInt("venueID"),
+                        rs.getInt("venueTypeID"),
+                        rs.getInt("venueLocationID"),
+                        rs.getString("venueName"),
+                        rs.getString("venueDescription"),
+                        rs.getInt("Enable")
+                );
+                userbeans.add(userbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return userbeans;
+
+    }
+    
 
 }
