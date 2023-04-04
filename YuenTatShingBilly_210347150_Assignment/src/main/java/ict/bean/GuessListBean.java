@@ -4,12 +4,14 @@
  */
 package ict.bean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class GuessListBean {
-    
+public class GuessListBean implements Serializable {
+
     private String GuessListID;
 
     public GuessListBean() {
@@ -26,6 +28,5 @@ public class GuessListBean {
     public void setGuessListID(String GuessListID) {
         this.GuessListID = GuessListID;
     }
-    
-    
+
 }

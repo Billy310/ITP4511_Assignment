@@ -6,19 +6,18 @@ package ict.test;
 
 import ict.bean.UserBean;
 import ict.bean.VenueBean;
-import ict.bean.VenueBookingBean;
 import ict.bean.VenueLocationBean;
 import ict.db.BookingDB;
 import ict.db.GuessDB;
 import ict.db.GuessListDB;
 import ict.db.UserDB;
-import ict.db.VenueBookingDB;
 import ict.db.VenueDB;
 import ict.db.VenueLocationDB;
 import ict.db.VenueTypeDB;
 import ict.personal.RandomString;
 import java.nio.charset.Charset;
 import java.security.SecureRandom;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.servlet.RequestDispatcher;
@@ -29,23 +28,8 @@ import javax.servlet.RequestDispatcher;
  */
 public class TestDB {
 
-    public static void main(String[] args) {
-
-//        String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
-//        RandomString tickets = new RandomString(23, new SecureRandom(), easy);
-//        System.out.println(tickets.nextString());
-//        CreateDB();
-//        UserBean userbean = db.QueryUserByName("Ronaldo".toLowerCase());
-//        CreateDB();
+    public static void main(String[] args) throws ParseException {
         CreateDB();
-//        if (userbean != null) {
-//            if (userbean.getPassword().equals("SIU")) {
-//                RequestDispatcher rd;
-//                String userid = userbean.getUserID();
-//                System.out.println("Login Sccuess");
-//                    request.setAttribute("userid", userid);
-//                    rd = getServletContext().getRequestDispatcher("/login.jsp");
-//                    rd.forward(request, response);
     }
 
     public static void givenUsingPlainJava_whenGeneratingRandomStringUnbounded_thenCorrect() {
@@ -56,13 +40,18 @@ public class TestDB {
         System.out.println(generatedString);
     }
 
-    public static void CreateDB() {
+    public static void CreateDB() throws ParseException {
 
 //        UserDB UserDB_ = new UserDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        UserDB_.createUserTable();
+//        UserDB_.createTable();
 //        System.out.print(UserDB_.QueryUserByName("billy0310").getUserID());
-//        BookingDB BookingDB_ = new BookingDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        BookingDB_.createBookingTable();
+        BookingDB BookingDB_ = new BookingDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+        BookingDB_.createTable();
+        String UserID = "CQd1p7tdxG6GWNjb9d1xLi53P";
+        String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
+        RandomString tickets = new RandomString(25, new SecureRandom(), easy);
+        String BookingID = tickets.nextString();
+        BookingDB_.AddRecord(BookingID, UserID, 1, null, "2023-05-01", "13:45:00", 3);
 //        VenueDB VenueDB_ = new VenueDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
 //        VenueDB_.createVenueTable();
 //        VenueTypeDB VTB = new VenueTypeDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
@@ -71,31 +60,20 @@ public class TestDB {
 //        VLB.createVenueLocationTable();
 //        GuessListDB GuessListDB_ = new GuessListDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
 //        GuessListDB_.createTable();
-         GuessDB GuessDB_ = new GuessDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        GuessDB_.createTable();
+//         GuessDB GuessDB_ = new GuessDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        GuessDB_.createTable();
 
 //        VLB.Init();
-
     }
 
     public static void Testing() {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
-        VenueBookingDB db = new VenueBookingDB(dbUrl, dbUser, dbPassword);
         VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
         VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
         GuessListDB GuessListDB_ = new GuessListDB(dbUrl, dbUser, dbPassword);
         String UserID = "2xQ5XXW390PxG5ujkrJCYHhc1";
-
-        ArrayList<VenueBookingBean> venueBookings = db.QueryVenueBookingByUserID(UserID);
-
-        for (int x = 0; x < venueBookings.size(); x++) {
-            VenueBookingBean vb = venueBookings.get(x);
-            System.out.println(vb.getUserID());
-            VenueBean venuebean = venueDB.queueVenueByVenueID(vb.getVenueID());
-            VenueLocationBean locationbean = LocationDB.QueryByLocationID(venuebean.getVenueLocationID());
-        }
 
     }
 

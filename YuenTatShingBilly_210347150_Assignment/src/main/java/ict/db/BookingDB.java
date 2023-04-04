@@ -4,12 +4,19 @@
  */
 package ict.db;
 
+import ict.bean.BookingBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -41,8 +48,8 @@ public class BookingDB {
         return DriverManager.getConnection(url, username, password);
 
     }
-    
-    public void createBookingTable() {
+
+    public void createTable() {
         Statement stmnt = null;
         Connection cnnct = null;
         try {
@@ -53,9 +60,13 @@ public class BookingDB {
                     = "CREATE TABLE IF NOT EXISTS Booking("
                     + "BookingID varchar(25) NOT NULL,"
                     + "UserID varchar(25) NOT NULL,"
-                    + "BookingRequestID varchar(25) NOT NULL,"
                     + "VenueID INT(1) NOT NULL,"
-                    + "Enable INT(1) NOT NULL,"
+                    + "GuessListID varchar(25) NULL,"
+                    + "BookingDate date NOT NULL,"
+                    + "BookingTime Time NOT NULL,"
+                    + "CreatedDate date NOT NULL,"
+                    + "PersonInCharge double(5,2) NOT NULL,"
+                    + "Status INT(1) NOT NULL,"
                     + "PRIMARY KEY (BookingID)"
                     + ")";
             stmnt.execute(sql);
@@ -74,22 +85,32 @@ public class BookingDB {
 
         }
     }
-    
-    public boolean AddRecord(String UserID, String Username, String Email, String Password) {
+
+    public boolean AddRecord(String BookingID, String UserID, int VenueID, String GuessListID, String BookingDate, String BookingTime, int Status) throws ParseException {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
-
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date currentDate = new java.util.Date();
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+            
+            String formattedTime = "13:45:00";
+            java.sql.Date date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
+            java.sql.Time time = new java.sql.Time(timeFormat.parse(formattedTime).getTime());
             cnnct = getConnection();
-            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?)";
+            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
-            pStmnt.setString(1, UserID);
-            pStmnt.setString(2, Username);
-            pStmnt.setString(3, Password);
-            pStmnt.setString(4, Email);
-
+            pStmnt.setString(1, BookingID);
+            pStmnt.setString(2, UserID);
+            pStmnt.setInt(3, VenueID);
+            pStmnt.setString(4, null);
+            pStmnt.setDate(5, new java.sql.Date(currentDate.getTime()));
+            pStmnt.setTime(6, time);
+            pStmnt.setDate(7, new java.sql.Date(currentDate.getTime()));
+            pStmnt.setDouble(8, 80.0);
+            pStmnt.setInt(9, Status);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
 
@@ -109,5 +130,53 @@ public class BookingDB {
             ex.printStackTrace();
         }
         return isSuccess;
+    }
+    public ArrayList<BookingBean> QueryVenueBookingByUserID(String UserID) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE USERID = ?";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, UserID);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getString("GuessListID"),
+                        rs.getDate("BookingDate"),
+                        rs.getTime("BookingTime"),
+                        rs.getDate("CreatedDate"),
+                        rs.getDouble("PersonInCharge"),
+                        rs.getInt("Status")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
     }
 }

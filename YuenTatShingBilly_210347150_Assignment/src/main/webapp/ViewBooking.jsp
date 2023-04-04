@@ -74,8 +74,10 @@
                                             >
                                             <th class="px-4 py-3">Booking ID</th>
                                             <th class="px-4 py-3">Location</th>
+                                            <th class="px-4 py-3">Venue Type</th>
+                                            <th class="px-4 py-3">Booked Date</th>
+                                            <th class="px-4 py-3">Created Date</th>
                                             <th class="px-4 py-3">Status</th>
-                                            <th class="px-4 py-3">Date</th>
                                         </tr>
                                     </thead>
                                     <tbody

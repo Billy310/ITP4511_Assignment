@@ -45,6 +45,7 @@
                     </form>
                     <form action="HandleUser" method="get" />
                     <input type="hidden" value="signup" name="action"/>
+                    <input type="hidden" value="3" name="role" />
                     <div class="sign-up-htm">
                         <div class="group">
                             <label for="user" class="label">Username</label>

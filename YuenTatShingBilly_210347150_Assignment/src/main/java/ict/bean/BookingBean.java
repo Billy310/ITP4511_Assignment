@@ -5,23 +5,45 @@
 package ict.bean;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 
+/**
+ *
+ * @author user
+ */
 public class BookingBean implements Serializable {
 
-    private String BookingID, UserID;
-    private int VenueID, BookingRequestID, Enable;
-    private double PersonInCharge, BookingFee;
+    private String BookingID, UserID, GuessListID;
+    private int VenueID;
+    private Date BookingDate, CreatedDate;
+    private Time BookingTime;
+    private double PersonInCharge;
+    private int Status;
 
-     public BookingBean(){}
-     
-    public BookingBean(String BookingID, String UserID, int VenueID, int BookingRequestID, int Enable, double PersonInCharge, double BookingFee) {
+//                    = "CREATE TABLE IF NOT EXISTS Booking("
+//                    + "BookingID varchar(25) NOT NULL,"
+//                    + "UserID varchar(25) NOT NULL,"
+//                    + "VenueID INT(1) NOT NULL,"
+//                    + "GuessListID varchar(25) NULL,"
+//                    + "BookingDate date NOT NULL,"
+//                    + "BookingTime Time NOT NULL,"
+//                    + "CreatedDate date NOT NULL,"
+//                    + "PersonInCharge double(5,2) NOT NULL,"
+//                    + "Status INT(1) NOT NULL,"
+    public BookingBean() {
+    }
+
+    public BookingBean(String BookingID, String UserID, int VenueID, String GuessListID, Date BookingDate, Time BookingTime, Date CreatedDate, double PersonInCharge, int Status) {
         this.BookingID = BookingID;
         this.UserID = UserID;
+        this.GuessListID = GuessListID;
         this.VenueID = VenueID;
-        this.BookingRequestID = BookingRequestID;
-        this.Enable = Enable;
+        this.BookingDate = BookingDate;
+        this.CreatedDate = CreatedDate;
+        this.BookingTime = BookingTime;
         this.PersonInCharge = PersonInCharge;
-        this.BookingFee = BookingFee;
+        this.Status = Status;
     }
 
     public String getBookingID() {
@@ -40,6 +62,14 @@ public class BookingBean implements Serializable {
         this.UserID = UserID;
     }
 
+    public String getGuessListID() {
+        return GuessListID;
+    }
+
+    public void setGuessListID(String GuessListID) {
+        this.GuessListID = GuessListID;
+    }
+
     public int getVenueID() {
         return VenueID;
     }
@@ -48,20 +78,28 @@ public class BookingBean implements Serializable {
         this.VenueID = VenueID;
     }
 
-    public int getBookingRequestID() {
-        return BookingRequestID;
+    public Date getBookingDate() {
+        return BookingDate;
     }
 
-    public void setBookingRequestID(int BookingRequestID) {
-        this.BookingRequestID = BookingRequestID;
+    public void setBookingDate(Date BookingDate) {
+        this.BookingDate = BookingDate;
     }
 
-    public int getEnable() {
-        return Enable;
+    public Date getCreatedDate() {
+        return CreatedDate;
     }
 
-    public void setEnable(int Enable) {
-        this.Enable = Enable;
+    public void setCreatedDate(Date CreatedDate) {
+        this.CreatedDate = CreatedDate;
+    }
+
+    public Time getBookingTime() {
+        return BookingTime;
+    }
+
+    public void setBookingTime(Time BookingTime) {
+        this.BookingTime = BookingTime;
     }
 
     public double getPersonInCharge() {
@@ -72,15 +110,14 @@ public class BookingBean implements Serializable {
         this.PersonInCharge = PersonInCharge;
     }
 
-    public double getBookingFee() {
-        return BookingFee;
+    public int getStatus() {
+        return Status;
     }
 
-    public void setBookingFee(double BookingFee) {
-        this.BookingFee = BookingFee;
+    public void setStatus(int Status) {
+        this.Status = Status;
     }
-    
-    
 
     
+
 }

@@ -5,8 +5,8 @@
 %>
 <%
     pagenamelist.clear();
-    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/MemberDashboard/index.jsp");
-    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/MemberDashboard/BookingRequestForm.jsp");
+    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/ViewBooking.jsp");
+    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/BookingRequestForm.jsp");
     String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";
 %>
 <div
@@ -54,7 +54,7 @@
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200\"");
                         }
                     %>
-                    href="index.jsp?<%=UserID%>=<%=request.getParameter(UserID)%>"
+                    href="ViewBooking.jsp?<%=UserID%>=<%=request.getParameter(UserID)%>"
                     >
                     <svg
                         class="w-5 h-5"

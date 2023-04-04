@@ -40,7 +40,7 @@ public class VenueLocationDB {
 
     }
 
-    public void createVenueLocationTable() {
+    public void createTable() {
         Statement stmnt = null;
         Connection cnnct = null;
         try {

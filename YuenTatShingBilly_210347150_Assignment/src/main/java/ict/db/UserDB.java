@@ -23,7 +23,6 @@ public class UserDB {
     private String url = "";
     private String username = "";
     private String password = "";
-    
 
     public UserDB(String url, String username, String password) {
 
@@ -46,7 +45,7 @@ public class UserDB {
 
     }
 
-    public void createUserTable() {
+    public void createTable() {
         Statement stmnt = null;
         Connection cnnct = null;
         try {
@@ -59,7 +58,8 @@ public class UserDB {
                     + "username varchar(25) NOT NULL,"
                     + "password varchar(25) NOT NULL,"
                     + "email varchar(25) NOT NULL,"
-                     + "Enable boolean NOT NULL DEFAULT TRUE,"
+                    + "Role int(1) NOT NULL,"
+                    + "Enable boolean NOT NULL DEFAULT TRUE,"
                     + "PRIMARY KEY (userID)"
                     + ")";
             stmnt.execute(sql);
@@ -80,7 +80,7 @@ public class UserDB {
 
     }
 
-    public boolean AddRecord(String UserID, String Username, String Email, String Password, int Enable) {
+    public boolean AddRecord(String UserID, String Username, String Email, String Password, int Role, int Enable) {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -88,13 +88,14 @@ public class UserDB {
         try {
 
             cnnct = getConnection();
-            String preQueryStatment = "INSERT INTO USER VALUES(?,?,?,?,?)";
+            String preQueryStatment = "INSERT INTO USER VALUES(?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setString(1, UserID);
             pStmnt.setString(2, Username);
             pStmnt.setString(3, Password);
             pStmnt.setString(4, Email);
-            pStmnt.setInt(5, Enable);
+            pStmnt.setInt(5, Role);
+            pStmnt.setInt(6, Enable);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
 
@@ -209,6 +210,7 @@ public class UserDB {
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("email"),
+                        rs.getInt("Role"),
                         rs.getInt("Enable")
                 );
                 userbeans.add(userbean);
@@ -253,6 +255,7 @@ public class UserDB {
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("email"),
+                        rs.getInt("Role"),
                         rs.getInt("Enable")
                 );
 
@@ -298,6 +301,7 @@ public class UserDB {
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("email"),
+                        rs.getInt("Role"),
                         rs.getInt("Enable")
                 );
 
@@ -321,6 +325,5 @@ public class UserDB {
         return userbean;
 
     }
-    
 
 }

@@ -13,19 +13,21 @@ import java.io.Serializable;
 public class UserBean implements Serializable {
 
     private String UserID, Username, Password, Email;
-    private int Enable;
+    private int Role,Enable;
 
     public UserBean() {
     }
 
-    public UserBean(String UserID, String Username, String Password, String Email, int Enable) {
+    public UserBean(String UserID, String Username, String Password, String Email, int Role, int Enable) {
         this.UserID = UserID;
         this.Username = Username;
         this.Password = Password;
         this.Email = Email;
+        this.Role = Role;
         this.Enable = Enable;
     }
 
+ 
     public String getUserID() {
         return UserID;
     }
@@ -64,6 +66,14 @@ public class UserBean implements Serializable {
 
     public void setEnable(int Enable) {
         this.Enable = Enable;
+    }
+
+    public int getRole() {
+        return Role;
+    }
+
+    public void setRole(int Role) {
+        this.Role = Role;
     }
 
 }

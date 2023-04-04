@@ -5,9 +5,7 @@
 package ict.servlet;
 
 import ict.bean.UserBean;
-import ict.bean.VenueBookingBean;
 import ict.db.UserDB;
-import ict.db.VenueBookingDB;
 import ict.personal.RandomString;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,7 +54,7 @@ public class HandleUser extends HttpServlet {
                 if (userbean.getPassword().equals(Password)) {
                     RequestDispatcher rd;
                     String userid = userbean.getUserID();
-                    
+
                     request.setAttribute("userid", userid);
                     rd = getServletContext().getRequestDispatcher("/login.jsp");
                     rd.forward(request, response);
@@ -77,9 +75,10 @@ public class HandleUser extends HttpServlet {
             String Username = request.getParameter("username");
             String Password = request.getParameter("password");
             String Email = request.getParameter("email");
+            int Role = Integer.parseInt(request.getParameter("role"));
             int Enable = 1;
 
-            db.AddRecord(UserID, Username, Email, Password, Enable);
+            db.AddRecord(UserID, Username, Email, Password, Role, Enable);
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/login.jsp");
             rd.forward(request, response);

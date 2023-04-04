@@ -45,7 +45,7 @@ public class VenueDB {
 
     }
 
-    public void createVenueTable() {
+    public void createTable() {
         Statement stmnt = null;
         Connection cnnct = null;
         try {
@@ -96,14 +96,13 @@ public class VenueDB {
             if (rs.next()) {
 
                 venueBean = new VenueBean(
-                rs.getInt("venueID"),
+                        rs.getInt("venueID"),
                         rs.getInt("venueTypeID"),
                         rs.getInt("venueLocationID"),
                         rs.getString("venueName"),
                         rs.getString("venueDescription"),
                         rs.getInt("Enable")
-                        
-                );  
+                );
 
             }
 
