@@ -30,8 +30,20 @@ public class TestDB {
 
     public static void main(String[] args) throws ParseException {
 //        CreateDB();
-        VenueLocationDB VLB = new VenueLocationDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        VLB.createTable();
+//        VenueLocationDB VLB = new VenueLocationDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+//        VLB.createTable();
+        String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
+        String dbUser = "root";
+        String dbPassword = "root";
+
+        UserDB ud = new UserDB(dbUrl, dbUser, dbPassword);
+        ud.QueryUser();
+
+    UserDB db = new UserDB(dbUrl, dbUser, dbPassword);
+    ArrayList<UserBean> AllUsers = db.QueryUser();
+    db.EditRecord("CQd1p7tdxG6GWNjb9d1xLi53P","HowRonaldoStart","Ronaldo","billy0310.yts@gmail.com");
+ 
+
 //        VLB.QueryLocation();
     }
 

@@ -82,6 +82,22 @@ public class HandleUser extends HttpServlet {
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/login.jsp");
             rd.forward(request, response);
+        } else if ("disable".equals(action)) {
+            String userid = request.getParameter("userid");
+            db.DisableAccount(userid);
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/AccountManagement.jsp");
+            rd.forward(request, response);
+
+        } else if ("edit".equals(action)) {
+            String UserID = request.getParameter("userid");
+            String Username = request.getParameter("username");
+            String Password = request.getParameter("password");
+            String Email = request.getParameter("email");
+            db.EditRecord(UserID, Username, Password, Email);
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/AccountManagement.jsp");
+            rd.forward(request, response);
         } else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");

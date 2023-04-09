@@ -26,13 +26,17 @@
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
         ></script>
+        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
         <script src="./assets/js/init-alpine.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKIm352enWiDL0qbvU5Cy2GABBiFkvVIk"></script>
         <script>
-            function initMap(x_Cord, y_Cord) {
+            $(document).ready(function () {
+                initMap(22.3451246, 114.1263359, 10);
+            });
+            function initMap(x_Cord, y_Cord, zoom) {
                 var myLatLng = {lat: parseFloat(x_Cord), lng: parseFloat(y_Cord)};
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 10,
+                    zoom: zoom,
                     center: myLatLng
                 });
                 var marker = new google.maps.Marker({
@@ -41,18 +45,15 @@
                     title: 'Hello World!'
                 });
             }
-        </script>
-        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
-        <script>
             function getvalue() {
                 var selected = $("#venue")[0].selectedIndex;
                 var venuecordX = document.getElementById("venuecordx");
                 var venuecordY = document.getElementById("venuecordy");
                 var venuelocationid = document.getElementById("venuelocationid");
-                var selectedLocationID = venuelocationid.options[selected].value;
-                var selectedvalue_X = venuecordX.options[selectedLocationID-1].value;
-                var selectedvalue_Y = venuecordY.options[selectedLocationID-1].value;
-                initMap(selectedvalue_X, selectedvalue_Y);
+                var selectedLocationID = venuelocationid.options[selected-1].value;
+                var selectedvalue_X = venuecordX.options[selectedLocationID - 1].value;
+                var selectedvalue_Y = venuecordY.options[selectedLocationID - 1].value;
+                initMap(selectedvalue_X, selectedvalue_Y, 20);
             }
         </script>
     </head>
@@ -93,43 +94,6 @@
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                                    >
-                            <!--                                <label class="block text-sm">
-                                                                <span class="text-gray-700 dark:text-gray-400">Name</span>
-                                                                <input
-                                                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                                                    placeholder="Jane Doe"
-                                                                    />
-                                                            </label>-->
-
-                            <!--                                <div class="mt-4 text-sm">
-                                                                <span class="text-gray-700 dark:text-gray-400">
-                                                                    Account Type
-                                                                </span>
-                                                                <div class="mt-2">
-                                                                    <label
-                                                                        class="inline-flex items-center text-gray-600 dark:text-gray-400"
-                                                                        >
-                                                                        <input
-                                                                            type="radio"
-                                                                            class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                                            name="accountType"
-                                                                            value="personal"
-                                                                            />
-                                                                        <span class="ml-2">Personal</span>
-                                                                    </label>
-                                                                    <label
-                                                                        class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                                                                        >
-                                                                        <input
-                                                                            type="radio"
-                                                                            class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                                            name="accountType"
-                                                                            value="busines"
-                                                                            />
-                                                                        <span class="ml-2">Business</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>-->
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">
                                     Venue Location
@@ -139,6 +103,7 @@
                                         onchange="getvalue()"
                                         >
                                     <%
+                                        out.print("<option value=>Please Select Booking Location</option>");
                                         for (int x = 0; x < vbs.size(); x++) {
                                             VenueBean v = vbs.get(x);
                                             out.print("<option value=" + v.getVenueID() + ">" + v.getVenueName() + "</option>");
@@ -146,22 +111,21 @@
 
                                     %>
                                 </select>
-                                <select name="venue-hidden" id="venuelocationid" >
-                                    <%                                      
-                                            for (int x = 0; x < vbs.size(); x++) {
+                                <select name="venue-hidden" id="venuelocationid" hidden>
+                                    <%                                        for (int x = 0; x < vbs.size(); x++) {
                                             VenueBean v = vbs.get(x);
-                                            out.print("<option value=" + v.getVenueLocationID()+ ">" +v.getVenueLocationID() + "</option>");
+                                            out.print("<option value=" + v.getVenueLocationID() + ">" + v.getVenueLocationID() + "</option>");
                                         }
                                     %> 
                                 </select>
-                                <select name="venue-hidden" id="venuecordx" >
+                                <select name="venue-hidden" id="venuecordx" hidden>
                                     <%                                      for (int x = 0; x < VenueLocations.size(); x++) {
                                             VenueLocationBean v = VenueLocations.get(x);
                                             out.print("<option value=" + v.getVenueLocation_X() + ">" + v.getVenueLocation_X() + "</option>");
                                         }
                                     %> 
                                 </select>
-                                <select name="venue-hidden" id="venuecordy">
+                                <select name="venue-hidden" id="venuecordy" hidden>
                                     <%
                                         for (int x = 0; x < VenueLocations.size(); x++) {
                                             VenueLocationBean v = VenueLocations.get(x);
@@ -173,34 +137,34 @@
 
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">
-                                    Venue Location
+                                    Venue Map
                                 </span>
 
                                 <div id="map" style="height: 500px;" ></div>
                             </label>
 
 
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Message</span>
-                                <textarea
-                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                    rows="3"
-                                    placeholder="Enter some long form content."
-                                    ></textarea>
-                            </label>
+                            <!--                            <label class="block mt-4 text-sm">
+                                                            <span class="text-gray-700 dark:text-gray-400">Message</span>
+                                                            <textarea
+                                                                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                                rows="3"
+                                                                placeholder="Enter some long form content."
+                                                                ></textarea>
+                                                        </label>-->
 
-                            <div class="flex mt-6 text-sm">
-                                <label class="flex items-center dark:text-gray-400">
-                                    <input
-                                        type="checkbox"
-                                        class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                        />
-                                    <span class="ml-2">
-                                        I agree to the
-                                        <span class="underline">privacy policy</span>
-                                    </span>
-                                </label>
-                            </div>
+                            <!--                            <div class="flex mt-6 text-sm">
+                                                            <label class="flex items-center dark:text-gray-400">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                                    />
+                                                                <span class="ml-2">
+                                                                    I agree to the
+                                                                    <span class="underline">privacy policy</span>
+                                                                </span>
+                                                            </label>
+                                                        </div>-->
                             <div class="flex mt-6 text-sm">
                                 <button 
                                     type="submit" form="form1" value="Submit"
