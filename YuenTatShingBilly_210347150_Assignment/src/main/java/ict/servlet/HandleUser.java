@@ -94,7 +94,8 @@ public class HandleUser extends HttpServlet {
             String Username = request.getParameter("username");
             String Password = request.getParameter("password");
             String Email = request.getParameter("email");
-            db.EditRecord(UserID, Username, Password, Email);
+            int Status = Integer.parseInt(request.getParameter("status"));
+            db.EditRecord(UserID, Username, Password,Status, Email);
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/AccountManagement.jsp");
             rd.forward(request, response);

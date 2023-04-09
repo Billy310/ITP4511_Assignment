@@ -3,7 +3,7 @@
     Created on : Apr 1, 2023, 2:18:00 PM
     Author     : user
 --%>
-<%@page import="java.util.ArrayList,ict.db.UserDB,ict.bean.UserBean" %>
+<%@page import="java.util.ArrayList,ict.db.UserDB,ict.bean.UserBean, ict.db.UserTypeDB,ict.bean.UserTypeBean" %>
 
 
 <%
@@ -11,7 +11,9 @@
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
+    UserTypeDB usertypedb = new UserTypeDB(dbUrl, dbUser, dbPassword);
     ArrayList<UserBean> Users = userdb.QueryUser();
+   
 
     for (int x = 0; x < Users.size(); x++) {
         UserBean user = Users.get(x);
@@ -27,7 +29,7 @@
         out.print("<td class=\"px-4 py-3 text-sm\">" + user.getUsername() + "</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + user.getPassword() + "</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + user.getEmail() + "</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" + user.getRole() + "</td>");
+        out.print("<td class=\"px-4 py-3 text-sm\">" + usertypedb.QueryByID(user.getRole()).getUserTypeName() + "</td>");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         if (user.getEnable() == 1) {
             out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100\">Enable</span>");

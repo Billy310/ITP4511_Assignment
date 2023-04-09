@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.servlet.RequestDispatcher;
+import ict.db.UserTypeDB;
 
 /**
  *
@@ -35,13 +36,15 @@ public class TestDB {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
+        
+        UserTypeDB utd = new UserTypeDB(dbUrl, dbUser, dbPassword);
+        utd.createTable();
+//        UserDB ud = new UserDB(dbUrl, dbUser, dbPassword);
+//        ud.QueryUser();
 
-        UserDB ud = new UserDB(dbUrl, dbUser, dbPassword);
-        ud.QueryUser();
-
-    UserDB db = new UserDB(dbUrl, dbUser, dbPassword);
-    ArrayList<UserBean> AllUsers = db.QueryUser();
-    db.EditRecord("CQd1p7tdxG6GWNjb9d1xLi53P","HowRonaldoStart","Ronaldo","billy0310.yts@gmail.com");
+//    UserDB db = new UserDB(dbUrl, dbUser, dbPassword);
+//    ArrayList<UserBean> AllUsers = db.QueryUser();
+//    db.EditRecord("CQd1p7tdxG6GWNjb9d1xLi53P","HowRonaldoStart","Ronaldo",1,"billy0310.yts@gmail.com");
  
 
 //        VLB.QueryLocation();

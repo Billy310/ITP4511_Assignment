@@ -63,18 +63,18 @@
                                 <input type="hidden" value="edit" name="action" />
 
                                 <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">UserID</span>
+                                    <span class="text-gray-700 dark:text-gray-400">Booking ID</span>
                                     <input
-                                        name="userid"
+                                        name="bookingid"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="UserID" readonly
                                         value="<%=ub.getUserID()%>"
                                         />
                                 </label>
                                 <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Username</span>
+                                    <span class="text-gray-700 dark:text-gray-400">User ID</span>
                                     <input
-                                        name="username"
+                                        name="userid"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Username"
                                         value="<%=ub.getUsername()%>"
@@ -82,17 +82,16 @@
                                 </label>
 
                                 <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Password</span>
+                                    <span class="text-gray-700 dark:text-gray-400">Booking Venue Name</span>
                                     <input
-                                        name="password"
+                                        name="venuename"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Password"
                                         value="<%=ub.getPassword()%>"
                                         />
                                 </label>
 
                                 <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Email</span>
+                                    <span class="text-gray-700 dark:text-gray-400">Booking Date</span>
                                     <input
                                         name="email"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -100,46 +99,13 @@
                                         value="<%=ub.getEmail()%>"
                                         />
                                 </label>
-
-                                <div class="mt-4 text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">
-                                        Status
-                                    </span>
-                                    <div class="mt-2">
-                                        <label
-                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                type="radio"
-                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="status"
-                                                value="1"
-                                                <% if(ub.getEnable()==1){out.print("checked");} %>
-                                                />
-                                            <span class="ml-2">Enable</span>
-                                        </label>
-                                        <label
-                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                type="radio"
-                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="status"
-                                                value="0"
-                                                <% if(ub.getEnable()==0){out.print("checked");} %>
-                                                />
-                                            <span class="ml-2">Disable</span>
-                                        </label>
-                                    </div>
-                                </div>    
-
-                                <br>
+                                        <br>
                                 <button
-
+                                     
                                     type="submit"
                                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >
-                                    Confirm Edit
+                                     Confirm Edit
                                 </button>
 
                             </div>

@@ -188,14 +188,14 @@ public class UserDB {
     
     }
 
-    public boolean EditRecord(String UserID, String Username, String Password, String Email) {
+    public boolean EditRecord(String UserID, String Username, String Password,int Enable, String Email) {
 
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         Connection cnnct = null;
         try {
 
-            String preQueryStatement = "UPDATE USER SET USERNAME=?,PASSWORD=?,EMAIL=? WHERE USERID=?";
+            String preQueryStatement = "UPDATE USER SET USERNAME=?,PASSWORD=?,EMAIL=?,ENABLE=? WHERE USERID=?";
 
             cnnct = getConnection();
 
@@ -204,7 +204,8 @@ public class UserDB {
             pStmnt.setString(1, Username);
             pStmnt.setString(2, Password);
             pStmnt.setString(3, Email);
-            pStmnt.setString(4, UserID);
+            pStmnt.setInt(4, Enable);
+            pStmnt.setString(5, UserID);
             pStmnt.executeUpdate();
             isSuccess = true;
 

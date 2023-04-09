@@ -22,8 +22,6 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
             defer
         ></script>
-        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script>
     </head>
     <body>
         <div
@@ -78,7 +76,7 @@
                                             <th class="px-4 py-3">Booked Date</th>
                                             <th class="px-4 py-3">Created Date</th>
                                             <th class="px-4 py-3">Status</th>
-                                            <th class="px-4 py-3">View Details</th>
+                                            <th class="px-4 py-3">Edit</th>
                                              
                                         </tr>
                                     </thead>
@@ -86,9 +84,7 @@
                                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                                         >     
 
-                                        <jsp:include page="ListBooking.jsp">
-                                            <jsp:param name="userid" value="<%=request.getParameter("J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5")%>" />
-                                        </jsp:include>
+                                        <jsp:include page="ListBooking_Admin.jsp" />
 
                                     </tbody>
                                 </table>

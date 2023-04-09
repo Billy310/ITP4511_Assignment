@@ -86,6 +86,53 @@ public class BookingDB {
         }
     }
 
+    public ArrayList<BookingBean> QueryVenueBooking() {
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM BOOKING";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getString("GuessListID"),
+                        rs.getDate("BookingDate"),
+                        rs.getTime("BookingTime"),
+                        rs.getDate("CreatedDate"),
+                        rs.getDouble("PersonInCharge"),
+                        rs.getInt("Status")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
     public boolean AddRecord(String BookingID, String UserID, int VenueID, String GuessListID, String BookingDate, String BookingTime, int Status) throws ParseException {
 
         Connection cnnct = null;
@@ -95,7 +142,7 @@ public class BookingDB {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date currentDate = new java.util.Date();
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-            
+
             String formattedTime = "13:45:00";
             java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
             java.sql.Time time = new java.sql.Time(timeFormat.parse(formattedTime).getTime());
@@ -131,6 +178,7 @@ public class BookingDB {
         }
         return isSuccess;
     }
+
     public ArrayList<BookingBean> QueryVenueBookingByUserID(String UserID) {
 
         PreparedStatement pStmnt = null;
