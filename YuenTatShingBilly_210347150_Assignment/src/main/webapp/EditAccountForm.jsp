@@ -47,7 +47,7 @@
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        <form action="BookingTimeRequest.jsp" method="POST" >
+                        <form action="HandleUser" method="POST" >
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >
@@ -114,7 +114,9 @@
                                                 class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                                 name="status"
                                                 value="1"
-                                                <% if(ub.getEnable()==1){out.print("checked");} %>
+                                                <% if (ub.getEnable() == 1) {
+                                                        out.print("checked");
+                                                    } %>
                                                 />
                                             <span class="ml-2">Enable</span>
                                         </label>
@@ -126,7 +128,9 @@
                                                 class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                                 name="status"
                                                 value="0"
-                                                <% if(ub.getEnable()==0){out.print("checked");} %>
+                                                <% if (ub.getEnable() == 0) {
+                                                        out.print("checked");
+                                                    }%>
                                                 />
                                             <span class="ml-2">Disable</span>
                                         </label>
@@ -145,9 +149,9 @@
                             </div>
                         </form>
                     </div>
-                                                        </main>
+                </main>
             </div>
- 
-    </div>
-</body>
+
+        </div>
+    </body>
 </html>

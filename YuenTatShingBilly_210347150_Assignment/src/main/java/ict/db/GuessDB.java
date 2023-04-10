@@ -4,11 +4,17 @@
  */
 package ict.db;
 
+import ict.bean.GuessBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 /**
  *
@@ -74,4 +80,123 @@ public class GuessDB {
 
         }
     }
+
+    public ArrayList<GuessBean> QueryGuessBeanByGuessListID(String GuessListID) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<GuessBean> guessbeans = new ArrayList<GuessBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM GUESS WHERE GUESSLISTID = ?";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, GuessListID);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                GuessBean guessbean;
+                guessbean = new GuessBean(
+                        rs.getString("GuessID"),
+                        rs.getString("GuessListID"),
+                        rs.getString("FirstName"),
+                        rs.getString("LastName"),
+                        rs.getString("Email"),
+                        rs.getString("PhoneNumber")
+                );
+                guessbeans.add(guessbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return guessbeans;
+
+    }
+
+    public boolean AddRecord(String GuessID, String GuessListID, String FirstName, String LastName, String Email, String PhoneNumber) throws ParseException {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+            cnnct = getConnection();
+            String preQueryStatment = "INSERT INTO GUESS VALUES(?,?,?,?,?,?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setString(1, GuessID);
+            pStmnt.setString(2, GuessListID);
+            pStmnt.setString(3, FirstName);
+            pStmnt.setString(4, LastName);
+            pStmnt.setString(5, Email);
+            pStmnt.setString(6, PhoneNumber);
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+    
+    
+     public boolean RemoveRecord(String GuessID) {
+
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        Connection cnnct = null;
+        try {
+
+            String preQueryStatement = "DELETE FROM GUESS WHERE GUESSID=?";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, GuessID);
+            pStmnt.executeUpdate();
+
+            isSuccess = true;
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return isSuccess;
+
+    }
+
 }

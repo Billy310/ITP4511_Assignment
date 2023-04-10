@@ -12,9 +12,10 @@ import java.io.Serializable;
  */
 public class GuessBean implements Serializable {
 
-    private String GuessListID, FirstName, LastName, Email, PhoneNumber;
+    private String GuessID,GuessListID, FirstName, LastName, Email, PhoneNumber;
 
-    public GuessBean(String GuessListID, String FirstName, String LastName, String Email, String PhoneNumber) {
+    public GuessBean(String GuessID, String GuessListID, String FirstName, String LastName, String Email, String PhoneNumber) {
+        this.GuessID = GuessID;
         this.GuessListID = GuessListID;
         this.FirstName = FirstName;
         this.LastName = LastName;
@@ -23,6 +24,22 @@ public class GuessBean implements Serializable {
     }
 
     public GuessBean() {
+    }
+
+    public String getGuessID() {
+        return GuessID;
+    }
+
+    public void setGuessID(String GuessID) {
+        this.GuessID = GuessID;
+    }
+
+    public String getGuessListID() {
+        return GuessListID;
+    }
+
+    public void setGuessListID(String GuessListID) {
+        this.GuessListID = GuessListID;
     }
 
     public String getFirstName() {
@@ -57,12 +74,8 @@ public class GuessBean implements Serializable {
         this.PhoneNumber = PhoneNumber;
     }
 
-    public String getGuessListID() {
-        return GuessListID;
-    }
 
-    public void setGuessListID(String GuessListID) {
-        this.GuessListID = GuessListID;
-    }
+
+ 
 
 }

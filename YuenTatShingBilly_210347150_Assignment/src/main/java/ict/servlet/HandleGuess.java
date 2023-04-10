@@ -4,7 +4,7 @@
  */
 package ict.servlet;
 
-import ict.db.BookingDB;
+import ict.db.GuessDB;
 import ict.personal.RandomString;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,10 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "HandleBooking", urlPatterns = {"/HandleBooking"})
-public class HandleBooking extends HttpServlet {
+@WebServlet(name = "HandleGuess", urlPatterns = {"/HandleGuess"})
+public class HandleGuess extends HttpServlet {
 
-    private BookingDB db;
+    private GuessDB db;
 
     @Override
 
@@ -52,19 +52,27 @@ public class HandleBooking extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         init();
         String action = request.getParameter("action");
-        if (action.equals("book")) {
+        if (action.equals("add")) {
             String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
             RandomString tickets = new RandomString(25, new SecureRandom(), easy);
-            String BookingID = tickets.nextString();
-            RandomString guesslist = new RandomString(25, new SecureRandom(), easy);
-            String GuessListID = guesslist.nextString();
-            String userID = request.getParameter("userid");
-            int VenueID = Integer.parseInt(request.getParameter("venue"));
-            db.AddRecord(BookingID, userID, VenueID, GuessListID, "2023-05-01", "13:45:00", 3);
+            String GuessID = tickets.nextString();
+            String GuessListID = request.getParameter("GuessListID");
+            String FirstName = request.getParameter("FirstName");
+            String LastName = request.getParameter("LastName");
+            String Email = request.getParameter("Email");
+            String PhoneNumber = request.getParameter("PhoneNumber");
+            String BookingID = request.getParameter("BookingID");
+            db.AddRecord(GuessID, GuessListID, FirstName, LastName, Email, PhoneNumber);
             RequestDispatcher rd;
-//            request.setAttribute("userid", userID);
-//            request.setAttribute("guesslistID", GuessListID);
             request.setAttribute("BookingID", BookingID);
+            rd = getServletContext().getRequestDispatcher("/handleguesslist.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("remove")) {
+            String GuessID = request.getParameter("GuessID");
+            db.RemoveRecord(GuessID);
+            String BookingID = request.getParameter("BookingID");
+            request.setAttribute("BookingID", BookingID);
+            RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/handleguesslist.jsp");
             rd.forward(request, response);
         } else {
@@ -77,6 +85,6 @@ public class HandleBooking extends HttpServlet {
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-        db = new BookingDB(dbUrl, dbUser, dbPassword);
+        db = new GuessDB(dbUrl, dbUser, dbPassword);
     }
 }

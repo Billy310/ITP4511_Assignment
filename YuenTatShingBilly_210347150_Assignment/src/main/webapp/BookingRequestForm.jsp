@@ -12,6 +12,7 @@
     ArrayList<VenueLocationBean> VenueLocations = vlb.QueryLocation();
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
     ArrayList<VenueBean> vbs = vb.QueryVenue();
+    
 %>
 <%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";%>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -94,7 +95,6 @@
                             Select Venue
                         </h4>
                         <form method="GET" action="BookingTimeRequest.jsp" id="form1" >
-                            <input type="hidden" name="action" value="book" />
                             <input type="hidden" name="userid" value="<%=request.getParameter(UserID)%>"
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
@@ -169,10 +169,10 @@
 
                             <div class="flex mt-6 text-sm">
                                 <button 
-                                    type="submit" form="form1" value="Continue"
+                                    type="submit" form="form1" 
                                     class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >
-                                    Submit
+                                    Continue
                                 </button>
                             </div>
                         </form>

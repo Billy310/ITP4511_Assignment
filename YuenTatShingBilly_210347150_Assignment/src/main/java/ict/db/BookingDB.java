@@ -152,7 +152,7 @@ public class BookingDB {
             pStmnt.setString(1, BookingID);
             pStmnt.setString(2, UserID);
             pStmnt.setInt(3, VenueID);
-            pStmnt.setString(4, null);
+            pStmnt.setString(4, GuessListID);
             pStmnt.setDate(5, bookingdate);
             pStmnt.setTime(6, time);
             pStmnt.setDate(7, new java.sql.Date(currentDate.getTime()));
@@ -225,6 +225,56 @@ public class BookingDB {
 
         }
         return bookingBeans;
+
+    }
+
+    public BookingBean QueryByID(String BookingID) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        BookingBean bookingbean = null;
+        try {
+
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE BOOKINGID=?";
+            cnnct = getConnection();
+            ResultSet rs = null;
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, BookingID);
+            rs = pStmnt.executeQuery();
+
+            if (rs.next()) {
+
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getString("GuessListID"),
+                        rs.getDate("BookingDate"),
+                        rs.getTime("BookingTime"),
+                        rs.getDate("CreatedDate"),
+                        rs.getDouble("PersonInCharge"),
+                        rs.getInt("Status")
+                );
+
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return bookingbean;
 
     }
 }
