@@ -9,7 +9,6 @@ import ict.bean.VenueBean;
 import ict.bean.VenueLocationBean;
 import ict.db.BookingDB;
 import ict.db.GuessDB;
-import ict.db.GuessListDB;
 import ict.db.UserDB;
 import ict.db.VenueDB;
 import ict.db.VenueLocationDB;
@@ -94,7 +93,6 @@ public class TestDB {
         String dbPassword = "root";
         VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
         VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
-        GuessListDB GuessListDB_ = new GuessListDB(dbUrl, dbUser, dbPassword);
         String UserID = "2xQ5XXW390PxG5ujkrJCYHhc1";
 
     }
