@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 09, 2023 at 02:43 PM
+-- Generation Time: Apr 10, 2023 at 02:13 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -48,11 +48,9 @@ INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `GuessListID`, `Booking
 ('4wtAtrtE417RtKi9jEj0xM33r', 'JEujVPf1vYedNhwfwtAaPVLpX', 1, NULL, '2023-05-01', '13:45:00', '2023-04-09', 80.00, 3),
 ('74G0e458fNHbQrYpVtJ80Je78', 'CQd1p7tdxG6GWNjb9d1xLi53P', 1, NULL, '2023-05-01', '13:45:00', '2023-04-09', 80.00, 3),
 ('78LYFMWRNjGr2exwctfx74Pp5', 'CQd1p7tdxG6GWNjb9d1xLi53P', 1, NULL, '2023-05-01', '13:45:00', '2023-04-04', 80.00, 1),
-('a0CvX0v1JsusMcaGAfR8PEMkP', 'null', 1, NULL, '2023-04-04', '13:45:00', '2023-04-04', 80.00, 3),
 ('dkWPUkEbXfk5JfP0A87Hc9Hv1', 'CQd1p7tdxG6GWNjb9d1xLi53P', 1, NULL, '2023-05-01', '13:45:00', '2023-04-09', 80.00, 3),
 ('e1xGb5JtWkErei3F5LwVNH9c1', 'CQd1p7tdxG6GWNjb9d1xLi53P', 1, NULL, '2023-05-01', '13:45:00', '2023-04-09', 80.00, 3),
 ('E3Xw9YW4WRF8b9cvdQ6cridRw', 'CQd1p7tdxG6GWNjb9d1xLi53P', 1, NULL, '2023-05-01', '13:45:00', '2023-04-09', 80.00, 3),
-('MGrsE0hb3Vcwh5uGQdwaL4Wrr', 'null', 1, NULL, '2023-04-04', '13:45:00', '2023-04-04', 80.00, 2),
 ('Qj76Lv66FHJv7b9Hh4ssN8VdP', 'CQd1p7tdxG6GWNjb9d1xLi53P', 1, NULL, '2023-04-04', '13:45:00', '2023-04-04', 80.00, 3),
 ('uGWtCiArpAuefrXk8FL0p10N9', 'CQd1p7tdxG6GWNjb9d1xLi53P', 5, NULL, '2023-05-01', '13:45:00', '2023-04-09', 80.00, 3),
 ('vc8Y0UspR118tAhFkfsxubsAA', 'CQd1p7tdxG6GWNjb9d1xLi53P', 2, NULL, '2023-05-01', '13:45:00', '2023-04-04', 80.00, 1),
@@ -146,7 +144,7 @@ CREATE TABLE `venue` (
 --
 
 INSERT INTO `venue` (`venueID`, `venueTypeID`, `venueLocationID`, `venueName`, `venueDescription`, `Enable`) VALUES
-(1, 1, 1, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'ResortsResortsResorts', 1),
+(1, 2, 1, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'ResortsResortsResorts', 1),
 (2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotelsHotels', 1),
 (3, 1, 3, 'Hong Kong Institute Of Vocational Education (Tsing Yi)', '', 1),
 (4, 1, 4, 'Hong Kong Institute of Vocational Education (Lee Wai Lee)', '', 1),
