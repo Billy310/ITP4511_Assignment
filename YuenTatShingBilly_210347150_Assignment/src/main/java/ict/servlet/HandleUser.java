@@ -95,10 +95,21 @@ public class HandleUser extends HttpServlet {
             String Password = request.getParameter("password");
             String Email = request.getParameter("email");
             int Status = Integer.parseInt(request.getParameter("status"));
-            db.EditRecord(UserID, Username, Password,Status, Email);
+            db.EditRecord(UserID, Username, Password, Status, Email);
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/AccountManagement.jsp");
             rd.forward(request, response);
+        } else if ("editpersonal".equals(action)) {
+            String UserID = request.getParameter("userid");
+            String Username = request.getParameter("username");
+            String Password = request.getParameter("password");
+            String Email = request.getParameter("email");
+            db.EditPersonalRecord(UserID, Username, Password, Email);
+            RequestDispatcher rd;
+            request.setAttribute("userid", UserID);
+            rd = getServletContext().getRequestDispatcher("/login.jsp");
+            rd.forward(request, response);
+
         } else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");

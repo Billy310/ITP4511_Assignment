@@ -67,7 +67,8 @@ public class HandleBooking extends HttpServlet {
             request.setAttribute("BookingID", BookingID);
             rd = getServletContext().getRequestDispatcher("/handleguesslist.jsp");
             rd.forward(request, response);
-        } else {
+        }
+        else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");
         }

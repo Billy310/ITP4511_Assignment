@@ -362,5 +362,47 @@ public class UserDB {
         return userbean;
 
     }
+    
+    public boolean EditPersonalRecord(String UserID, String Username, String Password, String Email) {
+
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        Connection cnnct = null;
+        try {
+
+            String preQueryStatement = "UPDATE USER SET USERNAME=?,PASSWORD=?,EMAIL=? WHERE USERID=?";
+
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+
+            pStmnt.setString(1, Username);
+            pStmnt.setString(2, Password);
+            pStmnt.setString(3, Email);
+            pStmnt.setString(4, UserID);
+            pStmnt.executeUpdate();
+            isSuccess = true;
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return isSuccess;
+    }
+
+    
+    
+    
+    
 
 }

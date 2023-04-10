@@ -25,7 +25,6 @@
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-    UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
     BookingDB db = new BookingDB(dbUrl, dbUser, dbPassword);
     VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
     VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
@@ -61,8 +60,7 @@
         }
         out.print("</td>");
 
-        out.print("<form action='HandleUser?'>");
-        out.print("<input type=hidden value=disable name=action />");
+        out.print("<form action='ViewBookingDetail.jsp' method=\"POST\" >");
         out.print("<input type=hidden value=" + vb.getBookingID() + " name=bookingID />");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         out.print("<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>View Details</button>");

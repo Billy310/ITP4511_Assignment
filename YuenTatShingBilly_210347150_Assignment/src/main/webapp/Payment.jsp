@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";
+<%String UserID = "userid";
     String Venue = "venue";
 %>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
