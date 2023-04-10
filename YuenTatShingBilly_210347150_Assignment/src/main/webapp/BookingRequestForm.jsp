@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean" %>
+<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
@@ -7,6 +7,8 @@
 //    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
 //    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
     VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
+    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
+    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
     ArrayList<VenueLocationBean> VenueLocations = vlb.QueryLocation();
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
     ArrayList<VenueBean> vbs = vb.QueryVenue();
@@ -42,7 +44,7 @@
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
-                    title: 'Hello World!'
+                    title: 'Venue Location'
                 });
             }
             function getvalue() {
@@ -50,11 +52,14 @@
                 var venuecordX = document.getElementById("venuecordx");
                 var venuecordY = document.getElementById("venuecordy");
                 var venuelocationid = document.getElementById("venuelocationid");
-                var selectedLocationID = venuelocationid.options[selected-1].value;
+                var venuetype = document.getElementById("venuetype");
+                var selectedLocationID = venuelocationid.options[selected - 1].value;
                 var selectedvalue_X = venuecordX.options[selectedLocationID - 1].value;
                 var selectedvalue_Y = venuecordY.options[selectedLocationID - 1].value;
                 initMap(selectedvalue_X, selectedvalue_Y, 20);
-            }
+                document.getElementById('venuetype').selectedIndex = selected;
+                }
+            
         </script>
     </head>
     <body>
@@ -86,9 +91,9 @@
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
-                            Information
+                            Select Venue
                         </h4>
-                        <form method="GET" action="HandleBooking" id="form1" >
+                        <form method="GET" action="BookingTimeRequest.jsp" id="form1" >
                             <input type="hidden" name="action" value="book" />
                             <input type="hidden" name="userid" value="<%=request.getParameter(UserID)%>"
                                    <div
@@ -103,7 +108,7 @@
                                         onchange="getvalue()"
                                         >
                                     <%
-                                        out.print("<option value=>Please Select Booking Location</option>");
+                                        out.print("<option  value=>Please Select Booking Location</option>");
                                         for (int x = 0; x < vbs.size(); x++) {
                                             VenueBean v = vbs.get(x);
                                             out.print("<option value=" + v.getVenueID() + ">" + v.getVenueName() + "</option>");
@@ -134,6 +139,24 @@
                                     %> 
                                 </select>
                             </label>
+                            <label class="block mt-4 text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">
+                                    Venue Type
+                                </span>
+                                <select name="venue" id="venuetype" 
+                                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                        disabled
+                                        >
+                                    <%
+                                        out.print("<option value=>Booking Venue Type</option>");
+                                        for (int x = 0; x < vbs.size(); x++) {
+                                            VenueBean v = vbs.get(x);
+                                            out.print("<option value=" + v.getVenueID() + ">" + vtb.QueryByID(v.getVenueTypeID()).getVenueTypeName() + "</option>");
+                                        }
+                                    %> 
+
+                                </select>
+                            </label>
 
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">
@@ -144,44 +167,18 @@
                             </label>
 
 
-                            <!--                            <label class="block mt-4 text-sm">
-                                                            <span class="text-gray-700 dark:text-gray-400">Message</span>
-                                                            <textarea
-                                                                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                                rows="3"
-                                                                placeholder="Enter some long form content."
-                                                                ></textarea>
-                                                        </label>-->
-
-                            <!--                            <div class="flex mt-6 text-sm">
-                                                            <label class="flex items-center dark:text-gray-400">
-                                                                <input
-                                                                    type="checkbox"
-                                                                    class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                                    />
-                                                                <span class="ml-2">
-                                                                    I agree to the
-                                                                    <span class="underline">privacy policy</span>
-                                                                </span>
-                                                            </label>
-                                                        </div>-->
                             <div class="flex mt-6 text-sm">
                                 <button 
-                                    type="submit" form="form1" value="Submit"
+                                    type="submit" form="form1" value="Continue"
                                     class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >
                                     Submit
                                 </button>
                             </div>
-                    </div>
-
-                    <div>
-
-                    </div>
-                    </form>
+                        </form>
+                </main>
             </div>
         </div>
-    </main>
-</div>
-</body>
+
+    </body>
 </html>

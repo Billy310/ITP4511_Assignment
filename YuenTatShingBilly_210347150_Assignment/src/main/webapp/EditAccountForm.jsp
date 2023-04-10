@@ -47,7 +47,7 @@
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        <form action="HandleUser" method="POST" >
+                        <form action="BookingTimeRequest.jsp" method="POST" >
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >
@@ -145,8 +145,9 @@
                             </div>
                         </form>
                     </div>
+                                                        </main>
             </div>
-        </main>
+ 
     </div>
 </body>
 </html>

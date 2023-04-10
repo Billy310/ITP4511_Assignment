@@ -36,17 +36,20 @@ public class TestDB {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
-        
+
         UserTypeDB utd = new UserTypeDB(dbUrl, dbUser, dbPassword);
         utd.createTable();
+        VenueDB VenueDB_ = new VenueDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+        ArrayList<VenueBean> vtbs= VenueDB_.QueryVenue();
+        VenueBean v = vtbs.get(0);
+        VenueTypeDB vtb = new VenueTypeDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
+        System.out.print(vtb.QueryByID(1).getVenueTypeName());
 //        UserDB ud = new UserDB(dbUrl, dbUser, dbPassword);
 //        ud.QueryUser();
 
 //    UserDB db = new UserDB(dbUrl, dbUser, dbPassword);
 //    ArrayList<UserBean> AllUsers = db.QueryUser();
 //    db.EditRecord("CQd1p7tdxG6GWNjb9d1xLi53P","HowRonaldoStart","Ronaldo",1,"billy0310.yts@gmail.com");
- 
-
 //        VLB.QueryLocation();
     }
 

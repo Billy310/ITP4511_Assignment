@@ -83,7 +83,7 @@ public class VenueTypeDB {
         VenueTypeBean VTB = null;
         try {
 
-            String preQueryStatement = "SELECT * FROM VENUETYPE WHERE VENUEID = ?";
+            String preQueryStatement = "SELECT * FROM VENUETYPE WHERE VENUETYPEID = ?";
             cnnct = getConnection();
             ResultSet rs = null;
             pStmnt = cnnct.prepareStatement(preQueryStatement);
