@@ -19,7 +19,7 @@
                 <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
                 <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
                 <div class="login-form">
-                    <form action="HandleUser"  method="get" />
+                    <form action="HandleUser"  method="POST" />
                     <input type="hidden" value="login" name="action"/>
                     <div class="sign-in-htm">
                         <div class="group">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     </form>
-                    <form action="HandleUser" method="get" />
+                    <form action="HandleUser" method="POST" />
                     <input type="hidden" value="signup" name="action"/>
                     <input type="hidden" value="3" name="role" />
                     <div class="sign-up-htm">

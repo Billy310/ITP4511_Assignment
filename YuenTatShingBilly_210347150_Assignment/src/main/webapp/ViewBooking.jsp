@@ -86,9 +86,7 @@
                                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                                         >     
 
-                                        <jsp:include page="ListBooking.jsp">
-                                            <jsp:param name="userid" value="<%=request.getParameter("J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5")%>" />
-                                        </jsp:include>
+                                        <jsp:include page="ListBooking.jsp" />
 
                                     </tbody>
                                 </table>
