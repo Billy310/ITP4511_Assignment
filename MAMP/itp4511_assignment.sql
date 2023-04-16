@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 10, 2023 at 05:10 PM
+-- Generation Time: Apr 16, 2023 at 07:59 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -44,14 +44,8 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `GuessListID`, `BookingDate`, `BookingTime`, `CreatedDate`, `PersonInCharge`, `Status`) VALUES
-('hv2AJxWKcUbQhd8GhfkVjL7Vp', 'null', 2, 'WeU9dwuULNuj18f3f23pfCi2d', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3),
-('QdpP9av2sJ17CFrK7YsAxYFvb', 'null', 1, '8kQW93hFKE9cdc1M0FLVvbMHx', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3),
-('s0UCuwY5FENvKXdhGtsXC5E3r', 'null', 2, 'GEURGAYs53d5Rj1GNvKC2tAL0', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3),
-('vbx0fxPPR7WhhM5Gf2piGHchi', 'null', 1, 'PAX0r4s5aN2rpHiLduc4srXaJ', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3),
-('vpV7KFC5eHv1xM5fjRbjx7YVH', 'null', 1, 'rR6VJcKtJpj5rwQP5XkttLL6d', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3),
-('vRuERN5Ebbias3iaVkLbj6v2W', 'null', 1, '0854FJ8ih4svrGw6ebj2bHvCH', '2023-05-01', '13:45:00', '2023-04-10', 80.00, 3),
-('W0E20wvhFw4ANxhrpURRMifdJ', 'null', 1, 'RX7CAG65AG8v45jCarWbYbPQ9', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3),
-('Yu53NbCpfsjdPkc9dJFcdd39x', 'null', 1, 'ed1hGNVuGELw7HdfhrX1PwN6W', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3);
+('pJsf9e2UfkbAjrW4te7Quvk37', 'CQd1p7tdxG6GWNjb9d1xLi53P', 1, 'GYCt9k68FrrL9fEdsuvhQUaeb', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3),
+('RLGRcNUk0rp6ih8vWW0Wcex0L', 'null', 1, 'cVjQuuWEaGN0QEe9MWpkwspwG', '2023-05-01', '13:45:00', '2023-04-11', 80.00, 3);
 
 -- --------------------------------------------------------
 
@@ -67,6 +61,14 @@ CREATE TABLE `guess` (
   `Email` varchar(45) NOT NULL,
   `PhoneNumber` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `guess`
+--
+
+INSERT INTO `guess` (`GuessID`, `GuessListID`, `FirstName`, `LastName`, `Email`, `PhoneNumber`) VALUES
+('3HeRf7RX19w79ujkswM4sfu2X', 'GYCt9k68FrrL9fEdsuvhQUaeb', '234', '432', '243', '432'),
+('8rNjsK88shJHwR03JpaA50VPs', 'GYCt9k68FrrL9fEdsuvhQUaeb', '432', '324423', '324', '423');
 
 -- --------------------------------------------------------
 
@@ -98,7 +100,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`, `email`, `Role`, `Enable`) VALUES
-('CQd1p7tdxG6GWNjb9d1xLi53P', 'HowRonaldoStart', 'Messi', 'billy0310.yts@gmail.com', 3, 1),
+('CQd1p7tdxG6GWNjb9d1xLi53P', 'HowRonaldoStart', 'Ronaldo', 'billy0310.yts@gmail.com', 3, 1),
 ('JEujVPf1vYedNhwfwtAaPVLpX', 'Billy0310', '8964', '432', 3, 1);
 
 -- --------------------------------------------------------
