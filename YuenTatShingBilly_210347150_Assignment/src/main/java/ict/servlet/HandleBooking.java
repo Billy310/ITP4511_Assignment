@@ -60,15 +60,13 @@ public class HandleBooking extends HttpServlet {
             String GuessListID = guesslist.nextString();
             String userID = request.getParameter("userid");
             int VenueID = Integer.parseInt(request.getParameter("venue"));
-            db.AddRecord(BookingID, userID, VenueID, GuessListID, "2023-05-01", "13:45:00", 3);
+            db.AddRecord(BookingID, userID, VenueID, GuessListID, "2023-05-01", 1,2, 3);
             RequestDispatcher rd;
-//            request.setAttribute("userid", userID);
-//            request.setAttribute("guesslistID", GuessListID);
+            request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
             rd = getServletContext().getRequestDispatcher("/handleguesslist.jsp");
             rd.forward(request, response);
-        }
-        else {
+        } else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");
         }

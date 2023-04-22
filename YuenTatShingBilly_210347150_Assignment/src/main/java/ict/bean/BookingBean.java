@@ -17,31 +17,22 @@ public class BookingBean implements Serializable {
     private String BookingID, UserID, GuessListID;
     private int VenueID;
     private Date BookingDate, CreatedDate;
-    private Time BookingTime;
+    private int BookingStart,BookingEnd;
     private double PersonInCharge;
     private int Status;
 
-//                    = "CREATE TABLE IF NOT EXISTS Booking("
-//                    + "BookingID varchar(25) NOT NULL,"
-//                    + "UserID varchar(25) NOT NULL,"
-//                    + "VenueID INT(1) NOT NULL,"
-//                    + "GuessListID varchar(25) NULL,"
-//                    + "BookingDate date NOT NULL,"
-//                    + "BookingTime Time NOT NULL,"
-//                    + "CreatedDate date NOT NULL,"
-//                    + "PersonInCharge double(5,2) NOT NULL,"
-//                    + "Status INT(1) NOT NULL,"
     public BookingBean() {
     }
 
-    public BookingBean(String BookingID, String UserID, int VenueID, String GuessListID, Date BookingDate, Time BookingTime, Date CreatedDate, double PersonInCharge, int Status) {
+    public BookingBean(String BookingID, String UserID,int VenueID, String GuessListID,   Date BookingDate, Date CreatedDate, int BookingStart, int BookingEnd, double PersonInCharge, int Status) {
         this.BookingID = BookingID;
         this.UserID = UserID;
         this.GuessListID = GuessListID;
         this.VenueID = VenueID;
         this.BookingDate = BookingDate;
         this.CreatedDate = CreatedDate;
-        this.BookingTime = BookingTime;
+        this.BookingStart = BookingStart;
+        this.BookingEnd = BookingEnd;
         this.PersonInCharge = PersonInCharge;
         this.Status = Status;
     }
@@ -94,12 +85,20 @@ public class BookingBean implements Serializable {
         this.CreatedDate = CreatedDate;
     }
 
-    public Time getBookingTime() {
-        return BookingTime;
+    public int getBookingStart() {
+        return BookingStart;
     }
 
-    public void setBookingTime(Time BookingTime) {
-        this.BookingTime = BookingTime;
+    public void setBookingStart(int BookingStart) {
+        this.BookingStart = BookingStart;
+    }
+
+    public int getBookingEnd() {
+        return BookingEnd;
+    }
+
+    public void setBookingEnd(int BookingEnd) {
+        this.BookingEnd = BookingEnd;
     }
 
     public double getPersonInCharge() {
@@ -117,7 +116,5 @@ public class BookingBean implements Serializable {
     public void setStatus(int Status) {
         this.Status = Status;
     }
-
     
-
 }

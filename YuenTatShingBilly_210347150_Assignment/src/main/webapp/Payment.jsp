@@ -61,7 +61,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Card Number</span>
                                     <input
-                                        name="userid"
+                                        name=""
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="XXXX XXXX XXXX XXXX" 
                                         />
@@ -69,7 +69,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Cardholder Name</span>
                                     <input
-                                        name="userid"
+                                        name=""
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Cardholder Name" 
                                         />
@@ -78,7 +78,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Card CVC Code</span>
                                     <input
-                                        name="userid"
+                                        name=""
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="XXX" 
                                         />
@@ -91,6 +91,7 @@
                                         Continue
                                     </button>
                                 </div>
+                            </div>
                         </form>
                 </main>
             </div>

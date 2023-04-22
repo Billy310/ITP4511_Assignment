@@ -80,6 +80,7 @@ public class HandleUser extends HttpServlet {
 
             db.AddRecord(UserID, Username, Email, Password, Role, Enable);
             RequestDispatcher rd;
+            request.setAttribute("userid", UserID);
             rd = getServletContext().getRequestDispatcher("/login.jsp");
             rd.forward(request, response);
         } else if ("disable".equals(action)) {

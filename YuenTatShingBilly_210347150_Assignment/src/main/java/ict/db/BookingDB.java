@@ -53,7 +53,7 @@ public class BookingDB {
         Statement stmnt = null;
         Connection cnnct = null;
         try {
-
+//BookingStart,BookingEnd
             cnnct = getConnection();
             stmnt = cnnct.createStatement();
             String sql
@@ -63,7 +63,8 @@ public class BookingDB {
                     + "VenueID INT(1) NOT NULL,"
                     + "GuessListID varchar(25) NULL,"
                     + "BookingDate date NOT NULL,"
-                    + "BookingTime Time NOT NULL,"
+                    + "BookingStart INT(2) NOT NULL,"
+                    + "BookingEnd INT(2) NOT NULL,"
                     + "CreatedDate date NOT NULL,"
                     + "PersonInCharge double(5,2) NOT NULL,"
                     + "Status INT(1) NOT NULL,"
@@ -107,8 +108,9 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
-                        rs.getTime("BookingTime"),
                         rs.getDate("CreatedDate"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
                         rs.getInt("Status")
                 );
@@ -133,31 +135,41 @@ public class BookingDB {
 
     }
 
-    public boolean AddRecord(String BookingID, String UserID, int VenueID, String GuessListID, String BookingDate, String BookingTime, int Status) throws ParseException {
-
+    public boolean AddRecord(String BookingID, String UserID, int VenueID, String GuessListID, String BookingDate, int BookingStart,int BookingEnd, int Status) throws ParseException {
+//                    = "CREATE TABLE IF NOT EXISTS Booking("
+//                    + "BookingID varchar(25) NOT NULL,"
+//                    + "UserID varchar(25) NOT NULL,"
+//                    + "VenueID INT(1) NOT NULL,"
+//                    + "GuessListID varchar(25) NULL,"
+//                    + "BookingDate date NOT NULL,"
+//                    + "BookingStart INT(2) NOT NULL,"
+//                    + "BookingEnd INT(2) NOT NULL,"
+//                    + "CreatedDate date NOT NULL,"
+//                    + "PersonInCharge double(5,2) NOT NULL,"
+//                    + "Status INT(1) NOT NULL,"
+//                    + "PRIMARY KEY (BookingID)"
+//                    + ")";
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date currentDate = new java.util.Date();
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
-            String formattedTime = "13:45:00";
             java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
-            java.sql.Time time = new java.sql.Time(timeFormat.parse(formattedTime).getTime());
             cnnct = getConnection();
-            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?)";
+            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setString(1, BookingID);
             pStmnt.setString(2, UserID);
             pStmnt.setInt(3, VenueID);
             pStmnt.setString(4, GuessListID);
             pStmnt.setDate(5, bookingdate);
-            pStmnt.setTime(6, time);
-            pStmnt.setDate(7, new java.sql.Date(currentDate.getTime()));
-            pStmnt.setDouble(8, 80.0);
-            pStmnt.setInt(9, Status);
+            pStmnt.setInt(6, BookingStart);
+            pStmnt.setInt(7, BookingEnd);
+            pStmnt.setDate(8, new java.sql.Date(currentDate.getTime()));
+            pStmnt.setDouble(9, 80.0);
+            pStmnt.setInt(10, Status);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
 
@@ -202,8 +214,9 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
-                        rs.getTime("BookingTime"),
                         rs.getDate("CreatedDate"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
                         rs.getInt("Status")
                 );
@@ -251,8 +264,9 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
-                        rs.getTime("BookingTime"),
                         rs.getDate("CreatedDate"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
                         rs.getInt("Status")
                 );
