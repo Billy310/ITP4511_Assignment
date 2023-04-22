@@ -4,15 +4,13 @@
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-//    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
-//    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
     VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
     VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
     ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
     ArrayList<VenueLocationBean> VenueLocations = vlb.QueryLocation();
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
     ArrayList<VenueBean> vbs = vb.QueryVenue();
-    
+
 %>
 <%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";%>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -59,8 +57,8 @@
                 var selectedvalue_Y = venuecordY.options[selectedLocationID - 1].value;
                 initMap(selectedvalue_X, selectedvalue_Y, 20);
                 document.getElementById('venuetype').selectedIndex = selected;
-                }
-            
+            }
+
         </script>
     </head>
     <body>
@@ -94,7 +92,7 @@
                             >
                             Select Venue
                         </h4>
-                        <form method="GET" action="BookingTimeRequest.jsp" id="form1" >
+                        <form method="GET" action="ContinueBooking.jsp">
                             <input type="hidden" name="userid" value="<%=request.getParameter(UserID)%>"
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
@@ -113,24 +111,23 @@
                                             VenueBean v = vbs.get(x);
                                             out.print("<option value=" + v.getVenueID() + ">" + v.getVenueName() + "</option>");
                                         }
-
                                     %>
                                 </select>
-                                <select name="venue-hidden" id="venuelocationid" hidden>
+                                <select name="venue_hidden" id="venuelocationid" hidden>
                                     <%                                        for (int x = 0; x < vbs.size(); x++) {
                                             VenueBean v = vbs.get(x);
                                             out.print("<option value=" + v.getVenueLocationID() + ">" + v.getVenueLocationID() + "</option>");
                                         }
                                     %> 
                                 </select>
-                                <select name="venue-hidden" id="venuecordx" hidden>
+                                <select name="venue_hidden_x" id="venuecordx" hidden>
                                     <%                                      for (int x = 0; x < VenueLocations.size(); x++) {
                                             VenueLocationBean v = VenueLocations.get(x);
                                             out.print("<option value=" + v.getVenueLocation_X() + ">" + v.getVenueLocation_X() + "</option>");
                                         }
                                     %> 
                                 </select>
-                                <select name="venue-hidden" id="venuecordy" hidden>
+                                <select name="venue_hidden_y" id="venuecordy" hidden>
                                     <%
                                         for (int x = 0; x < VenueLocations.size(); x++) {
                                             VenueLocationBean v = VenueLocations.get(x);
@@ -157,6 +154,18 @@
 
                                 </select>
                             </label>
+                                    <label class="block mt-4 text-sm">
+                                        <span class="text-gray-700 dark:text-gray-400">
+                                            Select Date
+
+                                        </span>
+                                        <input
+                                            type="date"
+                                            name="venuedate"
+                                            id="venuedate"
+                                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                            />
+                                    </label>
 
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">
@@ -169,13 +178,14 @@
 
                             <div class="flex mt-6 text-sm">
                                 <button 
-                                    type="submit" form="form1" 
+                                    type="submit"  
                                     class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >
                                     Continue
                                 </button>
                             </div>
                         </form>
+                    </div>
                 </main>
             </div>
         </div>

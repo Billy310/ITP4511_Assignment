@@ -135,20 +135,8 @@ public class BookingDB {
 
     }
 
-    public boolean AddRecord(String BookingID, String UserID, int VenueID, String GuessListID, String BookingDate, int BookingStart,int BookingEnd, int Status) throws ParseException {
-//                    = "CREATE TABLE IF NOT EXISTS Booking("
-//                    + "BookingID varchar(25) NOT NULL,"
-//                    + "UserID varchar(25) NOT NULL,"
-//                    + "VenueID INT(1) NOT NULL,"
-//                    + "GuessListID varchar(25) NULL,"
-//                    + "BookingDate date NOT NULL,"
-//                    + "BookingStart INT(2) NOT NULL,"
-//                    + "BookingEnd INT(2) NOT NULL,"
-//                    + "CreatedDate date NOT NULL,"
-//                    + "PersonInCharge double(5,2) NOT NULL,"
-//                    + "Status INT(1) NOT NULL,"
-//                    + "PRIMARY KEY (BookingID)"
-//                    + ")";
+    public boolean AddRecord(String BookingID, String UserID, int VenueID, String GuessListID, String BookingDate, int BookingStart, int BookingEnd, int Status) throws ParseException {
+
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
@@ -205,6 +193,58 @@ public class BookingDB {
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, UserID);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getString("GuessListID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getDouble("PersonInCharge"),
+                        rs.getInt("Status")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
+    public ArrayList<BookingBean> QueryVenueBookingByDateAndPlace(int VenueID, String BookingDate) throws ParseException {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.sql.Date bookingdate_date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ?";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, VenueID);
+            pStmnt.setDate(2, bookingdate_date);
             rs = pStmnt.executeQuery();
             while (rs.next()) {
                 BookingBean bookingbean;

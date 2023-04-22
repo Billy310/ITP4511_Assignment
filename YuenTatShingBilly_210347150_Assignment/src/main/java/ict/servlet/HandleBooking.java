@@ -59,8 +59,11 @@ public class HandleBooking extends HttpServlet {
             RandomString guesslist = new RandomString(25, new SecureRandom(), easy);
             String GuessListID = guesslist.nextString();
             String userID = request.getParameter("userid");
+            String BookingDate = request.getParameter("venuedate");
+            int BookingStart = Integer.parseInt(request.getParameter("venuetimestart"));
+            int BookingEnd = Integer.parseInt(request.getParameter("venuetimeend"));
             int VenueID = Integer.parseInt(request.getParameter("venue"));
-            db.AddRecord(BookingID, userID, VenueID, GuessListID, "2023-05-01", 1,2, 3);
+            db.AddRecord(BookingID, userID, VenueID, GuessListID, BookingDate, BookingStart,BookingEnd, 3);
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);

@@ -4,6 +4,7 @@
  */
 package ict.test;
 
+import ict.bean.BookingBean;
 import ict.bean.UserBean;
 import ict.bean.VenueBean;
 import ict.bean.VenueLocationBean;
@@ -33,7 +34,8 @@ public class TestDB {
         String dbUser = "root";
         String dbPassword = "root";
         BookingDB bdb= new BookingDB( dbUrl,dbUser,dbPassword);
-        bdb.createTable();
+       ArrayList<BookingBean> bb= bdb.QueryVenueBookingByDateAndPlace(1,"2023-05-01");
+       System.out.print(bb.size());
 
     }
 

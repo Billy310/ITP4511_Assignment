@@ -1,6 +1,15 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList,ict.db.BookingDB,ict.bean.BookingBean" %>
 <%String UserID = "userid";
-    String Venue = "venue"; 
+    String Venue = "venue";
+%>
+<%
+    String dbUser = this.getServletContext().getInitParameter("dbUser");
+    String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+    String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+    BookingDB bdb = new BookingDB(dbUrl, dbUser, dbPassword);
+    ArrayList<BookingBean> bb = bdb.QueryVenueBookingByDateAndPlace(Integer.parseInt(request.getParameter("venue")), "2023-05-01");
+
 %>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
@@ -119,21 +128,21 @@
                                     <select           name="venuetimeend"
                                                       id="venuetimeend"
                                                       class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-
                                     </select>
                                 </label>
-                                <div class="flex mt-6 text-sm">
-                                    <button 
-                                        type="submit" form="form1"  
-                                        class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                        >
-                                        Continue
-                                    </button>
-                                </div>
+                            </div>
+                            <div class="flex mt-6 text-sm">
+                                <button 
+                                    type="submit" form="form1"  
+                                    class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    >
+                                    Continue
+                                </button>
+                            </div>
                         </form>
+                    </div>
                 </main>
             </div>
         </div>
-
     </body>
 </html>
