@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.UserBean,ict.db.UserDB" %>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Date,ict.personal.TransferFormat"%>
+<%@page import="java.util.ArrayList,ict.bean.BookingBean,ict.bean.VenueBean,ict.bean.VenueLocationBean,ict.db.BookingDB,ict.db.VenueLocationDB,ict.db.VenueDB,ict.db.VenueTypeDB,ict.bean.VenueTypeBean" %>
 <%
+    TransferFormat tf = new TransferFormat();
+    String BookingID = "BookingID";
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-//    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
-//    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
-    UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
-    UserBean ub = userdb.QueryUserByID(request.getParameter("userid"));
-
+    BookingDB db = new BookingDB(dbUrl, dbUser, dbPassword);
+    VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
+    VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
+    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
+    BookingBean bb = db.QueryByID(request.getParameter(BookingID));
+    VenueBean vb = venueDB.queueVenueByVenueID(bb.getVenueID());
+    VenueLocationBean vlb = LocationDB.QueryByLocationID(vb.getVenueLocationID());
+    VenueTypeBean vt = vtb.QueryByID(bb.getVenueID());
 %>
-<%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";%>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -51,7 +57,7 @@
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >
-                                Account Information Edit Page
+                                Edit Booking
                             </h2>
                             <!-- CTA -->
 
@@ -62,14 +68,17 @@
                                 >
                                 <input type="hidden" value="edit" name="action" />
 
-                                <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Booking ID</span>
-                                    <input
-                                        name="bookingid"
-                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="UserID" readonly
-                                        value="<%=ub.getUserID()%>"
-                                        />
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Venue Type
+                                    </span>
+                                    <select name="venue" id="venuetype" 
+                                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                            disabled
+                                            >
+                                
+
+                                    </select>
                                 </label>
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">User ID</span>
@@ -77,16 +86,16 @@
                                         name="userid"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Username"
-                                        value="<%=ub.getUsername()%>"
+                               
                                         />
                                 </label>
 
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Booking Venue Name</span>
                                     <input
-                                        name="venuename"
+                                        name=""
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        value="<%=ub.getPassword()%>"
+                                   
                                         />
                                 </label>
 
@@ -96,16 +105,16 @@
                                         name="email"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Email"
-                                        value="<%=ub.getEmail()%>"
+                                 
                                         />
                                 </label>
-                                        <br>
+                                <br>
                                 <button
-                                     
+
                                     type="submit"
                                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >
-                                     Confirm Edit
+                                    Confirm Edit
                                 </button>
 
                             </div>

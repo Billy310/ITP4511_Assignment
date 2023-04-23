@@ -1,6 +1,7 @@
+ 
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date,ict.personal.TransferFormat"%>
-<!DOCTYPE html>
 <%@page import="java.util.ArrayList,ict.bean.BookingBean,ict.bean.VenueBean,ict.bean.VenueLocationBean,ict.db.BookingDB,ict.db.VenueLocationDB,ict.db.VenueDB,ict.db.VenueTypeDB,ict.bean.VenueTypeBean" %>
 
 <%
@@ -19,11 +20,24 @@
     VenueTypeBean vt = vtb.QueryByID(bb.getVenueID());
 
 %>
+<%!
+    public String TransferTime(int Time_book) {
+
+        if (Time_book < 10) {
+            return "0" + Time_book + ":00";
+        } else {
+            return Time_book + ":00";
+        }
+
+    }
+
+%>
+<!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>View Booking Detail -- <%=bb.getBookingID() %></title>
+        <title>View Booking Detail -- <%=bb.getBookingID()%></title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -126,7 +140,7 @@
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Email"
                                         readonly
-                                        value="<%=vt.getVenueTypeName()%>"
+                                        value="<%=TransferTime(bb.getBookingStart())%>"
                                         />
                                 </label>
                                 <label class="block text-sm">
@@ -136,7 +150,7 @@
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Email"
                                         readonly
-                                        value="<%=vt.getVenueTypeName()%>"
+                                        value="<%=TransferTime(bb.getBookingEnd())%>"
                                         />
                                 </label>
                                 <br>

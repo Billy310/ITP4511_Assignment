@@ -4,8 +4,6 @@
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-//    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
-//    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
     UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
     UserBean ub = userdb.QueryUserByID(request.getParameter("userid"));
 
