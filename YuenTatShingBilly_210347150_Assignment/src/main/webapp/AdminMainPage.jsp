@@ -37,7 +37,7 @@
                 var stars = [TM, ST, TY, LWL, CW];
                 var frameworks = ['Tuen Mun', 'Sha Tin', 'Tsing Yi', 'Lee Wai Lee', 'Chai Wan'];
                 new Chart('myChart', {
-                    type: 'doughnut',
+                    type: 'pie',
                     data: {
                         labels: frameworks,
                         datasets: [{
@@ -46,7 +46,7 @@
                             }]
                     }, options: {
                         responsive: true,
-                        cutoutPercentage: 80, legend: {
+                        cutoutPercentage: 0, legend: {
                             display: false
                         }
                     }
