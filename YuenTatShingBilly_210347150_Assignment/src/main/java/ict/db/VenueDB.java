@@ -170,5 +170,50 @@ public class VenueDB {
 
     }
     
+    public ArrayList<VenueBean> QueryVenueByLocationID(int LocationID) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<VenueBean> userbeans = new ArrayList<VenueBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM VENUE WHERE venueLocationID = ?";
+            cnnct = getConnection();
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, LocationID);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                VenueBean userbean;
+                userbean = new VenueBean(
+                        rs.getInt("venueID"),
+                        rs.getInt("venueTypeID"),
+                        rs.getInt("venueLocationID"),
+                        rs.getString("venueName"),
+                        rs.getString("venueDescription"),
+                        rs.getInt("Enable")
+                );
+                userbeans.add(userbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return userbeans;
+
+    }
+    
 
 }

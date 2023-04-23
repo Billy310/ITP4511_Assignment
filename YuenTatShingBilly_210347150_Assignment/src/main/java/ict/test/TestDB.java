@@ -30,12 +30,12 @@ import ict.db.UserTypeDB;
 public class TestDB {
 
     public static void main(String[] args) throws ParseException {
-        String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
-        String dbUser = "root";
-        String dbPassword = "root";
-        BookingDB bdb= new BookingDB( dbUrl,dbUser,dbPassword);
-       ArrayList<BookingBean> bb= bdb.QueryVenueBookingByDateAndPlace(1,"2023-05-01");
-       System.out.print(bb.size());
+//        String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
+//        String dbUser = "root";
+//        String dbPassword = "root";
+//        VenueDB vd = new VenueDB(dbUrl, dbUser, dbPassword);
+//        ArrayList<VenueBean> bb = vd.QueryVenueByLocationID(1);
+        System.out.print(CalTotalByLocationID(1));
 
     }
 
@@ -47,40 +47,23 @@ public class TestDB {
         System.out.println(generatedString);
     }
 
-    public static void CreateDB() throws ParseException {
-
-//        UserDB UserDB_ = new UserDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        UserDB_.createTable();
-//        System.out.print(UserDB_.QueryUserByName("billy0310").getUserID());
-        BookingDB BookingDB_ = new BookingDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-        BookingDB_.createTable();
-        String UserID = "CQd1p7tdxG6GWNjb9d1xLi53P";
-        String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
-        RandomString tickets = new RandomString(25, new SecureRandom(), easy);
-        String BookingID = tickets.nextString();
-//        BookingDB_.AddRecord(BookingID, UserID, 1, null, "2023-05-01", "13:45:00", 3);
-//        VenueDB VenueDB_ = new VenueDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        VenueDB_.createVenueTable();
-//        VenueTypeDB VTB = new VenueTypeDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        VTB.createVenueTypeTable();
-//        VenueLocationDB VLB = new VenueLocationDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        VLB.createVenueLocationTable();
-//        GuessListDB GuessListDB_ = new GuessListDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        GuessListDB_.createTable();
-//         GuessDB GuessDB_ = new GuessDB("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "root");
-//        GuessDB_.createTable();
-
-//        VLB.Init();
-    }
-
-    public static void Testing() {
+    public static int CalTotalByLocationID(int LocationID) {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
         VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
-        VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
-        String UserID = "2xQ5XXW390PxG5ujkrJCYHhc1";
+        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+        ArrayList<VenueBean> vlb = venueDB.QueryVenueByLocationID(LocationID);
+        System.out.print(vlb.size());
+        int Total = 0;
+        for (int x = 0; x < vlb.size(); x++) {
+            ArrayList<BookingBean> bb = bookingDB.QueryVenueBookingByPlace(vlb.get(x).getVenueID());
 
+                Total =bb.size();
+            
+        }
+
+        return Total;
     }
 
 }
