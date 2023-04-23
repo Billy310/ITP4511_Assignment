@@ -58,7 +58,7 @@
             </jsp:include>
             <!-- Mobile sidebar -->
             <!-- Backdrop -->
-            <jsp:include page="MobileScreenSideBar.jsp">
+            <jsp:include page="MobileScreenSideBar.jsp" >
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <div class="flex flex-col flex-1">
