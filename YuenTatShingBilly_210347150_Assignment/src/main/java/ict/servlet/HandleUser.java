@@ -55,10 +55,23 @@ public class HandleUser extends HttpServlet {
                     RequestDispatcher rd;
                     String userid = userbean.getUserID();
                     int UserType = userbean.getRole();
+
                     request.setAttribute("userid", userid);
-                    request.setAttribute("usertype", UserType);
-                    rd = getServletContext().getRequestDispatcher("/login.jsp");
-                    rd.forward(request, response);
+                    if (UserType == 1) {
+//                    request.setAttribute("usertype", UserType);
+                        rd = getServletContext().getRequestDispatcher("/loginadmin.jsp");
+                        rd.forward(request, response);
+                    }
+                     if (UserType == 2) {
+//                    request.setAttribute("usertype", UserType);
+                        rd = getServletContext().getRequestDispatcher("/login.jsp");
+                        rd.forward(request, response);
+                    }
+                      if (UserType == 3) {
+//                    request.setAttribute("usertype", UserType);
+                        rd = getServletContext().getRequestDispatcher("/login.jsp");
+                        rd.forward(request, response);
+                    }
                 } else {
                     RequestDispatcher rd;
                     rd = getServletContext().getRequestDispatcher("/index.jsp");
