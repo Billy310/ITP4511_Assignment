@@ -329,7 +329,7 @@ public class BookingDB {
         return bookingbean;
 
     }
-    
+
     public BookingBean QueryByBookingID(String BookingID) {
 
         PreparedStatement pStmnt = null;
@@ -380,8 +380,8 @@ public class BookingDB {
         return bookingbean;
 
     }
-    
-        public ArrayList<BookingBean> QueryVenueBookingByPlace(int VenueID){
+
+    public ArrayList<BookingBean> QueryVenueBookingByPlace(int VenueID) {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -429,7 +429,56 @@ public class BookingDB {
         return bookingBeans;
 
     }
-    
-    
-    
+
+    public ArrayList<BookingBean> QueryVenueBookingByPlaceANDDate(int VenueID, ArrayList<java.sql.Date> rangeofdate) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate > ? AND BookingDate < ?";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, VenueID);
+            pStmnt.setDate(2, rangeofdate.get(0));
+            pStmnt.setDate(3, rangeofdate.get(1));
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getString("GuessListID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getDouble("PersonInCharge"),
+                        rs.getInt("Status")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
 }
