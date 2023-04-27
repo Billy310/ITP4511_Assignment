@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -22,9 +22,6 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
             defer
         ></script>
-        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script> 
-        <script src="./assets/js/charts-bars.js" defer></script>
         <script type="text/javascript">
             function drawChart() {
                 var TM = document.getElementById("TM").value;

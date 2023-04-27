@@ -15,6 +15,7 @@
 
         <form name="myForm" id="myForm" action="ViewBooking.jsp" method="GET">
             <input type="hidden" name="J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5" value=<%=request.getAttribute("userid") %> />
+            <input type="hidden" name="usertype" value=<%=request.getAttribute("usertype") %> />
         </form>
     </body>
     <script type="text/javascript">

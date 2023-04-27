@@ -54,8 +54,9 @@ public class HandleUser extends HttpServlet {
                 if (userbean.getPassword().equals(Password)) {
                     RequestDispatcher rd;
                     String userid = userbean.getUserID();
-
+                    int UserType = userbean.getRole();
                     request.setAttribute("userid", userid);
+                    request.setAttribute("usertype", UserType);
                     rd = getServletContext().getRequestDispatcher("/login.jsp");
                     rd.forward(request, response);
                 } else {
