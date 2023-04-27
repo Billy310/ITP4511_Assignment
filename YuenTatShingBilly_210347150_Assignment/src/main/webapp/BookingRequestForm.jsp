@@ -27,7 +27,30 @@
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
         ></script>
-        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+        <script>
+                    $(document).ready(function () {
+
+                        $('#venuedate').change(function () {
+                            const date_today = new Date();
+                            var date = $(this).val();
+                            if(new Date(date_today.getTime())>new Date(date)){
+                                
+                                 console.log("over");
+                                 alert("The Date could not be earlier than TODAY!");
+                                 $('#venuedate').val(new Date());
+                            }
+//                            console.log(date, 'change')
+                        });
+
+
+                    });
+
+
+
+        </script>
         <script src="./assets/js/init-alpine.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKIm352enWiDL0qbvU5Cy2GABBiFkvVIk"></script>
         <script>
@@ -58,7 +81,6 @@
                 initMap(selectedvalue_X, selectedvalue_Y, 20);
                 document.getElementById('venuetype').selectedIndex = selected;
             }
-
         </script>
     </head>
     <body>
@@ -154,18 +176,18 @@
 
                                 </select>
                             </label>
-                                    <label class="block mt-4 text-sm">
-                                        <span class="text-gray-700 dark:text-gray-400">
-                                            Select Date
+                            <label class="block mt-4 text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">
+                                    Select Date
 
-                                        </span>
-                                        <input
-                                            type="date"
-                                            name="venuedate"
-                                            id="venuedate"
-                                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            />
-                                    </label>
+                                </span>
+                                <input
+                                    type="date"
+                                    name="venuedate"
+                                    id="venuedate"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    />
+                            </label>
 
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">

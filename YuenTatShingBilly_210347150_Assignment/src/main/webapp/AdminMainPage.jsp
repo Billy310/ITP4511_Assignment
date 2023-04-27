@@ -23,7 +23,6 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
             defer
         ></script>
-        <!--<script src="./assets/js/charts-lines.js" defer></script>-->
         <script type="text/javascript">
             function drawChart() {
                 var TM = document.getElementById("TM").value;
@@ -53,7 +52,7 @@
             }
         </script>
         <script type="text/javascript">
-            function xdrawChart() {
+            function drawLine() {
                 var TM = document.getElementById("TM").value;
                 var ST = document.getElementById("ST").value;
                 var TY = document.getElementById("TY").value;
@@ -188,7 +187,7 @@
 
     </head>
     <body onload="drawChart();
-            xdrawChart();">
+            drawLine();">
         <input type="hidden" id="TM" value="<%=CalTotalByLocationID(1)%>" />
         <input type="hidden" id="ST" value="<%=CalTotalByLocationID(2)%>" />
         <input type="hidden" id="TY" value="<%=CalTotalByLocationID(3)%>" />
@@ -196,9 +195,7 @@
         <input type="hidden" id="CW" value="<%=CalTotalByLocationID(5)%>" />
 
 
-<!--        <input type="text" id="Jan" value="<%=CalTotalByMonthly(1)%>" />
-        <input type="text" id="Feb" value="<%=getfirstandend(2023, 1)%>" />
-        <input type="text" id="Mar" value="<%=getfirstandend(2023, 2)%>" />-->
+        
 
 
         <div
@@ -208,7 +205,7 @@
             <jsp:include page="Sidebar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
-            <!-- Mobile sidebar -->
+            <!-- Mobile sidebar 
             <!-- Backdrop -->
             <jsp:include page="MobileScreenSideBar.jsp" >
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
