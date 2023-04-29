@@ -40,7 +40,7 @@ public class TestDB {
         String dbUser = "root";
         String dbPassword = "root";
         VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
-        vb.EditVenue(6, "Hong Kong Institute of Vocational Education (Tuen Mun)", 1, 1, "",0);
+        vb.AddVenue(6+1, "Hong Kong Institute of Vocational Education (Tuen Mun)", 1, 1, "");
 //        Hong Kong Institute of Vocational Education (Tuen Mun)
 //        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
 //        bookingDB.createTable();

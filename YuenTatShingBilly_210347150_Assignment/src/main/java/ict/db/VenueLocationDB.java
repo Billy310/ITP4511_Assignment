@@ -203,4 +203,40 @@ public class VenueLocationDB {
         return userbeans;
 
     }
+
+    public boolean EditLocation(int LocationID, String LocationName, double Cord_x, double Cord_y, int Enabled) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE VENUELOCATION SET  VENUELOCATIONNAME = ?, VENUELOCATION_X = ?, VENUELOCATION_Y = ?, ENABLE = ?  WHERE VENUELOCATIONID=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, LocationName);
+            pStmnt.setDouble(2, Cord_x);
+            pStmnt.setDouble(3, Cord_y);
+            pStmnt.setInt(4, Enabled);
+            pStmnt.setInt(5, LocationID);
+            pStmnt.executeUpdate();
+            isSuccess = true;
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return isSuccess;
+
+    }
+
 }

@@ -4,15 +4,10 @@
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-    VenueDB venuedb = new VenueDB(dbUrl, dbUser, dbPassword);
-    VenueBean venuebean = venuedb.queueVenueByVenueID(Integer.parseInt(request.getParameter("VenueID")));
 
     VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
-    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
-    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
-    ArrayList<VenueLocationBean> VenueLocations = vlb.QueryLocation();
-    VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
-    ArrayList<VenueBean> vbs = vb.QueryVenue();
+    VenueLocationBean vlbean = vlb.QueryByLocationID(Integer.parseInt(request.getParameter("VenueLocationID")));
+
 
 %>
 
@@ -52,8 +47,8 @@
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        <form action="HandleVenue" method="GET" >
-                            <input type="hidden" name="VenueID" value="<%=venuebean.getVenueID()%>" />
+                        <form action="HandleLocation" method="GET" >
+                            <input type="hidden" name="VenueLocationID" value="<%=vlbean.getVenueLocationID()%>" />
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >
@@ -66,78 +61,50 @@
 
 
                                 <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Venue ID</span>
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Location ID</span>
                                     <input
                                         name="VenueID"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         readonly
-                                        value="<%=venuebean.getVenueID()%>"
+                                        value="<%=vlbean.getVenueLocationID()%>"
+
+                                        />
+                                </label>
+
+
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Location Name</span>
+                                    <input
+                                        name="LocationName"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        readonly
+                                        value="<%=vlbean.getVenueLocationName()%>"
+
+                                        />
+                                </label>
+
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Location X</span>
+                                    <input
+                                        name="x_cord"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+
+                                        value="<%=vlbean.getVenueLocation_X()%>"
 
                                         />
                                 </label>
                                 <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Venue Name</span>
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Location Y</span>
                                     <input
-                                        name="VenueName"
+                                        name="y_cord"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        value="<%=venuebean.getVenueName()%>"
+
+                                        value="<%=vlbean.getVenueLocation_Y()%>"
 
                                         />
                                 </label>
 
-                                <label class="block mt-4 text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">
-                                        Venue Type
-                                    </span>
-                                    <select name="VenueType" 
-                                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                            >
-                                        <%
-                                            out.print("<option value=>Booking Venue Type</option>");
-                                            for (int x = 0; x < VenueTypes.size(); x++) {
-                                                VenueTypeBean v = VenueTypes.get(x);
-                                                if (venuebean.getVenueTypeID() == v.getVenueTypeID()) {
-                                                    out.print("<option value=" + v.getVenueTypeID() + " selected >" + vtb.QueryByID(v.getVenueTypeID()).getVenueTypeName() + "</option>");
 
-                                                } else {
-                                                    out.print("<option value=" + v.getVenueTypeID() + ">" + vtb.QueryByID(v.getVenueTypeID()).getVenueTypeName() + "</option>");
-                                                }
-                                            }
-                                        %> 
-                                    </select>
-                                </label>
-
-                                <label class="block mt-4 text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">
-                                        Venue Type
-                                    </span>
-                                    <select name="VenueLocation" 
-                                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                            >
-                                        <%
-                                            out.print("<option value=>Booking Location</option>");
-                                            for (int x = 0; x < VenueLocations.size(); x++) {
-                                                VenueLocationBean v = VenueLocations.get(x);
-                                                if (venuebean.getVenueLocationID() == v.getVenueLocationID()) {
-                                                    out.print("<option value=" + v.getVenueLocationID() + " selected >" + vlb.QueryByLocationID(v.getVenueLocationID()).getVenueLocationName() + "</option>");
-
-                                                } else {
-                                                    out.print("<option value=" + v.getVenueLocationID() + ">" + vlb.QueryByLocationID(v.getVenueLocationID()).getVenueLocationName() + "</option>");
-                                                }
-                                            }
-                                        %> 
-                                    </select>
-                                </label>
-                                <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Venue Description</span>
-                                    <input
-                                        type="text"
-                                        name="VenueDescription"
-                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        value="<%=venuebean.getVenueDescription()%>"
-
-                                        />
-                                </label>
                                 <div class="mt-4 text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">
                                         Status
@@ -151,7 +118,7 @@
                                                 class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                                 name="status"
                                                 value="1"
-                                                <% if (venuebean.getEnable() == 1) {
+                                                <% if (vlbean.getEnable() == 1) {
                                                         out.print("checked");
                                                     }%>
                                                 />
@@ -165,7 +132,7 @@
                                                 class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                                 name="status"
                                                 value="0"
-                                                <% if (venuebean.getEnable() == 0) {
+                                                <% if (vlbean.getEnable() == 0) {
                                                         out.print("checked");
                                                     }%>
                                                 />

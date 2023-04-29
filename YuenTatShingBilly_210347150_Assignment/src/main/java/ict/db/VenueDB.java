@@ -226,9 +226,10 @@ public class VenueDB {
             pStmnt = cnnct.prepareStatement(preQueryStatment);
 
             pStmnt.setInt(1, VenueID);
-            pStmnt.setString(2, VenueName);
-            pStmnt.setInt(3, VenueTypeID);
-            pStmnt.setInt(4, VenueLocationID);
+            
+            pStmnt.setInt(2, VenueTypeID);
+            pStmnt.setInt(3, VenueLocationID);
+            pStmnt.setString(4, VenueName);
             pStmnt.setString(5, VenueDescription);
             pStmnt.setInt(6, 1);
             pStmnt.executeUpdate();

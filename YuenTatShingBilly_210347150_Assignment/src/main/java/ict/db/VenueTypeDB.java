@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 /**
  *
  * @author user
@@ -128,19 +129,19 @@ public class VenueTypeDB {
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         int rowCount = 0;
-        String [] VenueTypeName = {"","",""};
+        String[] VenueTypeName = {"", "", ""};
         try {
-            int y =1;
-            for(int x=0; x<VenueTypeName.length;x++){
-            
-            cnnct = getConnection();
-            String preQueryStatment = "INSERT INTO VENUETYPE VALUES(?,?,?)";
-            pStmnt = cnnct.prepareStatement(preQueryStatment);
-            pStmnt.setInt(1, y);
-            pStmnt.setString(2, VenueTypeName[x]);
-            pStmnt.setInt(3, 1);
-            y++;
-            rowCount = pStmnt.executeUpdate();
+            int y = 1;
+            for (int x = 0; x < VenueTypeName.length; x++) {
+
+                cnnct = getConnection();
+                String preQueryStatment = "INSERT INTO VENUETYPE VALUES(?,?,?)";
+                pStmnt = cnnct.prepareStatement(preQueryStatment);
+                pStmnt.setInt(1, y);
+                pStmnt.setString(2, VenueTypeName[x]);
+                pStmnt.setInt(3, 1);
+                y++;
+                rowCount = pStmnt.executeUpdate();
             }
             if (rowCount >= 1) {
 
@@ -159,11 +160,12 @@ public class VenueTypeDB {
 
             ex.printStackTrace();
         }
-        
+
         return isSuccess;
 
     }
-        public ArrayList<VenueTypeBean> QueryAllVenueType() {
+
+    public ArrayList<VenueTypeBean> QueryAllVenueType() {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -177,7 +179,7 @@ public class VenueTypeDB {
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             rs = pStmnt.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 VenueTypeBean venuetypebean;
                 VTB = new VenueTypeBean(
                         rs.getInt("VenueTypeID"),
@@ -204,6 +206,39 @@ public class VenueTypeDB {
         }
 
         return venueTypeBeans;
+    }
+
+    public boolean EditLocation(int TypeID, String TypeName, int Enabled) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE VENUETYPE SET  VENUETYPENAME = ?, ENABLE = ?  WHERE VENUETYPEID=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, TypeName);
+            pStmnt.setInt(2, Enabled);
+            pStmnt.setInt(3, TypeID);
+            pStmnt.executeUpdate();
+            isSuccess = true;
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return isSuccess;
+
     }
 
 }
