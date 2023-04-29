@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 27, 2023 at 03:40 PM
+-- Generation Time: Apr 29, 2023 at 05:21 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -31,28 +31,26 @@ CREATE TABLE `booking` (
   `BookingID` varchar(25) NOT NULL,
   `UserID` varchar(25) NOT NULL,
   `VenueID` int(1) NOT NULL,
-  `GuessListID` varchar(25) DEFAULT NULL,
   `BookingDate` date NOT NULL,
   `BookingStart` int(2) NOT NULL,
   `BookingEnd` int(2) NOT NULL,
   `CreatedDate` date NOT NULL,
   `PersonInCharge` double(5,2) NOT NULL,
-  `Status` int(1) NOT NULL
+  `Status` int(1) NOT NULL,
+  `Priority` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `GuessListID`, `BookingDate`, `BookingStart`, `BookingEnd`, `CreatedDate`, `PersonInCharge`, `Status`) VALUES
-('akw0HsG2E4LWafPd5LwEk9hNw', '2kEVpxX2p7W2suaffEx32kY6v', 4, 'wH2AfRxhJrMrdLJKYuNcQMVdP', '2023-05-01', 9, 9, '2023-04-23', 80.00, 3),
-('CLNsGYWw4659QFFQYadbdrKeY', 'null', 1, 'vfKErk40apQr73Q1artx67Mf5', '2023-04-27', 8, 8, '2023-04-27', 80.00, 3),
-('fkMLHRNJHRRM2C73LHs2spRfQ', 'null', 3, 'aQV6uMWGdYxuKfVeV6jF5F2QH', '2023-05-01', 8, 8, '2023-04-23', 80.00, 3),
-('iKNxcRb34sRC4JaWpwEdQcPup', '2kEVpxX2p7W2suaffEx32kY6v', 1, '7bckhrLFQ198vHE8bLWNVt7x7', '2023-05-04', 8, 8, '2023-04-23', 80.00, 3),
-('JE7MG2iwpxwYC79HxAbUJx2f5', '2kEVpxX2p7W2suaffEx32kY6v', 2, 'iNX2c1LWHbkcP1v7W80C0Q00e', '2023-05-01', 8, 8, '2023-04-23', 80.00, 3),
-('JEAQRpCdjWNGfxiw6sjQbkQvG', '2kEVpxX2p7W2suaffEx32kY6v', 1, 'LNkQhLv2he9xHpvahKuvXXijf', '2023-05-01', 8, 9, '2023-04-22', 80.00, 3),
-('Xa1W05EK1sVCMFCJGp5UGak7E', 'null', 4, '6JXGfpc3xh2w3pjpQujV35pxt', '2023-05-01', 8, 8, '2023-04-23', 80.00, 3),
-('XV8AF2HA2VEtjiij4a82tL0k2', '2kEVpxX2p7W2suaffEx32kY6v', 5, 'iYiaxcYeMwCacbQL9GCx6r6hb', '2023-05-01', 8, 8, '2023-04-23', 80.00, 3);
+INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `BookingStart`, `BookingEnd`, `CreatedDate`, `PersonInCharge`, `Status`, `Priority`) VALUES
+('8swksdc79e0fuaPr1KcRGPu4A', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 10, 10, '2023-04-29', 80.00, 3, 1),
+('JvHsKpGbiWuiYrLeQCaFMYVf4', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 8, 8, '2023-04-29', 80.00, 3, 1),
+('KfQwvki9PYW4b7t7LQePdrKJR', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 9, 9, '2023-04-29', 80.00, 3, 2),
+('pK8x5A4WLkaU6p4QdxeKtvNkN', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-04-30', 8, 8, '2023-04-29', 80.00, 3, 3),
+('x247iHPfLxkPxP3KLthCsi1CF', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 17, 20, '2023-04-29', 80.00, 3, 3),
+('Y2MY6P5KLQt4rCkMXwCuAbH75', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 11, 13, '2023-04-29', 80.00, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -74,20 +72,7 @@ CREATE TABLE `guess` (
 --
 
 INSERT INTO `guess` (`GuessID`, `GuessListID`, `FirstName`, `LastName`, `Email`, `PhoneNumber`) VALUES
-('3HeRf7RX19w79ujkswM4sfu2X', 'GYCt9k68FrrL9fEdsuvhQUaeb', '234', '432', '243', '432'),
-('8rNjsK88shJHwR03JpaA50VPs', 'GYCt9k68FrrL9fEdsuvhQUaeb', '432', '324423', '324', '423'),
-('FW9fdjXih30XbX1x8kiM34dxY', 'iYiaxcYeMwCacbQL9GCx6r6hb', '32432', '324342', '432432', '234'),
-('tstc6G00QGe7bppF0pi462WLA', 'H3710145aWRYGKdvWpA09Y93Q', 'Billy ', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guesslist`
---
-
-CREATE TABLE `guesslist` (
-  `GuessListID` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+('WxbtMMQUVPfGhwpfNUwEWWfjf', '8swksdc79e0fuaPr1KcRGPu4A', '423', '423', '432', '324');
 
 -- --------------------------------------------------------
 
@@ -109,10 +94,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`, `email`, `Role`, `Enable`) VALUES
-('2kEVpxX2p7W2suaffEx32kY6v', 'Billy0310', '2', '3', 3, 1),
+('2kEVpxX2p7W2suaffEx32kY6v', 'Billy0310', '2', '3', 1, 1),
+('bUWudGaQbEA3Mt7kYKR0Kww5N', 'Admin', 'Admin', 'Admin', 1, 1),
 ('CQd1p7tdxG6GWNjb9d1xLi53P', 'HowRonaldoStart', 'Ronaldo', 'billy0310.yts@gmail.com', 3, 1),
+('iivQf91PxrMdiGMPw0r4FP0iW', 'b', 'b', 'b', 3, 1),
 ('iVJPt5eFacYHpVpGbaFVRrdWx', '423', '324', '43', 3, 1),
-('JEujVPf1vYedNhwfwtAaPVLpX', 'Billy0310', '8964', '432', 3, 1),
+('QM1hpb8kj31CtNMicw0pGGL8c', 'Hello', 'Hello', 'Hello', 3, 1),
 ('UWx2JpXR54QG0wURGpAL2v0KH', '423523532', 'r32', '43', 3, 1),
 ('wiLEGtG6XuQjr7rthxXfd1A6L', '55434', '543345534', '43543534', 3, 1);
 
@@ -156,11 +143,12 @@ CREATE TABLE `venue` (
 --
 
 INSERT INTO `venue` (`venueID`, `venueTypeID`, `venueLocationID`, `venueName`, `venueDescription`, `Enable`) VALUES
-(1, 2, 1, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'ResortsResortsResorts', 1),
-(2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotelsHotels', 1),
+(1, 2, 3, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'Venue For the', 1),
+(2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotels', 1),
 (3, 1, 3, 'Hong Kong Institute Of Vocational Education (Tsing Yi)', '', 1),
 (4, 1, 4, 'Hong Kong Institute of Vocational Education (Lee Wai Lee)', '', 1),
-(5, 1, 5, 'Hong Kong Institute of Vocational Education (Chai Wan)', '', 1);
+(5, 1, 5, 'Hong Kong Institute of Vocational Education (Chai Wan)', '', 1),
+(6, 2, 1, 'sadsdasad', '53', 1);
 
 -- --------------------------------------------------------
 
@@ -222,12 +210,6 @@ ALTER TABLE `booking`
 --
 ALTER TABLE `guess`
   ADD PRIMARY KEY (`GuessID`);
-
---
--- Indexes for table `guesslist`
---
-ALTER TABLE `guesslist`
-  ADD PRIMARY KEY (`GuessListID`);
 
 --
 -- Indexes for table `user`

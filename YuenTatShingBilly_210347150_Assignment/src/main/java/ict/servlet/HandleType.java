@@ -1,8 +1,6 @@
 package ict.servlet;
 
-import ict.bean.VenueBean;
-import ict.db.VenueDB;
-import ict.db.VenueLocationDB;
+import ict.bean.VenueTypeBean;
 import ict.db.VenueTypeDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,10 +45,14 @@ public class HandleType extends HttpServlet {
             rd.forward(request, response);
 
         } else if (action.equals("add")) {
-
+            ArrayList<VenueTypeBean> vbs = db.QueryAllVenueType();
+            db.AddRecord(
+                    vbs.size() + 1,
+                    request.getParameter("TypeName")
+            );
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
-            rd = getServletContext().getRequestDispatcher("/ViewVenue.jsp");
+            rd = getServletContext().getRequestDispatcher("/ViewType.jsp");
             rd.forward(request, response);
 
         } else if (action.equals("disable")) {

@@ -118,6 +118,46 @@ public class VenueLocationDB {
         return VLB;
 
     }
+    public boolean AddLocation(int LocationID,String LocationName,double x_cord,double y_cord) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        int rowCount = 0;
+        try {
+
+
+                cnnct = getConnection();
+                String preQueryStatment = "INSERT INTO VENUELOCATION VALUES(?,?,?,?,?)";
+                pStmnt = cnnct.prepareStatement(preQueryStatment);
+                pStmnt.setInt(1, LocationID);
+                pStmnt.setString(2,LocationName);
+                pStmnt.setDouble(3,x_cord);
+                 pStmnt.setDouble(4,y_cord);
+                pStmnt.setInt(5, 1);
+                
+                rowCount = pStmnt.executeUpdate();
+
+                if (rowCount >= 1) {
+
+                    isSuccess = true;
+                }
+                pStmnt.close();
+                cnnct.close();
+            
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return isSuccess;
+
+    }
 
     public boolean AddRecord() {
         Connection cnnct = null;

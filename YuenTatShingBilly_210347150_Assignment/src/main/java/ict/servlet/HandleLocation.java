@@ -1,11 +1,8 @@
 package ict.servlet;
 
-import ict.bean.VenueBean;
-import ict.db.VenueDB;
 import ict.db.VenueLocationDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,10 +47,14 @@ public class HandleLocation extends HttpServlet {
             rd.forward(request, response);
 
         } else if (action.equals("add")) {
-
+            db.AddLocation(db.QueryLocation().size() + 1,
+                    request.getParameter("LocationName"),
+                    Double.parseDouble(request.getParameter("x_cord")),
+                    Double.parseDouble(request.getParameter("y_cord"))
+            );
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
-            rd = getServletContext().getRequestDispatcher("/ViewVenue.jsp");
+            rd = getServletContext().getRequestDispatcher("/ViewLocation.jsp");
             rd.forward(request, response);
 
         } else if (action.equals("disable")) {

@@ -119,9 +119,43 @@ public class VenueTypeDB {
         return VTB;
     }
 
-    public boolean AddRecord() {
+    public boolean AddRecord(int VenueTypeID, String TypeName) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        int rowCount = 0;
 
-        return true;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatment = "INSERT INTO VENUETYPE VALUES(?,?,?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setInt(1, VenueTypeID);
+            pStmnt.setString(2, TypeName);
+            pStmnt.setInt(3, 1);
+
+            rowCount = pStmnt.executeUpdate();
+
+            if (rowCount >= 1) {
+
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return isSuccess;
+
     }
 
     public boolean Init() {
