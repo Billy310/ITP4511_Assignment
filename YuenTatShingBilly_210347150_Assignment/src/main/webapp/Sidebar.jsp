@@ -1,13 +1,9 @@
 <%@page import="java.util.ArrayList" %>
 <% String PageName = request.getParameter("pagename"); %>
-<%!
-    ArrayList<String> pagenamelist = new ArrayList<String>();
-%>
 <%
-    pagenamelist.clear();
+    ArrayList<String> pagenamelist = new ArrayList();
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/ViewBooking.jsp");
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/BookingRequestForm.jsp");
-    String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";
 %>
 
 <aside
@@ -35,7 +31,8 @@
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200\"");
                         }
                     %>
-                    href="ViewBooking.jsp?<%=UserID%>=<%=request.getParameter(UserID)%>"
+                    href="ViewBooking.jsp?userid=<%=request.getParameter("userid")%>"
+                 
                     >
 
 
@@ -73,7 +70,7 @@
                         }
                     %>
 
-                    href="BookingRequestForm.jsp?<%=UserID%>=<%=request.getParameter(UserID)%>"
+                    href="BookingRequestForm.jsp?userid=<%=request.getParameter("userid")%>"
                     >
                     <svg
                         class="w-5 h-5"

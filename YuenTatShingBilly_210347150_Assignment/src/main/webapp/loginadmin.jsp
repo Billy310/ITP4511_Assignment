@@ -13,8 +13,8 @@
     </head>
     <body>
 
-        <form name="myForm" id="myForm" action="AdminMainPage.jsp" method="GET">
-            <input type="hidden" name="J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5" value=<%=request.getAttribute("userid") %> />
+        <form name="myForm" id="myForm" action="AdminMainPage.jsp" method="POST">
+            <input type="hidden" name="userid" value=<%=request.getAttribute("userid") %> />
              
         </form>
     </body>

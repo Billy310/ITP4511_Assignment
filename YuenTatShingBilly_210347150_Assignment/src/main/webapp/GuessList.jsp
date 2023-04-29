@@ -22,8 +22,6 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
             defer
         ></script>
-        <!--        <script src="./assets/js/charts-lines.js" defer></script>
-                <script src="./assets/js/charts-pie.js" defer></script>-->
     </head>
     <body>
         <div
@@ -49,48 +47,46 @@
             <jsp:include page="MobileScreenSideBar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
-            
+
             <div class="flex flex-col flex-1 w-full">
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full overflow-y-auto">
-                  
-                    <!--<form method="POST" action="HandleGuess" form="myform1">-->
-                        <div class="container px-6 mx-auto grid">
-                            <h2
-                                class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                                >
-                            </h2>
+                    <div class="container px-6 mx-auto grid">
+                        <h2
+                            class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+                            >
+                        </h2>
 
-                            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+                        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
 
-                            </div>
+                        </div>
 
-                            <!-- New Table -->
-                            <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                                <div class="w-full overflow-x-auto">
-                                    <table class="w-full whitespace-no-wrap">
-                                        <thead>
-                                            <tr
-                                                class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                                                >
-                                                <th class="px-4 py-3">Guess First Name</th>
-                                                <th class="px-4 py-3">Guess Last Name</th>
-                                                <th class="px-4 py-3">Guess Email</th>
-                                                <th class="px-4 py-3">Guess Phone Number</th>
-                                                <th class="px-4 py-3">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody
-                                            class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+              
+                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                            <div class="w-full overflow-x-auto">
+                                <table class="w-full whitespace-no-wrap">
+                                    <thead>
+                                        <tr
+                                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                                             >
-                                      
-                                            <jsp:include page="ListGuess.jsp" />
-                                          
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            <th class="px-4 py-3">Guess First Name</th>
+                                            <th class="px-4 py-3">Guess Last Name</th>
+                                            <th class="px-4 py-3">Guess Email</th>
+                                            <th class="px-4 py-3">Guess Phone Number</th>
+                                            <th class="px-4 py-3">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody
+                                        class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                                        >
+
+                                        <jsp:include page="ListGuess.jsp" />
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+                    </div>
                     <!--</form>-->
                 </main>
             </div>

@@ -11,11 +11,12 @@
     String GuessListID = bb.getGuessListID();
     GuessDB gdb = new GuessDB(dbUrl, dbUser, dbPassword);
     ArrayList<GuessBean> gbs = gdb.QueryGuessBeanByGuessListID(GuessListID);
-
+    String UserID = request.getParameter("userid");
     for (int x = 0; x < gbs.size(); x++) {
         GuessBean gb = gbs.get(x);
 
         out.print("<form action=\"HandleGuess\" method=\"GET\"    >");
+        out.print("<input type=\"text\" name=\"userid\"  value=" + UserID + "/>");
         out.print("<input type=\"hidden\" name=\"action\"  value=\"remove\"  />");
         out.print("<input type=\"hidden\" name=\"GuessID\"  value=" + gb.getGuessID() + " />");
         out.print("<input type=\"hidden\" name=\"BookingID\"  value=" + BookingID + " />");
@@ -62,6 +63,7 @@
         out.print("</form>");
     }
     out.print("<form action=\"HandleGuess\" method=\"GET\"    >");
+    out.print("<input type=\"text\" name=\"userid\"  value=" + UserID + "/>");
     out.print("<input type=\"hidden\" name=\"action\"  value=\"add\"  />");
     out.print("<input type=\"hidden\" name=\"BookingID\"  value=" + BookingID + " />");
     out.print("<input type=\"hidden\" name=\"GuessListID\"  value=" + GuessListID + " />");

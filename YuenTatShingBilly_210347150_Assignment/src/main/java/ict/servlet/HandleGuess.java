@@ -51,7 +51,9 @@ public class HandleGuess extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         init();
+//        String UserID_Name = getServletContext().getInitParameter("myParam");
         String action = request.getParameter("action");
+        String UserID = request.getParameter("userid");
         if (action.equals("add")) {
             String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
             RandomString tickets = new RandomString(25, new SecureRandom(), easy);
@@ -64,15 +66,18 @@ public class HandleGuess extends HttpServlet {
             String BookingID = request.getParameter("BookingID");
             db.AddRecord(GuessID, GuessListID, FirstName, LastName, Email, PhoneNumber);
             RequestDispatcher rd;
+            request.setAttribute("userid", UserID);
             request.setAttribute("BookingID", BookingID);
             rd = getServletContext().getRequestDispatcher("/handleguesslist.jsp");
             rd.forward(request, response);
+            
         } else if (action.equals("remove")) {
             String GuessID = request.getParameter("GuessID");
             db.RemoveRecord(GuessID);
             String BookingID = request.getParameter("BookingID");
             request.setAttribute("BookingID", BookingID);
             RequestDispatcher rd;
+            request.setAttribute("userid", UserID);
             rd = getServletContext().getRequestDispatcher("/handleguesslist.jsp");
             rd.forward(request, response);
         } else {

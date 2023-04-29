@@ -12,17 +12,17 @@
     ArrayList<VenueBean> vbs = vb.QueryVenue();
 
 %>
+<%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";%>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Booking Form - First Choice</title>
+        <title>Booking Form - Third Choice</title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
             />
         <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
-        <link href="css/ButtonCss.css" rel="stylesheet" type="text/css"/>
         <script
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
@@ -42,6 +42,7 @@
                         alert("The Date could not be earlier than TODAY!");
                         $('#venuedate').val(new Date());
                     }
+//                            console.log(date, 'change')
                 });
 
 
@@ -104,14 +105,16 @@
                             >
                             Venue Booking Request Form
                         </h2>
-                        
+                        <!-- CTA -->
+
+                        <!-- General elements -->
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
                             Select Venue
                         </h4>
                         <form method="GET" action="ContinueBooking.jsp">
-                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"
+                            <input type="hidden" name="userid" value="<%=request.getParameter(UserID)%>"
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                                    >
@@ -198,11 +201,10 @@
                                 <button 
                                     type="submit"  
                                     class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    value="continue"
                                     >
                                     Continue
                                 </button>
-                            </div>        
+                            </div>
                         </form>
                     </div>
                 </main>

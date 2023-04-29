@@ -28,6 +28,7 @@
             rel="stylesheet"
             />
         <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+        <link href="css/ButtonCss.css" rel="stylesheet" type="text/css"/>
         <script
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
@@ -87,128 +88,116 @@
                             <input type="hidden" name="action" value="book" />
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                             <input type="hidden" name="venue" value="<%=request.getParameter("venue")%>" />
-                                   <div
-                                   class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-                                   >
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
-                                <input
-                                    readonly
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    <%VenueBean vbc = vb.queueVenueByVenueID(Integer.parseInt(request.getParameter("venue")));%>
-                                    value="<%= vbc.getVenueName()%>"
-                                    />
-                            </label>
+                            <div
+                                class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                                >
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
+                                    <input
+                                        readonly
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        <%VenueBean vbc = vb.queueVenueByVenueID(Integer.parseInt(request.getParameter("venue")));%>
+                                        value="<%= vbc.getVenueName()%>"
+                                        />
+                                </label>
 
 
-                            <input hidden type="text" id="useless_x" value="<%=vlb.QueryByLocationID(vbc.getVenueLocationID()).getVenueLocation_X()%>" />
-                            <input hidden type="text" id="useless_y" value="<%=vlb.QueryByLocationID(vbc.getVenueLocationID()).getVenueLocation_Y()%>" />
+                                <input hidden type="text" id="useless_x" value="<%=vlb.QueryByLocationID(vbc.getVenueLocationID()).getVenueLocation_X()%>" />
+                                <input hidden type="text" id="useless_y" value="<%=vlb.QueryByLocationID(vbc.getVenueLocationID()).getVenueLocation_Y()%>" />
 
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
-                                <input
-                                    readonly
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    value="<%= vtb.QueryByID(vbc.getVenueTypeID()).getVenueTypeName()%>"
-                                    />
-                            </label>
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Venue Map
-                                </span>
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
+                                    <input
+                                        readonly
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        value="<%= vtb.QueryByID(vbc.getVenueTypeID()).getVenueTypeName()%>"
+                                        />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Venue Map
+                                    </span>
 
-                                <div id="map" style="height: 500px;" ></div>
-                            </label>
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Select Date
+                                    <div id="map" style="height: 500px;" ></div>
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Select Date
 
-                                </span>
-                                <input
-                                    readonly
-                                    type="date"
-                                    name="venuedate"
-                                    value="<%=request.getParameter("venuedate")%>"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    />
-                            </label>
+                                    </span>
+                                    <input
+                                        readonly
+                                        type="date"
+                                        name="venuedate"
+                                        value="<%=request.getParameter("venuedate")%>"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        />
+                                </label>
 
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Venue Time (Start)
-                                </span>
-                                <select           name="venuetimestart"
-                                                  id="venuetimestart"
-                                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                    <%
-                                        for (int x = 8; x < 21; x++) {
-                                            if (disabledtime.contains(x)) {
-                                                if (x < 10) {
-                                                    out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Venue Time (Start)
+                                    </span>
+                                    <select           name="venuetimestart"
+                                                      id="venuetimestart"
+                                                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                        <%
+                                            for (int x = 8; x < 21; x++) {
+                                                if (disabledtime.contains(x)) {
+                                                    if (x < 10) {
+                                                        out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                    } else {
+                                                        out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                    }
                                                 } else {
-                                                    out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                }
-                                            } else {
-                                                if (x < 10) {
-                                                    out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                } else {
-                                                    out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                }
-                                            }
-                                        }
-
-                                    %>
-                                </select>
-                            </label>
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Venue Time (End)
-                                </span>
-                                <select           name="venuetimeend"
-                                                  id="venuetimeend"
-                                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                    <%                                           for (int x = 8; x < 21; x++) {
-                                            if (disabledtime.contains(x)) {
-                                                if (x < 10) {
-                                                    out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                } else {
-                                                    out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                }
-                                            } else {
-                                                if (x < 10) {
-                                                    out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                } else {
-                                                    out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                    if (x < 10) {
+                                                        out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                    } else {
+                                                        out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                    }
                                                 }
                                             }
-                                        }
 
-                                    %>
-                                </select>
-                            </label>     
+                                        %>
+                                    </select>
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Venue Time (End)
+                                    </span>
+                                    <select           name="venuetimeend"
+                                                      id="venuetimeend"
+                                                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                        <%                                           for (int x = 8; x < 21; x++) {
+                                                if (disabledtime.contains(x)) {
+                                                    if (x < 10) {
+                                                        out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                    } else {
+                                                        out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                    }
+                                                } else {
+                                                    if (x < 10) {
+                                                        out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                    } else {
+                                                        out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                    }
+                                                }
+                                            }
 
-
-
-
-
-
-                            <div class="flex mt-6 text-sm">
-                                <button 
-                                    type="submit" 
-                                    class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    >
-                                    Continue
-                                </button>
-
+                                        %>
+                                    </select>
+                                </label>     
+                                <div class="flex mt-6 text-sm">
+                                    <button name="action" type="submit" class="bn632-hover bn22" value="Continue">Second Choice Selection</button>
+                                    <button name="action"  type="submit" class="bn633-hover bn24" value="Book">Submit</button>
+                                </div>
                             </div>
-
+                        </form>
                     </div>
-                    </form>
+                </main>
+
             </div>
-        </main>
+        </div>
 
-    </div>
-</div>
-
-</body>
+    </body>
 </html>

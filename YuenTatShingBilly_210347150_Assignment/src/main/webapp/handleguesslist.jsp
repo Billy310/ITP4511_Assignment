@@ -12,10 +12,10 @@
         <title>Login Processing</title>
     </head>
     <body>
-
+        
         <form name="myForm" id="myForm" action="GuessList.jsp" method="GET">
             <input type="hidden" name="BookingID" value=<%=request.getAttribute("BookingID") %> />
-            <input type="hidden" name="userid" value=<%=request.getAttribute("userid") %> />
+            <input type="hidden" name="userid" value=<%=request.getAttribute("userid") %> />   
         </form>
     </body>
     <script type="text/javascript">
