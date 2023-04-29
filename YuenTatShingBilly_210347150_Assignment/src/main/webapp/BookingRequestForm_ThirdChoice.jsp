@@ -41,14 +41,8 @@
                         alert("The Date could not be earlier than TODAY!");
                         $('#venuedate').val(new Date());
                     }
-//                            console.log(date, 'change')
                 });
-
-
-            });
-
-
-
+ });
         </script>
         <script src="./assets/js/init-alpine.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKIm352enWiDL0qbvU5Cy2GABBiFkvVIk"></script>

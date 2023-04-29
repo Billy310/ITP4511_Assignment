@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package ict.servlet;
 
 import ict.db.GuessDB;
@@ -58,13 +55,12 @@ public class HandleGuess extends HttpServlet {
             String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
             RandomString tickets = new RandomString(25, new SecureRandom(), easy);
             String GuessID = tickets.nextString();
-            String GuessListID = request.getParameter("GuessListID");
             String FirstName = request.getParameter("FirstName");
             String LastName = request.getParameter("LastName");
             String Email = request.getParameter("Email");
             String PhoneNumber = request.getParameter("PhoneNumber");
             String BookingID = request.getParameter("BookingID");
-            db.AddRecord(GuessID, GuessListID, FirstName, LastName, Email, PhoneNumber);
+            db.AddRecord(GuessID, BookingID, FirstName, LastName, Email, PhoneNumber);
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
             request.setAttribute("BookingID", BookingID);

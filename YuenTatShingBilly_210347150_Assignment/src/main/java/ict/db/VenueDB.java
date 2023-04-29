@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author user
@@ -125,6 +124,7 @@ public class VenueDB {
 
         return venueBean;
     }
+
     public ArrayList<VenueBean> QueryVenue() {
 
         PreparedStatement pStmnt = null;
@@ -169,7 +169,7 @@ public class VenueDB {
         return userbeans;
 
     }
-    
+
     public ArrayList<VenueBean> QueryVenueByLocationID(int LocationID) {
 
         PreparedStatement pStmnt = null;
@@ -214,7 +214,81 @@ public class VenueDB {
         return userbeans;
 
     }
-    
-    
+
+    public boolean AddVenue(int VenueID, String VenueName, int VenueTypeID, int VenueLocationID, String VenueDescription) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatment = "INSERT INTO VENUE VALUES(?,?,?,?,?,?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+
+            pStmnt.setInt(1, VenueID);
+            pStmnt.setString(2, VenueName);
+            pStmnt.setInt(3, VenueTypeID);
+            pStmnt.setInt(4, VenueLocationID);
+            pStmnt.setString(5, VenueDescription);
+            pStmnt.setInt(6, 1);
+            pStmnt.executeUpdate();
+            isSuccess = true;
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return isSuccess;
+
+    }
+
+    public boolean EditVenue(int VenueID, String VenueName, int VenueTypeID, int VenueLocationID, String VenueDescription, int Enable) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE VENUE SET VENUETYPEID=?,VENUELOCATIONID=?,VENUENAME=?,VENUEDESCRIPTION=?, ENABLE = ?  WHERE VENUEID=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setInt(1, VenueTypeID);
+            pStmnt.setInt(2, VenueLocationID);
+            pStmnt.setString(3, VenueName);
+            pStmnt.setString(4, VenueDescription);
+                 pStmnt.setInt(5, Enable);
+            pStmnt.setInt(6, VenueID);
+          
+            pStmnt.executeUpdate();
+            isSuccess = true;
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return isSuccess;
+
+    }
 
 }

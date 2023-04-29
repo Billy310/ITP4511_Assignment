@@ -15,6 +15,14 @@
         int endtime = bb.get(x).getBookingEnd();
         for (int y = starttime; y <= endtime; y++) {
             disabledtime.add(y);
+
+        }
+    }
+    if ((Integer.parseInt(request.getParameter("venue")) == Integer.parseInt(request.getParameter("BookingVenue1"))) && request.getParameter("venuedate").equals(request.getParameter("BookingDate1"))) {
+        int starttime = Integer.parseInt(request.getParameter("BookingStart1"));
+        int endtime = Integer.parseInt(request.getParameter("BookingEnd1"));
+        for (int x = starttime; x <= endtime; x++) {
+            disabledtime.add(x);
         }
     }
 %>
@@ -77,7 +85,7 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Time Selection
+                            Time Selection -- Second Selection
                         </h2>
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"

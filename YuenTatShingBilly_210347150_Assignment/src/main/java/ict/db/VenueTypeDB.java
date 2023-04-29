@@ -76,7 +76,7 @@ public class VenueTypeDB {
         }
     }
 
-    public VenueTypeBean QueryByID(int VenueID) {
+    public VenueTypeBean QueryByID(int VenueTypeID) {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -87,7 +87,7 @@ public class VenueTypeDB {
             cnnct = getConnection();
             ResultSet rs = null;
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setInt(1, VenueID);
+            pStmnt.setInt(1, VenueTypeID);
             rs = pStmnt.executeQuery();
 
             if (rs.next()) {

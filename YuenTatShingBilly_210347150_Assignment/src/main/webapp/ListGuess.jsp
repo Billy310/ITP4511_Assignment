@@ -8,9 +8,8 @@
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     BookingDB bdb = new BookingDB(dbUrl, dbUser, dbPassword);
     BookingBean bb = bdb.QueryByID(BookingID);
-    String GuessListID = bb.getGuessListID();
     GuessDB gdb = new GuessDB(dbUrl, dbUser, dbPassword);
-    ArrayList<GuessBean> gbs = gdb.QueryGuessBeanByGuessListID(GuessListID);
+    ArrayList<GuessBean> gbs = gdb.QueryGuessBeanByGuessListID(BookingID);
     String UserID = request.getParameter("userid");
     for (int x = 0; x < gbs.size(); x++) {
         GuessBean gb = gbs.get(x);
@@ -66,7 +65,6 @@
     out.print("<input type=\"text\" name=\"userid\"  value=" + UserID + "/>");
     out.print("<input type=\"hidden\" name=\"action\"  value=\"add\"  />");
     out.print("<input type=\"hidden\" name=\"BookingID\"  value=" + BookingID + " />");
-    out.print("<input type=\"hidden\" name=\"GuessListID\"  value=" + GuessListID + " />");
     out.print("<tr class=\"text-gray-700 dark:text-gray-400\">");
     out.print("<td class=\"px-4 py-3 text-sm\">");
     out.print("<input  type=\"text\" name=\"FirstName\"  class=\"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input\" />");

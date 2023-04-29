@@ -17,6 +17,20 @@
             disabledtime.add(y);
         }
     }
+    if ((Integer.parseInt(request.getParameter("venue")) == Integer.parseInt(request.getParameter("BookingVenue1"))) && request.getParameter("venuedate").equals(request.getParameter("BookingDate1"))) {
+        int starttime = Integer.parseInt(request.getParameter("BookingStart1"));
+        int endtime = Integer.parseInt(request.getParameter("BookingEnd1"));
+        for (int x = starttime; x <= endtime; x++) {
+            disabledtime.add(x);
+        }
+    }
+    if ((Integer.parseInt(request.getParameter("venue")) == Integer.parseInt(request.getParameter("BookingVenue2"))) && request.getParameter("venuedate").equals(request.getParameter("BookingDate2"))) {
+        int starttime = Integer.parseInt(request.getParameter("BookingStart2"));
+        int endtime = Integer.parseInt(request.getParameter("BookingEnd2"));
+        for (int x = starttime; x <= endtime; x++) {
+            disabledtime.add(x);
+        }
+    }
 %>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
@@ -85,18 +99,18 @@
                             Select Venue <% out.print("Count" + disabledtime.size());%>
                         </h4>
                         <form method="GET" action="HandleBooking"  > 
-                            
+
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
                             <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
                             <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
                             <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
-                            
-                             <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
+
+                            <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
                             <input type="hidden" name="BookingDate2" value="<%=request.getParameter("BookingDate2")%>" />
                             <input type="hidden" name="BookingStart2" value="<%=request.getParameter("BookingStart2")%>" />
                             <input type="hidden" name="BookingEnd2" value="<%=request.getParameter("BookingEnd2")%>" />
-                            
-                            
+
+
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                             <input type="hidden" name="venue" value="<%=request.getParameter("venue")%>" />
                             <div
