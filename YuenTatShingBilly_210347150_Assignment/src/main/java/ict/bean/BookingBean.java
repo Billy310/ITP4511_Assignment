@@ -6,7 +6,6 @@ package ict.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
 
 /**
  *
@@ -14,20 +13,19 @@ import java.sql.Time;
  */
 public class BookingBean implements Serializable {
 
-    private String BookingID, UserID, GuessListID;
+    private String BookingID, UserID;
     private int VenueID;
     private Date BookingDate, CreatedDate;
-    private int BookingStart,BookingEnd;
+    private int BookingStart, BookingEnd;
     private double PersonInCharge;
-    private int Status;
+    private int Status,Priority ;
 
     public BookingBean() {
     }
 
-    public BookingBean(String BookingID, String UserID,int VenueID, String GuessListID,   Date BookingDate, Date CreatedDate, int BookingStart, int BookingEnd, double PersonInCharge, int Status) {
+    public BookingBean(String BookingID, String UserID, int VenueID,  Date BookingDate, Date CreatedDate, int BookingStart, int BookingEnd, double PersonInCharge, int Status, int Priority) {
         this.BookingID = BookingID;
         this.UserID = UserID;
-        this.GuessListID = GuessListID;
         this.VenueID = VenueID;
         this.BookingDate = BookingDate;
         this.CreatedDate = CreatedDate;
@@ -35,6 +33,7 @@ public class BookingBean implements Serializable {
         this.BookingEnd = BookingEnd;
         this.PersonInCharge = PersonInCharge;
         this.Status = Status;
+        this.Priority = Priority;
     }
 
     public String getBookingID() {
@@ -51,14 +50,6 @@ public class BookingBean implements Serializable {
 
     public void setUserID(String UserID) {
         this.UserID = UserID;
-    }
-
-    public String getGuessListID() {
-        return GuessListID;
-    }
-
-    public void setGuessListID(String GuessListID) {
-        this.GuessListID = GuessListID;
     }
 
     public int getVenueID() {
@@ -116,5 +107,14 @@ public class BookingBean implements Serializable {
     public void setStatus(int Status) {
         this.Status = Status;
     }
-    
+
+    public int getPriority() {
+        return Priority;
+    }
+
+    public void setPriority(int Priority) {
+        this.Priority = Priority;
+    }
+
+
 }

@@ -35,7 +35,13 @@ public class TestDB {
 //        String dbPassword = "root";
 //        VenueDB vd = new VenueDB(dbUrl, dbUser, dbPassword);
 //        ArrayList<VenueBean> bb = vd.QueryVenueByLocationID(1);
-        System.out.print(CalTotalByLocationID(1));
+//        System.out.print(CalTotalByLocationID(1));
+        String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
+        String dbUser = "root";
+        String dbPassword = "root";
+        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+        bookingDB.createTable();
+        bookingDB.AddRecord(dbPassword, dbUser, 1, "2022-3-3", 1, 2, 3, 1);
 
     }
 
@@ -59,8 +65,8 @@ public class TestDB {
         for (int x = 0; x < vlb.size(); x++) {
             ArrayList<BookingBean> bb = bookingDB.QueryVenueBookingByPlace(vlb.get(x).getVenueID());
 
-                Total =bb.size();
-            
+            Total = bb.size();
+
         }
 
         return Total;

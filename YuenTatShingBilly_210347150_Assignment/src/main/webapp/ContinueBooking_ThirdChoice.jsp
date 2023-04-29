@@ -18,12 +18,6 @@
         }
     }
 %>
-
-<script>
-function formSubmit() {
-    document.forms["myForm"].submit();
-}
-</script>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -90,10 +84,21 @@ function formSubmit() {
                             >
                             Select Venue <% out.print("Count" + disabledtime.size());%>
                         </h4>
-                        <form method="GET" action="HandleBooking"  name="myForm"> 
-                             
+                        <form method="GET" action="HandleBooking"  > 
+                            
+                            <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
+                            <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
+                            <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
+                            <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
+                            
+                             <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
+                            <input type="hidden" name="BookingDate2" value="<%=request.getParameter("BookingDate2")%>" />
+                            <input type="hidden" name="BookingStart2" value="<%=request.getParameter("BookingStart2")%>" />
+                            <input type="hidden" name="BookingEnd2" value="<%=request.getParameter("BookingEnd2")%>" />
+                            
+                            
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
-                            <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("venue")%>" />
+                            <input type="hidden" name="venue" value="<%=request.getParameter("venue")%>" />
                             <div
                                 class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                                 >
@@ -114,7 +119,6 @@ function formSubmit() {
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
                                     <input
-                                        
                                         readonly
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         value="<%= vtb.QueryByID(vbc.getVenueTypeID()).getVenueTypeName()%>"
@@ -135,7 +139,7 @@ function formSubmit() {
                                     <input
                                         readonly
                                         type="date"
-                                        name="BookingDate1"
+                                        name="venuedate"
                                         value="<%=request.getParameter("venuedate")%>"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         />
@@ -145,7 +149,7 @@ function formSubmit() {
                                     <span class="text-gray-700 dark:text-gray-400">
                                         Venue Time (Start)
                                     </span>
-                                    <select           name="BookingStart1"
+                                    <select           name="venuetimestart"
                                                       id="venuetimestart"
                                                       class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                         <%
@@ -172,7 +176,7 @@ function formSubmit() {
                                     <span class="text-gray-700 dark:text-gray-400">
                                         Venue Time (End)
                                     </span>
-                                    <select           name="BookingEnd1"
+                                    <select           name="venuetimeend"
                                                       id="venuetimeend"
                                                       class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                         <%                                           for (int x = 8; x < 21; x++) {
@@ -195,10 +199,8 @@ function formSubmit() {
                                     </select>
                                 </label>     
                                 <div class="flex mt-6 text-sm">
-                                    <button name="action" type="submit" class="bn632-hover bn22" value="continue" onclick="formSubmit()" >Second Choice Selection</button>
-                                    <button  name="action" type="submit" class="bn633-hover bn24" value="book" onclick="formSubmit()" >Submit</button>
+                                    <button name="action"  type="submit" class="bn633-hover bn24" value="book2">Submit</button>
                                 </div>
-                                 
                             </div>
                         </form>
                     </div>

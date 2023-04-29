@@ -25,11 +25,10 @@
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-    String UserID_Key = this.getServletContext().getInitParameter("UserID");
     BookingDB db = new BookingDB(dbUrl, dbUser, dbPassword);
     VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
     VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
-    String UserID = request.getParameter(UserID_Key);
+    String UserID = request.getParameter("userid");
     ArrayList<BookingBean> venueBookings = db.QueryVenueBookingByUserID(UserID);
 
     for (int x = 0; x < venueBookings.size(); x++) {
@@ -61,7 +60,8 @@
         }
         out.print("</td>");
 
-        out.print("<form action='ViewBookingDetail.jsp' method=\"POST\" >");
+        out.print("<form action='ViewBookingDetail.jsp' method=\"GET\" >");
+        out.print("<input type=hidden value=" + UserID + " name=userid />");
         out.print("<input type=hidden value=" + vb.getBookingID() + " name=BookingID />");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         out.print("<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>View Details</button>");

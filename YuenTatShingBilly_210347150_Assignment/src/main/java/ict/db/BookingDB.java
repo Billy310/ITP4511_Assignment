@@ -59,13 +59,13 @@ public class BookingDB {
                     + "BookingID varchar(25) NOT NULL,"
                     + "UserID varchar(25) NOT NULL,"
                     + "VenueID INT(1) NOT NULL,"
-                    + "GuessListID varchar(25) NULL,"
                     + "BookingDate date NOT NULL,"
                     + "BookingStart INT(2) NOT NULL,"
                     + "BookingEnd INT(2) NOT NULL,"
                     + "CreatedDate date NOT NULL,"
                     + "PersonInCharge double(5,2) NOT NULL,"
                     + "Status INT(1) NOT NULL,"
+                    + "Priority INT(1) NOT NULL,"
                     + "PRIMARY KEY (BookingID)"
                     + ")";
             stmnt.execute(sql);
@@ -104,13 +104,13 @@ public class BookingDB {
                         rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
-                        rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
-                        rs.getInt("Status")
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -133,7 +133,7 @@ public class BookingDB {
 
     }
 
-    public boolean AddRecord(String BookingID, String UserID, int VenueID, String GuessListID, String BookingDate, int BookingStart, int BookingEnd, int Status) throws ParseException {
+    public boolean AddRecord(String BookingID, String UserID, int VenueID,  String BookingDate, int BookingStart, int BookingEnd, int Status, int Priority) throws ParseException {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -149,13 +149,13 @@ public class BookingDB {
             pStmnt.setString(1, BookingID);
             pStmnt.setString(2, UserID);
             pStmnt.setInt(3, VenueID);
-            pStmnt.setString(4, GuessListID);
-            pStmnt.setDate(5, bookingdate);
-            pStmnt.setInt(6, BookingStart);
-            pStmnt.setInt(7, BookingEnd);
-            pStmnt.setDate(8, new java.sql.Date(currentDate.getTime()));
-            pStmnt.setDouble(9, 80.0);
-            pStmnt.setInt(10, Status);
+            pStmnt.setDate(4, bookingdate);
+            pStmnt.setInt(5, BookingStart);
+            pStmnt.setInt(6, BookingEnd);
+            pStmnt.setDate(7, new java.sql.Date(currentDate.getTime()));
+            pStmnt.setDouble(8, 80.0);
+            pStmnt.setInt(9, Status);
+            pStmnt.setInt(10, Priority);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
 
@@ -198,13 +198,13 @@ public class BookingDB {
                         rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
-                        rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
-                        rs.getInt("Status")
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -250,13 +250,13 @@ public class BookingDB {
                         rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
-                        rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
-                        rs.getInt("Status")
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -300,13 +300,13 @@ public class BookingDB {
                         rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
-                        rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
-                        rs.getInt("Status")
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
                 );
 
             }
@@ -351,13 +351,13 @@ public class BookingDB {
                         rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
-                        rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
-                        rs.getInt("Status")
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
                 );
 
             }
@@ -401,13 +401,13 @@ public class BookingDB {
                         rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
-                        rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
-                        rs.getInt("Status")
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -452,13 +452,13 @@ public class BookingDB {
                         rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
-                        rs.getString("GuessListID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getDouble("PersonInCharge"),
-                        rs.getInt("Status")
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
                 );
                 bookingBeans.add(bookingbean);
             }

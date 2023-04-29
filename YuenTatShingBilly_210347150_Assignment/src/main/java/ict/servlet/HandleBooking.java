@@ -52,22 +52,145 @@ public class HandleBooking extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         init();
         String action = request.getParameter("action");
+        String userID = request.getParameter("userid");
         if (action.equals("book")) {
             String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
             RandomString tickets = new RandomString(25, new SecureRandom(), easy);
             String BookingID = tickets.nextString();
-            RandomString guesslist = new RandomString(25, new SecureRandom(), easy);
-            String GuessListID = guesslist.nextString();
-            String userID = request.getParameter("userid");
-            String BookingDate = request.getParameter("venuedate");
-            int BookingStart = Integer.parseInt(request.getParameter("venuetimestart"));
-            int BookingEnd = Integer.parseInt(request.getParameter("venuetimeend"));
-            int VenueID = Integer.parseInt(request.getParameter("venue"));
-            db.AddRecord(BookingID, userID, VenueID, GuessListID, BookingDate, BookingStart,BookingEnd, 3);
+
+            String BookingDate = request.getParameter("BookingDate1");
+            int BookingStart = Integer.parseInt(request.getParameter("BookingStart1"));
+            int BookingEnd = Integer.parseInt(request.getParameter("BookingEnd1"));
+            int VenueID = Integer.parseInt(request.getParameter("BookingVenue1"));
+            db.AddRecord(BookingID, userID, VenueID,  BookingDate, BookingStart, BookingEnd, 3,1);
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
-            rd = getServletContext().getRequestDispatcher("/handleguesslist.jsp");
+            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("book1")) {
+            String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
+            RandomString tickets = new RandomString(25, new SecureRandom(), easy);
+            String BookingID1 = tickets.nextString();
+            String BookingID2 = tickets.nextString();
+
+            String BookingDate1 = request.getParameter("BookingDate1");
+            int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
+            int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
+            int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
+
+            db.AddRecord(BookingID1, userID, VenueID1,  BookingDate1, BookingStart1, BookingEnd1, 3,1);
+
+            String BookingDate2 = request.getParameter("BookingDate2");
+            int BookingStart2 = Integer.parseInt(request.getParameter("BookingStart2"));
+            int BookingEnd2 = Integer.parseInt(request.getParameter("BookingEnd2"));
+            int VenueID2 = Integer.parseInt(request.getParameter("BookingVenue2"));
+
+            db.AddRecord(BookingID2, userID, VenueID2,  BookingDate2, BookingStart2, BookingEnd2, 3,2);
+
+            RequestDispatcher rd;
+            request.setAttribute("userid", userID);
+            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("book1")) {
+            
+            String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
+            RandomString tickets = new RandomString(25, new SecureRandom(), easy);
+            String BookingID1 = tickets.nextString();
+            String BookingID2 = tickets.nextString();
+
+            String BookingDate1 = request.getParameter("BookingDate1");
+            int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
+            int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
+            int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
+
+            db.AddRecord(BookingID1, userID, VenueID1, BookingDate1, BookingStart1, BookingEnd1, 3,1);
+
+            String BookingDate2 = request.getParameter("BookingDate2");
+            int BookingStart2 = Integer.parseInt(request.getParameter("BookingStart2"));
+            int BookingEnd2 = Integer.parseInt(request.getParameter("BookingEnd2"));
+            int VenueID2 = Integer.parseInt(request.getParameter("BookingVenue2"));
+
+            db.AddRecord(BookingID2, userID, VenueID2,  BookingDate2, BookingStart2, BookingEnd2, 3,2);
+
+            RequestDispatcher rd;
+            request.setAttribute("userid", userID);
+            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("book2")) {
+            String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
+            RandomString tickets = new RandomString(25, new SecureRandom(), easy);
+            String BookingID1 = tickets.nextString();
+            String BookingID2 = tickets.nextString();
+            String BookingID3 = tickets.nextString();
+            String BookingDate1 = request.getParameter("BookingDate1");
+            int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
+            int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
+            int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
+
+            db.AddRecord(BookingID1, userID, VenueID1, BookingDate1, BookingStart1, BookingEnd1, 3,1);
+
+            String BookingDate2 = request.getParameter("BookingDate2");
+            int BookingStart2 = Integer.parseInt(request.getParameter("BookingStart2"));
+            int BookingEnd2 = Integer.parseInt(request.getParameter("BookingEnd2"));
+            int VenueID2 = Integer.parseInt(request.getParameter("BookingVenue2"));
+
+            db.AddRecord(BookingID2, userID, VenueID2, BookingDate2, BookingStart2, BookingEnd2, 3,2);
+
+            String BookingDate3 = request.getParameter("venuedate");
+            int BookingStart3 = Integer.parseInt(request.getParameter("venuetimestart"));
+            int BookingEnd3= Integer.parseInt(request.getParameter("venuetimeend"));
+            int VenueID3 = Integer.parseInt(request.getParameter("venue"));
+
+            db.AddRecord(BookingID3, userID, VenueID3, BookingDate3, BookingStart3, BookingEnd3, 3,3);
+
+            RequestDispatcher rd;
+            
+            request.setAttribute("userid", userID);
+            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("continue")) {
+
+            String BookingDate = request.getParameter("BookingDate1");
+            int BookingStart = Integer.parseInt(request.getParameter("BookingStart1"));
+            int BookingEnd = Integer.parseInt(request.getParameter("BookingEnd1"));
+            int VenueID = Integer.parseInt(request.getParameter("BookingVenue1"));
+            RequestDispatcher rd;
+            request.setAttribute("userid", userID);
+            request.setAttribute("BookingVenue1", VenueID);
+            request.setAttribute("BookingDate1", BookingDate);
+            request.setAttribute("BookingStart1", BookingStart);
+            request.setAttribute("BookingEnd1", BookingEnd);
+            rd = getServletContext().getRequestDispatcher("/BookingRequestForm_SecondChoice.jsp");
+            
+            rd.forward(request, response);
+        } else if (action.equals("continue1")) {
+
+            String BookingDate = request.getParameter("BookingDate2");
+            int BookingStart = Integer.parseInt(request.getParameter("BookingStart2"));
+            int BookingEnd = Integer.parseInt(request.getParameter("BookingEnd2"));
+            int VenueID = Integer.parseInt(request.getParameter("BookingVenue2"));
+
+            String BookingDate1 = request.getParameter("BookingDate1");
+            int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
+            int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
+            int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
+
+            RequestDispatcher rd;
+
+            request.setAttribute("userid", userID);
+
+            request.setAttribute("BookingVenue1", VenueID1);
+            request.setAttribute("BookingDate1", BookingDate1);
+            request.setAttribute("BookingStart1", BookingStart1);
+            request.setAttribute("BookingEnd1", BookingEnd1);
+
+            request.setAttribute("BookingVenue2", VenueID);
+            request.setAttribute("BookingDate2", BookingDate);
+            request.setAttribute("BookingStart2", BookingStart);
+            request.setAttribute("BookingEnd2", BookingEnd);
+
+            rd = getServletContext().getRequestDispatcher("/BookingRequestForm_ThirdChoice.jsp");
             rd.forward(request, response);
         } else {
             PrintWriter out = response.getWriter();
@@ -75,6 +198,7 @@ public class HandleBooking extends HttpServlet {
         }
     }
 
+    @Override
     public void init() {
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");

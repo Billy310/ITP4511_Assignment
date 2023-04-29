@@ -47,7 +47,6 @@
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
         ></script>
-        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
         <script src="./assets/js/init-alpine.js"></script>
 
     </head>
@@ -71,9 +70,11 @@
                     <div class="container px-6 mx-auto grid">
                         <form action="EditBookingForm.jsp" method="GET" id="EditBookingForm"> 
                             <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                         </form>
                         <form action="GuessList.jsp" method="GET" id="ChangeGuessList" >        
-                          <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
+                            <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                         </form>                  
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
@@ -90,7 +91,6 @@
                                 <input
                                     name="BookingID"
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="UserID" 
                                     readonly
                                     value="<%=bb.getBookingID()%>" 
 

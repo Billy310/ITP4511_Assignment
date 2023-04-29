@@ -12,7 +12,6 @@
     ArrayList<VenueBean> vbs = vb.QueryVenue();
 
 %>
-<%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";%>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -103,18 +102,23 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Venue Booking Request Form
+                            Venue Booking Request Form -- Second Selection
                         </h2>
-                        <!-- CTA -->
 
-                        <!-- General elements -->
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
                             Select Venue
                         </h4>
-                        <form method="GET" action="ContinueBooking.jsp">
-                            <input type="hidden" name="userid" value="<%=request.getParameter(UserID)%>"
+                        <form method="GET" action="ContinueBooking_SecondChoice.jsp">
+
+                            <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
+                            <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
+                            <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
+                            <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
+
+
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                                    >

@@ -12,7 +12,6 @@
     ArrayList<VenueBean> vbs = vb.QueryVenue();
 
 %>
-<%String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";%>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -113,8 +112,22 @@
                             >
                             Select Venue
                         </h4>
-                        <form method="GET" action="ContinueBooking.jsp">
-                            <input type="hidden" name="userid" value="<%=request.getParameter(UserID)%>"
+                        <form method="GET" action="ContinueBooking_ThirdChoice.jsp">
+                            
+                            
+                            <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
+                            <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
+                            <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
+                            <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
+                            
+                             <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
+                            <input type="hidden" name="BookingDate2" value="<%=request.getParameter("BookingDate2")%>" />
+                            <input type="hidden" name="BookingStart2" value="<%=request.getParameter("BookingStart2")%>" />
+                            <input type="hidden" name="BookingEnd2" value="<%=request.getParameter("BookingEnd2")%>" />
+                            
+                            
+                            
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                                    >
