@@ -39,12 +39,15 @@ public class TestDB {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
-                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-                bookingDB.createTable();
+//                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+
+//                bookingDB.AddRecord(dbPassword, dbUser, 0, dbPassword, 0, 0, 0, 0)
 //        VenueTypeDB vlb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
 //        vlb.AddRecord(vlb.QueryAllVenueType().size()+1, "123");
-//        VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
-//        vb.AddVenue(6+1, "Hong Kong Institute of Vocational Education (Tuen Mun)", 1, 1, "");
+        VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
+        vb.createTable();
+//        vb.AddVenue(6+1, "Hong Kong Institute of Vocational Education (Tuen Mun)", 1, 1, "",80.8);
+        vb.EditVenue(7, "", 1, 1, "", 1, 9090);
 //        Hong Kong Institute of Vocational Education (Tuen Mun)
 //        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
 //        bookingDB.createTable();

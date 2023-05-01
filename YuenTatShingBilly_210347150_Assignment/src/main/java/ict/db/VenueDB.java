@@ -58,9 +58,10 @@ public class VenueDB {
                     + "venueID int(1) NOT NULL,"
                     + "venueTypeID int(1) NOT NULL,"
                     + "venueLocationID int(1) NOT NULL,"
-                    + "venueName varchar(25) NOT NULL,"
+                    + "venueName varchar(100) NOT NULL,"
                     + "venueDescription varchar(100) NOT NULL,"
                     + "Enable boolean NOT NULL DEFAULT TRUE,"
+                    + "PersonInCharge   DOUBLE(6,2) NOT NULL,"
                     + "PRIMARY KEY (venueID)"
                     + ")";
             stmnt.execute(sql);
@@ -102,7 +103,8 @@ public class VenueDB {
                         rs.getInt("venueLocationID"),
                         rs.getString("venueName"),
                         rs.getString("venueDescription"),
-                        rs.getInt("Enable")
+                        rs.getInt("Enable"),
+                        rs.getDouble("PersonInCharge")
                 );
 
             }
@@ -147,7 +149,8 @@ public class VenueDB {
                         rs.getInt("venueLocationID"),
                         rs.getString("venueName"),
                         rs.getString("venueDescription"),
-                        rs.getInt("Enable")
+                        rs.getInt("Enable"),
+                        rs.getDouble("PersonInCharge")
                 );
                 userbeans.add(userbean);
             }
@@ -192,7 +195,8 @@ public class VenueDB {
                         rs.getInt("venueLocationID"),
                         rs.getString("venueName"),
                         rs.getString("venueDescription"),
-                        rs.getInt("Enable")
+                        rs.getInt("Enable"),
+                        rs.getDouble("PersonInCharge")
                 );
                 userbeans.add(userbean);
             }
@@ -215,23 +219,23 @@ public class VenueDB {
 
     }
 
-    public boolean AddVenue(int VenueID, String VenueName, int VenueTypeID, int VenueLocationID, String VenueDescription) {
+    public boolean AddVenue(int VenueID, String VenueName, int VenueTypeID, int VenueLocationID, String VenueDescription, double PersonInCharge) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
 
             cnnct = getConnection();
-            String preQueryStatment = "INSERT INTO VENUE VALUES(?,?,?,?,?,?)";
+            String preQueryStatment = "INSERT INTO VENUE VALUES(?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
 
             pStmnt.setInt(1, VenueID);
-            
             pStmnt.setInt(2, VenueTypeID);
             pStmnt.setInt(3, VenueLocationID);
             pStmnt.setString(4, VenueName);
             pStmnt.setString(5, VenueDescription);
             pStmnt.setInt(6, 1);
+            pStmnt.setDouble(7, PersonInCharge);
             pStmnt.executeUpdate();
             isSuccess = true;
             pStmnt.close();
@@ -254,7 +258,7 @@ public class VenueDB {
 
     }
 
-    public boolean EditVenue(int VenueID, String VenueName, int VenueTypeID, int VenueLocationID, String VenueDescription, int Enable) {
+    public boolean EditVenue(int VenueID, String VenueName, int VenueTypeID, int VenueLocationID, String VenueDescription, int Enable, double PersonInCharge) {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -262,16 +266,17 @@ public class VenueDB {
         try {
 
             cnnct = getConnection();
-            String preQueryStatement = "UPDATE VENUE SET VENUETYPEID=?,VENUELOCATIONID=?,VENUENAME=?,VENUEDESCRIPTION=?, ENABLE = ?  WHERE VENUEID=?";
+            String preQueryStatement = "UPDATE VENUE SET VENUETYPEID=?,VENUELOCATIONID=?,VENUENAME=?,VENUEDESCRIPTION=?, ENABLE = ?,PersonInCharge = ? WHERE VENUEID=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            
+
             pStmnt.setInt(1, VenueTypeID);
             pStmnt.setInt(2, VenueLocationID);
             pStmnt.setString(3, VenueName);
             pStmnt.setString(4, VenueDescription);
-                 pStmnt.setInt(5, Enable);
-            pStmnt.setInt(6, VenueID);
-          
+            pStmnt.setInt(5, Enable);
+            pStmnt.setDouble(6, PersonInCharge);
+            pStmnt.setInt(7, VenueID);
+
             pStmnt.executeUpdate();
             isSuccess = true;
             pStmnt.close();

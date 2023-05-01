@@ -36,7 +36,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Windmill Dashboard - Forms</title>
+        <title></title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -91,7 +91,7 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Time Selection
+                            Time Selection -- Third Choicr
                         </h2>
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"

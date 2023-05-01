@@ -40,7 +40,8 @@ public class HandleVenue extends HttpServlet {
                     Integer.parseInt(request.getParameter("VenueType")),
                     Integer.parseInt(request.getParameter("VenueLocation")),
                     request.getParameter("VenueDescription"),
-                    Integer.parseInt(request.getParameter("status")));
+                    Integer.parseInt(request.getParameter("status")), Double.parseDouble(request.getParameter("personincharge")));
+
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
             rd = getServletContext().getRequestDispatcher("/ViewVenue.jsp");
@@ -53,7 +54,8 @@ public class HandleVenue extends HttpServlet {
                     request.getParameter("VenueName"),
                     Integer.parseInt(request.getParameter("VenueType")),
                     Integer.parseInt(request.getParameter("VenueLocation")),
-                    request.getParameter("VenueDescription"));
+                    request.getParameter("VenueDescription"), 
+                    Double.parseDouble(request.getParameter("personincharge")));
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
             rd = getServletContext().getRequestDispatcher("/ViewVenue.jsp");

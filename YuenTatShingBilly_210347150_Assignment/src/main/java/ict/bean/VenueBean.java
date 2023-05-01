@@ -10,17 +10,19 @@ public class VenueBean implements Serializable {
 
     private int VenueID, VenueTypeID, VenueLocationID, Enable;
     private String VenueName, VenueDescription;
+    private double PersonInCharge;
 
     public VenueBean() {
     }
 
-    public VenueBean(int VenueID, int VenueTypeID, int VenueLocationID, String VenueName, String VenueDescription, int Enable) {
+    public VenueBean(int VenueID, int VenueTypeID, int VenueLocationID, String VenueName, String VenueDescription, int Enable, double PersonInCharge) {
         this.VenueID = VenueID;
         this.VenueTypeID = VenueTypeID;
         this.VenueLocationID = VenueLocationID;
         this.Enable = Enable;
         this.VenueName = VenueName;
         this.VenueDescription = VenueDescription;
+        this.PersonInCharge = PersonInCharge;
     }
 
     public int getVenueID() {
@@ -70,5 +72,14 @@ public class VenueBean implements Serializable {
     public void setVenueDescription(String VenueDescription) {
         this.VenueDescription = VenueDescription;
     }
+
+    public double getPersonInCharge() {
+        return PersonInCharge;
+    }
+
+    public void setPersonInCharge(double PersonInCharge) {
+        this.PersonInCharge = PersonInCharge;
+    }
+    
 
 }

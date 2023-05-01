@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB" %>
+<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB,ict.bean.BookingBean,ict.db.BookingDB" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
     VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
-    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
+    BookingDB bdb = new BookingDB(dbUrl, dbUser, dbPassword);
+
     ArrayList<VenueLocationBean> VenueLocations = vlb.QueryLocation();
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
     ArrayList<VenueBean> vbs = vb.QueryVenue();
@@ -32,6 +33,25 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
+                if ($("#MadeCount").val() > 0) {
+                    alert("You have already reach the maximum number of Booking!");
+                    var auto = setTimeout(function () {
+                        autoRefresh();
+                    }, 1);
+                }
+
+
+                function submitform() {
+                    document.forms["myForm"].submit();
+                }
+
+                function autoRefresh() {
+                    clearTimeout(auto);
+                    auto = setTimeout(function () {
+                        submitform();
+                        autoRefresh();
+                    }, 100);
+                }
 
                 $('#venuedate').change(function () {
                     const date_today = new Date();
@@ -43,6 +63,8 @@
                         $('#venuedate').val(new Date());
                     }
                 });
+
+
 
 
             });
@@ -79,6 +101,8 @@
                 initMap(selectedvalue_X, selectedvalue_Y, 20);
                 document.getElementById('venuetype').selectedIndex = selected;
             }
+
+
         </script>
     </head>
     <body>
@@ -86,12 +110,15 @@
             class="flex h-screen bg-gray-50 dark:bg-gray-900"
             :class="{ 'overflow-hidden': isSideMenuOpen}"
             >
-            <!-- Desktop sidebar -->
+            <form action="ViewBooking.jsp" method="POST" id="myForm">
+                <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
+            </form>
+            <input type="hidden" id="MadeCount" value="<%=bdb.QueryVenueBookingByUserIDForToday(request.getParameter("userid")).size()%>"
+                   <!-- Desktop sidebar -->
             <jsp:include page="Sidebar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
-            <!-- Mobile sidebar -->
-            <!-- Backdrop -->
+
             <jsp:include page="MobileScreenSideBar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
@@ -102,9 +129,9 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Venue Booking Request Form
+                            Venue Booking Request Form -- Main Selection
                         </h2>
-                        
+
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >

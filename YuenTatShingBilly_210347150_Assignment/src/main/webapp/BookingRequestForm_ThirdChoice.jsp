@@ -42,7 +42,7 @@
                         $('#venuedate').val(new Date());
                     }
                 });
- });
+            });
         </script>
         <script src="./assets/js/init-alpine.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKIm352enWiDL0qbvU5Cy2GABBiFkvVIk"></script>
@@ -80,12 +80,12 @@
             class="flex h-screen bg-gray-50 dark:bg-gray-900"
             :class="{ 'overflow-hidden': isSideMenuOpen}"
             >
-            <!-- Desktop sidebar -->
+
             <jsp:include page="Sidebar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
-            <!-- Mobile sidebar -->
-            <!-- Backdrop -->
+
+            
             <jsp:include page="MobileScreenSideBar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
@@ -96,31 +96,29 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Venue Booking Request Form
+                            Venue Booking Request Form -- Third Selection
                         </h2>
-                        <!-- CTA -->
-
-                        <!-- General elements -->
+                        
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
                             Select Venue
                         </h4>
                         <form method="GET" action="ContinueBooking_ThirdChoice.jsp">
-                            
-                            
+
+
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
                             <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
                             <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
                             <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
-                            
-                             <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
+
+                            <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
                             <input type="hidden" name="BookingDate2" value="<%=request.getParameter("BookingDate2")%>" />
                             <input type="hidden" name="BookingStart2" value="<%=request.getParameter("BookingStart2")%>" />
                             <input type="hidden" name="BookingEnd2" value="<%=request.getParameter("BookingEnd2")%>" />
-                            
-                            
-                            
+
+
+
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"

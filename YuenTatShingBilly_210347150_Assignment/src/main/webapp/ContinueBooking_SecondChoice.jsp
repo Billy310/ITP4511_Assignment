@@ -85,7 +85,7 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Time Selection -- Second Selection
+                            Time Selection -- Second Selection -- Second Choice
                         </h2>
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
@@ -201,7 +201,7 @@
                                     </select>
                                 </label>     
                                 <div class="flex mt-6 text-sm">
-                                    <button name="action" type="submit" class="bn632-hover bn22" value="continue1" onclick="formSubmit()" >Second Choice Selection</button>
+                                    <button name="action" type="submit" class="bn632-hover bn22" value="continue1" onclick="formSubmit()" >Third Choice Selection</button>
                                     <button  name="action" type="submit" class="bn633-hover bn24" value="book1" onclick="formSubmit()" >Submit</button>
                                 </div>
                             </div>

@@ -21,7 +21,6 @@
             }, 1000);
 
             function submitform() {
-                alert("Login Successful");
                 document.forms["myForm"].submit();
             }
 

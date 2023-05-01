@@ -83,7 +83,7 @@ function formSubmit() {
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Time Selection
+                            Time Selection --First Choice
                         </h2>
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
