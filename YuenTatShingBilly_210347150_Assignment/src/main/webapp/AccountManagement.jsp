@@ -31,7 +31,7 @@
             :class="{ 'overflow-hidden': isSideMenuOpen }"
             >
             <!-- Desktop sidebar -->
-            <jsp:include page="Sidebar.jsp">
+            <jsp:include page="Sidebar_Admin.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <!-- Mobile sidebar -->

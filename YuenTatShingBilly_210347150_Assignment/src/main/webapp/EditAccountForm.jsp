@@ -23,7 +23,6 @@
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
         ></script>
-        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
         <script src="./assets/js/init-alpine.js"></script>
 
     </head>
@@ -33,7 +32,7 @@
             :class="{ 'overflow-hidden': isSideMenuOpen}"
             >
             <!-- Desktop sidebar -->
-            <jsp:include page="Sidebar.jsp">
+            <jsp:include page="Sidebar_Admin.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <!-- Mobile sidebar -->

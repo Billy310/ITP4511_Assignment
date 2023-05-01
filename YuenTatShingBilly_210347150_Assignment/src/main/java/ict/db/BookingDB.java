@@ -63,7 +63,6 @@ public class BookingDB {
                     + "BookingStart INT(2) NOT NULL,"
                     + "BookingEnd INT(2) NOT NULL,"
                     + "CreatedDate date NOT NULL,"
-                    + "PersonInCharge double(5,2) NOT NULL,"
                     + "Status INT(1) NOT NULL,"
                     + "Priority INT(1) NOT NULL,"
                     + "PRIMARY KEY (BookingID)"
@@ -108,7 +107,6 @@ public class BookingDB {
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
-                        rs.getDouble("PersonInCharge"),
                         rs.getInt("Status"),
                         rs.getInt("Priority")
                 );
@@ -202,7 +200,6 @@ public class BookingDB {
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
-                        rs.getDouble("PersonInCharge"),
                         rs.getInt("Status"),
                         rs.getInt("Priority")
                 );
@@ -254,7 +251,6 @@ public class BookingDB {
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
-                        rs.getDouble("PersonInCharge"),
                         rs.getInt("Status"),
                         rs.getInt("Priority")
                 );
@@ -304,7 +300,6 @@ public class BookingDB {
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
-                        rs.getDouble("PersonInCharge"),
                         rs.getInt("Status"),
                         rs.getInt("Priority")
                 );
@@ -355,7 +350,6 @@ public class BookingDB {
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
-                        rs.getDouble("PersonInCharge"),
                         rs.getInt("Status"),
                         rs.getInt("Priority")
                 );
@@ -405,7 +399,6 @@ public class BookingDB {
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
-                        rs.getDouble("PersonInCharge"),
                         rs.getInt("Status"),
                         rs.getInt("Priority")
                 );
@@ -456,7 +449,6 @@ public class BookingDB {
                         rs.getDate("CreatedDate"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
-                        rs.getDouble("PersonInCharge"),
                         rs.getInt("Status"),
                         rs.getInt("Priority")
                 );

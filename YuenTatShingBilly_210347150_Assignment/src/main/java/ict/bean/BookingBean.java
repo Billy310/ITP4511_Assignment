@@ -17,13 +17,12 @@ public class BookingBean implements Serializable {
     private int VenueID;
     private Date BookingDate, CreatedDate;
     private int BookingStart, BookingEnd;
-    private double PersonInCharge;
     private int Status,Priority ;
 
     public BookingBean() {
     }
 
-    public BookingBean(String BookingID, String UserID, int VenueID,  Date BookingDate, Date CreatedDate, int BookingStart, int BookingEnd, double PersonInCharge, int Status, int Priority) {
+    public BookingBean(String BookingID, String UserID, int VenueID,  Date BookingDate, Date CreatedDate, int BookingStart, int BookingEnd, int Status, int Priority) {
         this.BookingID = BookingID;
         this.UserID = UserID;
         this.VenueID = VenueID;
@@ -31,7 +30,6 @@ public class BookingBean implements Serializable {
         this.CreatedDate = CreatedDate;
         this.BookingStart = BookingStart;
         this.BookingEnd = BookingEnd;
-        this.PersonInCharge = PersonInCharge;
         this.Status = Status;
         this.Priority = Priority;
     }
@@ -92,13 +90,6 @@ public class BookingBean implements Serializable {
         this.BookingEnd = BookingEnd;
     }
 
-    public double getPersonInCharge() {
-        return PersonInCharge;
-    }
-
-    public void setPersonInCharge(double PersonInCharge) {
-        this.PersonInCharge = PersonInCharge;
-    }
 
     public int getStatus() {
         return Status;
