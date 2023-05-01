@@ -64,7 +64,7 @@ public class HandleUser extends HttpServlet {
                     }
                      if (UserType == 2) {
 //                    request.setAttribute("usertype", UserType);
-                        rd = getServletContext().getRequestDispatcher("/login.jsp");
+                        rd = getServletContext().getRequestDispatcher("/loginsenior.jsp");
                         rd.forward(request, response);
                     }
                       if (UserType == 3) {

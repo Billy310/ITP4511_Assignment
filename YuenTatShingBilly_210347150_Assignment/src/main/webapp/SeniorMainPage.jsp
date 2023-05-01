@@ -24,7 +24,7 @@
             :class="{ 'overflow-hidden': isSideMenuOpen }"
             >
             <!-- Desktop sidebar -->
-            <jsp:include page="Sidebar_Admin.jsp">
+            <jsp:include page="Sidebar_Senior.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <!-- Mobile sidebar -->
@@ -50,7 +50,7 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            View Location Type
+                            Booking Request
                         </h2>
 
                         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -65,17 +65,21 @@
                                         <tr
                                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                                             >
-                                            <th class="px-4 py-3">Location Type ID</th>
-                                            <th class="px-4 py-3">Location Name</th>
-                                            <th class="px-4 py-3">Enabled</th>
-                                             <th class="px-4 py-3">Action</th>
+                                            <th class="px-4 py-3">Booking ID</th>
+                                            <th class="px-4 py-3">Location</th>
+                                            <th class="px-4 py-3">Venue Name</th>
+                                            <th class="px-4 py-3">Booked Date</th>
+                                            <th class="px-4 py-3">Created Date</th>
+                                            <th class="px-4 py-3">Status</th>
+                                            <th class="px-4 py-3">View Details</th>
+                                             
                                         </tr>
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                                         >     
 
-                                        <jsp:include page="ListLocation.jsp" />
+                                        <%--<jsp:include page="ListBooking.jsp" />--%>
 
                                     </tbody>
                                 </table>
