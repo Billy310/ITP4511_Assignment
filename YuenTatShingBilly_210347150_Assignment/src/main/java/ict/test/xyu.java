@@ -5,6 +5,8 @@
 package ict.test;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoField;
@@ -21,19 +23,13 @@ public class xyu {
     public static int numOfDaysInMonth;
 
     public static void main(String[] args) {
-        ArrayList<java.sql.Date> dateof =getfirstandend(2023, 2);
-        System.out.println(dateof.get(0)); System.out.println(dateof.get(1));
-    }
-
-    public static ArrayList<java.sql.Date> getfirstandend(int Year, int Month) {
-        ArrayList<java.sql.Date> dateofeachmonth = new ArrayList<java.sql.Date>();
-        c.set(Year, Month, 1);
-        numOfDaysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
-//        c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth - 1);
-        dateofeachmonth.add(new java.sql.Date(c.getTime().getTime()));
-        c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth - 1);
-        dateofeachmonth.add( new java.sql.Date(c.getTime().getTime()));
-        return dateofeachmonth;
+        java.util.Date utilDate = new java.util.Date();
+        System.out.println("java.util.Date time    : " + utilDate);
+        java.sql.Timestamp sqlTS = new java.sql.Timestamp(utilDate.getTime());
+        System.out.println("java.sql.Timestamp time: " + sqlTS);
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/YYYY hh:mm:ss:SSS");
+        System.out.println("Date formatted         : " + df.format(utilDate));
     }
 
 

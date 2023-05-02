@@ -40,18 +40,25 @@ public class TestDB {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
+        UserDB db = new UserDB(dbUrl ,dbUser ,dbPassword);
         BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-        ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDate(1, getfirstandend(2023, 4));
-        System.out.print(bbs.size());
-//                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+//        bookingDB.createTable();
+        bookingDB.DeleteNoNeed("M1dKe0Yv41G1XMv8GQXHURXeb");
+//            UserBean userbean = db.QueryUserByName("Admin");
 
-//                bookingDB.AddRecord(dbPassword, dbUser, 0, dbPassword, 0, 0, 0, 0)
-//        VenueTypeDB vlb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
-//        vlb.AddRecord(vlb.QueryAllVenueType().size()+1, "123");
-        VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
-        vb.createTable();
-//        vb.AddVenue(6+1, "Hong Kong Institute of Vocational Education (Tuen Mun)", 1, 1, "",80.8);
-        vb.EditVenue(7, "", 1, 1, "", 1, 9090);
+//        System.out.print(bookingDB.QueryVenueBookingByUserIDForToday("iivQf91PxrMdiGMPw0r4FP0iW").size());
+//        ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDate(1, getfirstandend(2023, 4));
+//        System.out.print(bbs.size());
+////                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+//iivQf91PxrMdiGMPw0r4FP0iW
+
+////                bookingDB.AddRecord(dbPassword, dbUser, 0, dbPassword, 0, 0, 0, 0)
+////        VenueTypeDB vlb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
+////        vlb.AddRecord(vlb.QueryAllVenueType().size()+1, "123");
+//        VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
+//        vb.createTable();
+////        vb.AddVenue(6+1, "Hong Kong Institute of Vocational Education (Tuen Mun)", 1, 1, "",80.8);
+//        vb.EditVenue(7, "", 1, 1, "", 1, 9090);
 //        Hong Kong Institute of Vocational Education (Tuen Mun)
 //        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
 //        bookingDB.createTable();

@@ -191,10 +191,41 @@ public class HandleBooking extends HttpServlet {
 
         } else if (action.equals("edit")) {
             RequestDispatcher rd;
-            
+
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", request.getParameter("BookingID"));
             rd = getServletContext().getRequestDispatcher("/EditBookingFrom_Admin.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("viewdetail")) {
+            RequestDispatcher rd;
+            request.setAttribute("userid", userID);
+            rd = getServletContext().getRequestDispatcher("/EditBookingFrom_Admin.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("approve")) {
+            String BookingID = request.getParameter("BookingID");
+
+            db.ApproveBooking(BookingID);
+
+            db.DeleteNoNeed(BookingID);
+            RequestDispatcher rd;
+            request.setAttribute("userid", userID);
+            request.setAttribute("bookingid", BookingID);
+
+            rd = getServletContext().getRequestDispatcher("/ViewBooking_Admin.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("deny")) {
+            String BookingID = request.getParameter("BookingID");
+
+            RequestDispatcher rd;
+            String BookingID_New = db.DenyBooking(BookingID).getBookingID();
+            if (BookingID_New != null) {
+                request.setAttribute("BookingID_", BookingID_New);
+                request.setAttribute("userid", userID);
+                rd = getServletContext().getRequestDispatcher("/HandleDenyBooking.jsp");
+            } else {
+                request.setAttribute("userid", userID);
+                rd = getServletContext().getRequestDispatcher("/ViewBooking_Admin.jsp");
+            }
             rd.forward(request, response);
         } else {
             PrintWriter out = response.getWriter();

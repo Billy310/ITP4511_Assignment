@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,7 +63,8 @@ public class BookingDB {
                     + "BookingDate date NOT NULL,"
                     + "BookingStart INT(2) NOT NULL,"
                     + "BookingEnd INT(2) NOT NULL,"
-                    + "CreatedDate date NOT NULL,"
+                    + "CreatedDate DATE NOT NULL,"
+                    + "CreatedTime DATETIME NOT NULL,"
                     + "Status INT(1) NOT NULL,"
                     + "Priority INT(1) NOT NULL,"
                     + "PRIMARY KEY (BookingID)"
@@ -105,6 +107,55 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
+    public ArrayList<BookingBean> QueryVenueBookingNotApproved() {
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE STATUS = 3 AND PRIORITY = 1";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -137,12 +188,20 @@ public class BookingDB {
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
+            java.util.Date utilDate = new java.util.Date();
+            System.out.println("java.util.Date time    : " + utilDate);
+            //            java.util.Date currentDate = new java.util.Date();
+            java.sql.Timestamp sqlTS = new java.sql.Timestamp(utilDate.getTime());
+            System.out.println("java.sql.Timestamp time: " + sqlTS);
+            DateFormat df = new SimpleDateFormat("dd/MM/YYYY hh:mm:ss:SSS");
+            System.out.println("Date formatted         : " + df.format(utilDate));
+
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date currentDate = new java.util.Date();
-
             java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
+
             cnnct = getConnection();
-            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?)";
+            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setString(1, BookingID);
             pStmnt.setString(2, UserID);
@@ -151,8 +210,9 @@ public class BookingDB {
             pStmnt.setInt(5, BookingStart);
             pStmnt.setInt(6, BookingEnd);
             pStmnt.setDate(7, new java.sql.Date(currentDate.getTime()));
-            pStmnt.setInt(8, Status);
-            pStmnt.setInt(9, Priority);
+            pStmnt.setTimestamp(8, sqlTS);
+            pStmnt.setInt(9, Status);
+            pStmnt.setInt(10, Priority);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
 
@@ -197,6 +257,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -233,7 +294,7 @@ public class BookingDB {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.sql.Date bookingdate_date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ?";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND Status = 1";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -248,6 +309,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -297,6 +359,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -347,6 +410,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -396,6 +460,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -446,6 +511,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -471,7 +537,8 @@ public class BookingDB {
         return bookingBeans;
 
     }
-      public  ArrayList<BookingBean> QueryVenueBookingByPlaceANDDateNotEqual(int VenueID, ArrayList<java.sql.Date> rangeofdate) {
+
+    public ArrayList<BookingBean> QueryVenueBookingByPlaceANDDateNotEqual(int VenueID, ArrayList<java.sql.Date> rangeofdate) {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -495,6 +562,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -520,8 +588,6 @@ public class BookingDB {
         return bookingBeans;
 
     }
-    
-    
 
     public ArrayList<BookingBean> QueryVenueBookingByUserIDForToday(String UserID) {
 
@@ -536,10 +602,12 @@ public class BookingDB {
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            
+
             java.util.Date currentDate = new java.util.Date();
+
             pStmnt.setString(1, UserID);
             pStmnt.setDate(2, new java.sql.Date(currentDate.getTime()));
+
             rs = pStmnt.executeQuery();
             while (rs.next()) {
                 BookingBean bookingbean;
@@ -549,6 +617,7 @@ public class BookingDB {
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
                         rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
@@ -575,4 +644,128 @@ public class BookingDB {
 
     }
 
+    public boolean ApproveBooking(String BookingID) throws ParseException {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatment = "UPDATE BOOKING SET STATUS=1 WHERE BOOKINGID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setString(1, BookingID);
+
+            int rowCount = pStmnt.executeUpdate();
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+
+    public boolean DeleteNoNeed(String BookingID) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            BookingBean bb = QueryByID(BookingID);
+            String UserID = bb.getUserID();
+            java.sql.Date create_date = bb.getCreatedDate();
+            String preQueryStatment = "DELETE FROM BOOKING WHERE BOOKINGID != ? AND CREATEDDATE = ? AND USERID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setString(1, BookingID);
+            pStmnt.setDate(2, create_date);
+            pStmnt.setString(3, UserID);
+
+            int rowCount = pStmnt.executeUpdate();
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+
+    public BookingBean DenyBooking(String BookingID) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        BookingBean bookingbean = null;
+        ResultSet rs = null;
+
+        try {
+
+            cnnct = getConnection();
+            BookingBean bb = QueryByID(BookingID);
+            String UserID = bb.getUserID();
+            java.sql.Date create_date = bb.getCreatedDate();
+            String preQueryStatment = "UPDATE BOOKING SET STATUS=1 WHERE BOOKINGID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setString(1, BookingID);
+
+            pStmnt.executeUpdate();
+
+            int Priority = bb.getPriority();
+
+            preQueryStatment = "Select * FROM Booking WHERE CREATEDDATE = ? AND USERID = ? AND Priority = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setDate(1, create_date);
+            pStmnt.setString(2, UserID);
+            pStmnt.setInt(3, Priority + 1);
+
+            rs = pStmnt.executeQuery();
+
+            if (rs.next()) {
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
+                );
+            }
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return bookingbean;
+    }
 }

@@ -5,7 +5,6 @@
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     VenueDB venuedb = new VenueDB(dbUrl, dbUser, dbPassword);
- 
 
     VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
     VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
@@ -52,6 +51,7 @@
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
                         <form action="HandleType" method="GET" >
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >
@@ -66,16 +66,16 @@
                                     <input
                                         name="TypeName"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                
+
 
                                         />
                                 </label>
 
-                   
 
- 
-    
-    
+
+
+
+
 
                                 <br>
                                 <button

@@ -88,7 +88,7 @@ function formSubmit() {
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
-                            Select Venue <% out.print("Count" + disabledtime.size());%>
+           
                         </h4>
                         <form method="GET" action="HandleBooking"  name="myForm"> 
                              

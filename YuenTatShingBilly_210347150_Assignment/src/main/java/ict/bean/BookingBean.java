@@ -6,6 +6,7 @@ package ict.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,18 +17,20 @@ public class BookingBean implements Serializable {
     private String BookingID, UserID;
     private int VenueID;
     private Date BookingDate, CreatedDate;
+    private Timestamp CreatedTime;
     private int BookingStart, BookingEnd;
     private int Status,Priority ;
 
     public BookingBean() {
     }
 
-    public BookingBean(String BookingID, String UserID, int VenueID,  Date BookingDate, Date CreatedDate, int BookingStart, int BookingEnd, int Status, int Priority) {
+    public BookingBean(String BookingID, String UserID, int VenueID,  Date BookingDate, Date CreatedDate,Timestamp CreatedTime, int BookingStart, int BookingEnd, int Status, int Priority) {
         this.BookingID = BookingID;
         this.UserID = UserID;
         this.VenueID = VenueID;
         this.BookingDate = BookingDate;
         this.CreatedDate = CreatedDate;
+        this.CreatedTime = CreatedTime;
         this.BookingStart = BookingStart;
         this.BookingEnd = BookingEnd;
         this.Status = Status;
@@ -73,6 +76,15 @@ public class BookingBean implements Serializable {
     public void setCreatedDate(Date CreatedDate) {
         this.CreatedDate = CreatedDate;
     }
+
+    public Timestamp getCreatedTime() {
+        return CreatedTime;
+    }
+
+    public void setCreatedTime(Timestamp CreatedTime) {
+        this.CreatedTime = CreatedTime;
+    }
+    
 
     public int getBookingStart() {
         return BookingStart;

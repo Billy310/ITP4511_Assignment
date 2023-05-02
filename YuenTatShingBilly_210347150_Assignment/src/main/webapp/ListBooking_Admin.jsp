@@ -27,14 +27,10 @@
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
     BookingDB db = new BookingDB(dbUrl, dbUser, dbPassword);
-    VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
-    VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
-    ArrayList<BookingBean> venueBookings = db.QueryVenueBooking();
+    ArrayList<BookingBean> venueBookings = db.QueryVenueBookingNotApproved();
 
     for (int x = 0; x < venueBookings.size(); x++) {
         BookingBean vb = venueBookings.get(x);
-        VenueBean venuebean = venueDB.queueVenueByVenueID(vb.getVenueID());
-        VenueLocationBean locationbean = LocationDB.QueryByLocationID(venuebean.getVenueLocationID());
         out.print("<tr class=\"text-gray-700 dark:text-gray-400\">");
         out.print("<td class=\"px-4 py-3\">");
         out.print("<div class=\"flex items-center text-sm\">");
@@ -44,9 +40,9 @@
         out.print("</div>");
         out.print("</div>");
         out.print("</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" + locationbean.getVenueLocationName() + "</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" + venueDB.queueVenueByVenueID(vb.getVenueID()).getVenueName() + "</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getBookingDate()) + "</td>");
+        out.print("<td class=\"px-4 py-3 text-sm\">" + userdb.QueryUserByID(vb.getUserID()).getUsername() + "</td>");
+//        out.print("<td class=\"px-4 py-3 text-sm\">" + venueDB.queueVenueByVenueID(vb.getVenueID()).getVenueName() + "</td>");
+//        out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getBookingDate()) + "</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getCreatedDate()) + "</td>");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         if (vb.getStatus() == 1) {
@@ -61,7 +57,7 @@
         out.print("</td>");
 
         out.print("<form action='HandleBooking'>");
-        out.print("<input type=hidden value=edit name=action />");
+        out.print("<input type=hidden value=viewdetail name=action />");
         out.print("<input type=hidden value=" + vb.getBookingID() + " name=BookingID />");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         out.print("<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>Edit</button>");
