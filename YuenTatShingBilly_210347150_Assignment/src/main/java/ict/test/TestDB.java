@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import ict.db.UserTypeDB;
+import java.util.Calendar;
 
 /**
  *
@@ -39,6 +40,9 @@ public class TestDB {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
+        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+        ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDate(1, getfirstandend(2023, 4));
+        System.out.print(bbs.size());
 //                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
 
 //                bookingDB.AddRecord(dbPassword, dbUser, 0, dbPassword, 0, 0, 0, 0)
@@ -55,31 +59,18 @@ public class TestDB {
 
     }
 
-    public static void givenUsingPlainJava_whenGeneratingRandomStringUnbounded_thenCorrect() {
-        byte[] array = new byte[7]; // length is bounded by 7
-        new Random().nextBytes(array);
-        String generatedString = new String(array, Charset.forName("UTF-8"));
 
-        System.out.println(generatedString);
-    }
+    public static Calendar c = Calendar.getInstance();
+    public static int numOfDaysInMonth;
 
-    public static int CalTotalByLocationID(int LocationID) {
-        String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
-        String dbUser = "root";
-        String dbPassword = "root";
-        VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
-        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-        ArrayList<VenueBean> vlb = venueDB.QueryVenueByLocationID(LocationID);
-        System.out.print(vlb.size());
-        int Total = 0;
-        for (int x = 0; x < vlb.size(); x++) {
-            ArrayList<BookingBean> bb = bookingDB.QueryVenueBookingByPlace(vlb.get(x).getVenueID());
-
-            Total = bb.size();
-
-        }
-
-        return Total;
+    public static ArrayList<java.sql.Date> getfirstandend(int Year, int Month) {
+        ArrayList<java.sql.Date> dateofeachmonth = new ArrayList();
+        c.set(Year, Month, 1);
+        numOfDaysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+        dateofeachmonth.add(new java.sql.Date(c.getTime().getTime()));
+        c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth - 1);
+        dateofeachmonth.add(new java.sql.Date(c.getTime().getTime()));
+        return dateofeachmonth;
     }
 
 }

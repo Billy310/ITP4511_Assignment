@@ -174,7 +174,7 @@ public class VenueDB {
     }
 
     public ArrayList<VenueBean> QueryVenueByLocationID(int LocationID) {
-
+ 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
         ResultSet rs = null;
@@ -187,8 +187,8 @@ public class VenueDB {
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setInt(1, LocationID);
             rs = pStmnt.executeQuery();
-            while (rs.next()) {
-                VenueBean userbean;
+            if (rs.next()) {
+                VenueBean userbean ;
                 userbean = new VenueBean(
                         rs.getInt("venueID"),
                         rs.getInt("venueTypeID"),

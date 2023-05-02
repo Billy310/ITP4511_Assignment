@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@page import="ict.bean.VenueBean,ict.db.VenueDB" %>
+<%@page import="java.util.ArrayList,ict.db.VenueDB,ict.bean.VenueBean,ict.bean.BookingBean,ict.db.BookingDB, java.sql.Date,java.util.Calendar"%>
+
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
@@ -38,7 +40,6 @@
             $(document).ready(function () {
                 $("#Extend").hide();
                 var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                var y = 1;
 
 
                 for (var x = 2020; x <= 2023; x++) {
@@ -48,8 +49,7 @@
 
                 for (var x = 0; x < month.length; x++) {
 
-                    $("#Month").append(`<option value=` + `"` + y + `" >` + month[x] + "</option>");
-                    y++;
+                    $("#Month").append(`<option value=` + `"` + x + `" >` + month[x] + "</option>");
                 }
 
                 $('#allow').click(function () {
@@ -72,66 +72,11 @@
 
         </script>
 
-        <%@page import="java.util.ArrayList,ict.db.VenueDB,ict.bean.VenueBean,ict.bean.BookingBean,ict.db.BookingDB, java.sql.Date,java.util.Calendar"%>
-        <%!
-            public int CalTotalByLocationID(int LocationID) {
-                String dbUser = this.getServletContext().getInitParameter("dbUser");
-                String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-                String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-                VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
-                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-                ArrayList<VenueBean> vlb = venueDB.QueryVenueByLocationID(LocationID);
-                int Total = 0;
-                for (int x = 0; x < vlb.size(); x++) {
-                    ArrayList<BookingBean> bb = bookingDB.QueryVenueBookingByPlace(vlb.get(x).getVenueID());
-                    for (int y = 0; y < bb.size(); y++) {
-                        Total++;
-                    }
-                }
 
-                return Total;
-            }
-
-            public int CalTotalByMonthly(int LocationID) {
-                String dbUser = this.getServletContext().getInitParameter("dbUser");
-                String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-                String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-                VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
-                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-                ArrayList<VenueBean> vlb = venueDB.QueryVenueByLocationID(LocationID);
-                int Total = 0;
-                for (int x = 0; x < vlb.size(); x++) {
-                    ArrayList<BookingBean> bb = bookingDB.QueryVenueBookingByPlaceANDDate(vlb.get(x).getVenueID(), getfirstandend(2023, 3));
-                    for (int y = 0; y < bb.size(); y++) {
-                        Total++;
-                    }
-                }
-
-                return Total;
-            }
-            public Calendar c = Calendar.getInstance();
-            public int numOfDaysInMonth;
-
-            public ArrayList<java.sql.Date> getfirstandend(int Year, int Month) {
-                ArrayList<java.sql.Date> dateofeachmonth = new ArrayList();
-                c.set(Year, Month, 1);
-                numOfDaysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
-//        c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth - 1);
-                dateofeachmonth.add(new java.sql.Date(c.getTime().getTime()));
-                c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth - 1);
-                dateofeachmonth.add(new java.sql.Date(c.getTime().getTime()));
-                return dateofeachmonth;
-            }
-        %>
 
     </head>
-    <body onload="drawChart();
-            drawLine();">
-        <input type="hidden" id="TM" value="<%=CalTotalByLocationID(1)%>" />
-        <input type="hidden" id="ST" value="<%=CalTotalByLocationID(2)%>" />
-        <input type="hidden" id="TY" value="<%=CalTotalByLocationID(3)%>" />
-        <input type="hidden" id="LWL" value="<%=CalTotalByLocationID(4)%>" />
-        <input type="hidden" id="CW" value="<%=CalTotalByLocationID(5)%>" />
+    <body>
+
 
 
 
@@ -170,102 +115,102 @@
                             Chart Properties
                         </h2>
 
-                    <form method="GET" action="ShowChart.jsp" id="ChartForm"> 
-                        <div
-                            class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-                            >
+                        <form method="GET" action="HandleChart" id="ChartForm"> 
+                            <div
+                                class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                                >
 
 
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Year
-                                </span>
-                                <select name="Year" id="Year" 
-                                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                        >
-                                </select>
-                            </label>
-
-
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Month
-                                </span>
-                                <select name="Month" id="Month" 
-                                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                        >
-                                </select>
-                            </label>
-
-
-
-
-
-                            <div class="mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    All Venue?
-                                </span>
-                                <div class="mt-2">
-                                    <label
-                                        class="inline-flex items-center text-gray-600 dark:text-gray-400"
-                                        >
-                                        <input
-                                            id="allow"
-                                            type="radio"
-                                            class="venuespec text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                            name="status"
-                                            value="1"
-                                            checked
-
-                                            />
-                                        <span class="ml-2">Yes</span>
-                                    </label>
-                                    <label
-                                        class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                                        >
-                                        <input
-                                            id="disallow"
-                                            type="radio"
-                                            class="venuespec text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                            name="status"
-                                            value="0"
-
-                                            />
-                                        <span class="ml-2">No (Please Specific)</span>
-                                    </label>
-                                </div>
-                            </div>
-
-
-                            <div id="Extend">          
                                 <label class="block mt-4 text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">
-                                        Venue
+                                        Year
                                     </span>
-                                    <select name="Venue" id="Venue" 
+                                    <select name="Year" id="Year" 
                                             class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                             >
-                                        <%
-                                            for (int x = 0; x < vbs.size(); x++) {
-                                                VenueBean v = vbs.get(x);
-                                                out.print("<option value=" + v.getVenueID() + ">" + v.getVenueName() + "</option>");
-                                            }
-                                        %> 
                                     </select>
-
                                 </label>
+
+
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Month
+                                    </span>
+                                    <select name="Month" id="Month" 
+                                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                            >
+                                    </select>
+                                </label>
+
+
+
+
+
+                                <div class="mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        All Venue?
+                                    </span>
+                                    <div class="mt-2">
+                                        <label
+                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                id="allow"
+                                                type="radio"
+                                                class="venuespec text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="action"
+                                                value="all"
+                                                checked
+
+                                                />
+                                            <span class="ml-2">Yes</span>
+                                        </label>
+                                        <label
+                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                id="disallow"
+                                                type="radio"
+                                                class="venuespec text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="action"
+                                                value="single"
+
+                                                />
+                                            <span class="ml-2">No (Please Specific)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div id="Extend">          
+                                    <label class="block mt-4 text-sm">
+                                        <span class="text-gray-700 dark:text-gray-400">
+                                            Venue
+                                        </span>
+                                        <select name="Venue" id="Venue" 
+                                                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                >
+                                            <%
+                                                for (int x = 0; x < vbs.size(); x++) {
+                                                    VenueBean v = vbs.get(x);
+                                                    out.print("<option value=" + v.getVenueID() + ">" + v.getVenueName() + "</option>");
+                                                }
+                                            %> 
+                                        </select>
+
+                                    </label>
+                                </div>
+
+                                <br>
+                                <button
+                                    type="submit"
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    >
+                                    Show Chart
+                                </button>
+
                             </div>
-
-                            <br>
-                            <button
-                                type="submit"
-                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                >
-                                Show Chart
-                            </button>
-
-                        </div>
-                    </form>
+                        </form>
 
 
                 </main>

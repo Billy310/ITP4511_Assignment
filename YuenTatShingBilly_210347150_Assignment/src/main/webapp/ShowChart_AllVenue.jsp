@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB,ict.bean.BookingBean,ict.db.BookingDB" %>
+<%@page import="ict.bean.VenueBean,ict.db.VenueDB" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
-    VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
-    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
     ArrayList<VenueBean> vbs = vb.QueryVenue();
-
 
 %>
 
@@ -44,14 +41,19 @@
 
         </script>
 
+
+
         <script type="text/javascript">
             function drawChart() {
+                var TM = document.getElementById("TM").value;
+                var ST = document.getElementById("ST").value;
+                var TY = document.getElementById("TY").value;
+                var LWL = document.getElementById("LWL").value;
+                var CW = document.getElementById("CW").value;
 
-                var ThisMonthFromUs = document.getElementById("thismonthfromus").value;
-                var ThisNonthNotFromUs = document.getElementById("thismonthfromnotfromus").value;
 
-                var stars = [ThisMonthFromUs, ThisNonthNotFromUs];
-                var frameworks = ['Tuen Mun', 'Others'];
+                var stars = [TM, ST, TY, LWL, CW];
+                var frameworks = ['Tuen Mun', 'Sha Tin', 'Tsing Yi', 'Lee Wai Lee', 'Chai Wan'];
                 new Chart('myChart', {
                     type: 'pie',
                     data: {
@@ -69,26 +71,17 @@
                 });
             }
         </script>
-
-
         <script type="text/javascript">
             function drawLine() {
-                var January = document.getElementById("January").value;
-                var February = document.getElementById("February").value;
-                var March = document.getElementById("March").value;
-                var April = document.getElementById("April").value;
-                var May = document.getElementById("May").value;
-                var June = document.getElementById("June").value;
-                var July = document.getElementById("July").value;
-                var August = document.getElementById("August").value;
-                var September = document.getElementById("September").value;
-                var October = document.getElementById("October").value;
-                var November = document.getElementById("November").value;
-                var December = document.getElementById("December").value;
+                var TM = document.getElementById("TM").value;
+                var ST = document.getElementById("ST").value;
+                var TY = document.getElementById("TY").value;
+                var LWL = document.getElementById("LWL").value;
+                var CW = document.getElementById("CW").value;
 
                 new Chart('line', {type: 'line',
                     data: {
-                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', "August", "September", "October", "November", "December"],
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                         datasets: [
                             {
                                 label: 'Organic',
@@ -98,8 +91,19 @@
                                  */
                                 backgroundColor: '#0694a2',
                                 borderColor: '#0694a2',
-                                data: [January, February, March, April, May, June, July, August, September, October, November, December],
+                                data: [TM, ST, TY, LWL, CW, 73, 70],
                                 fill: false,
+                            },
+                            {
+                                label: 'Paid',
+                                fill: false,
+                                /**
+                                 * These colors come from Tailwind CSS palette
+                                 * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
+                                 */
+                                backgroundColor: '#7e3af2',
+                                borderColor: '#7e3af2',
+                                data: [24, 50, 64, 74, 52, 51, 65],
                             },
                         ],
                     },
@@ -144,24 +148,43 @@
 
         <%@page import="java.util.ArrayList,ict.db.VenueDB,ict.bean.VenueBean,ict.bean.BookingBean,ict.db.BookingDB, java.sql.Date,java.util.Calendar"%>
         <%!
-            public int GetAllMonth(int LocationID, int Month, int Year) {
+            public int CalTotalByLocationID(int LocationID) {
                 String dbUser = this.getServletContext().getInitParameter("dbUser");
                 String dbPassword = this.getServletContext().getInitParameter("dbPassword");
                 String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+                VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
                 BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDate(LocationID, getfirstandend(Year, Month));
-                return bbs.size();
+
+                ArrayList<VenueBean> vlb = venueDB.QueryVenue();
+                int Total = 0;
+                for (int x = 0; x < vlb.size(); x++) {
+                    Total = 0;
+                    ArrayList<BookingBean> bb = bookingDB.QueryVenueBookingByPlace(vlb.get(x).getVenueID());
+                    for (int y = 0; y < bb.size(); y++) {
+                        Total++;
+                    }
+                }
+
+                return Total;
             }
 
-            public int CountOfBookingNotFromUs(int LocationID, int Month, int Year) {
+            public int CalTotalByMonthly(int LocationID) {
                 String dbUser = this.getServletContext().getInitParameter("dbUser");
                 String dbPassword = this.getServletContext().getInitParameter("dbPassword");
                 String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+                VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
                 BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDateNotEqual(LocationID, getfirstandend(Year, Month));
-                return bbs.size();
-            }
+                ArrayList<VenueBean> vlb = venueDB.QueryVenue();
+                int Total = 0;
+                for (int x = 0; x < vlb.size(); x++) {
+                    ArrayList<BookingBean> bb = bookingDB.QueryVenueBookingByPlaceANDDate(vlb.get(x).getVenueID(), getfirstandend(2023, 3));
+                    for (int y = 0; y < bb.size(); y++) {
+                        Total++;
+                    }
+                }
 
+                return Total;
+            }
             public Calendar c = Calendar.getInstance();
             public int numOfDaysInMonth;
 
@@ -177,30 +200,18 @@
         %>
 
     </head>
-    <body onload="drawLine(); drawChart();">
-        <% int VenueID = Integer.parseInt(request.getParameter("Venue"));%>
-        <% int Year = Integer.parseInt(request.getParameter("Year"));%>
-        <% int Month = Integer.parseInt(request.getParameter("Month"));%>
-        <input type="hidden" id="January" value="<%=GetAllMonth(VenueID, 0, Year)%>" />
-        <input type="hidden" id="February" value="<%=GetAllMonth(VenueID, 1, Year)%>" />
-        <input type="hidden" id="March" value="<%=GetAllMonth(VenueID, 2, Year)%>" />
-        <input type="hidden" id="April" value="<%=GetAllMonth(VenueID, 3, Year)%>" />
-        <input type="hidden" id="May" value="<%=GetAllMonth(VenueID, 4, Year)%>" />
-        <input type="hidden" id="June" value="<%=GetAllMonth(VenueID, 5, Year)%>" />
-        <input type="hidden" id="July" value="<%=GetAllMonth(VenueID, 6, Year)%>" />
-        <input type="hidden" id="August" value="<%=GetAllMonth(VenueID, 7, Year)%>" />
-        <input type="hidden" id="September" value="<%=GetAllMonth(VenueID, 8, Year)%>" />
-        <input type="hidden" id="October" value="<%=GetAllMonth(VenueID, 9, Year)%>" />
-        <input type="hidden" id="November" value="<%=GetAllMonth(VenueID, 10, Year)%>" />
-        <input type="hidden" id="December" value="<%=GetAllMonth(VenueID, 11, Year)%>" />
-
-        <input type="hidden" id="thismonthfromus" value="<%=GetAllMonth(VenueID, Month, Year)%>" />
-        <input type="hidden" id="thismonthfromnotfromus" value="<%=CountOfBookingNotFromUs(VenueID, Month, Year)%>" />
-        <!--'January', 'February', 'March', 'April', 'May', 'June', 'July', "August", "September", "October", "November", "December"-->
+    <body onload="drawChart();
+            drawLine();">
+        <input type="hidden" id="TM" value="<%=CalTotalByLocationID(1)%>" />
+        <input type="hidden" id="ST" value="<%=CalTotalByLocationID(2)%>" />
+        <input type="hidden" id="TY" value="<%=CalTotalByLocationID(3)%>" />
+        <input type="hidden" id="LWL" value="<%=CalTotalByLocationID(4)%>" />
+        <input type="hidden" id="CW" value="<%=CalTotalByLocationID(5)%>" />
 
 
 
-        <% String VenueName = vb.queueVenueByVenueID(Integer.parseInt(request.getParameter("Venue"))).getVenueName();%>
+
+
         <div
             class="flex h-screen bg-gray-50 dark:bg-gray-900"
             :class="{ 'overflow-hidden': isSideMenuOpen}"
@@ -235,27 +246,6 @@
                         </h2>
                         <div class="grid gap-6 mb-8 md:grid-cols-2">
                             <!-- Doughnut/Pie chart -->
-
-
-                            <div
-                                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-                                >
-                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                                    <%=VenueName%>
-                                </h4>
-                                <canvas id="line"></canvas>
-                                <div
-                                    class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
-                                    >
-                                    <!-- Chart legend -->
-                                    <div class="flex items-center">
-                                        <span
-                                            class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
-                                            ></span>
-                                        <span><%=VenueName%></span>
-                                    </div>
-                                </div>
-                            </div>
                             <div
                                 class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
                                 >
@@ -271,20 +261,62 @@
                                         <span
                                             class="inline-block w-3 h-3 mr-1 bg-tm rounded-full"
                                             ></span>
-                                        <span><%=VenueName%></span>
+                                        <span>Tuen Mun</span>
                                     </div>
                                     <div class="flex items-center">
                                         <span
                                             class="inline-block w-3 h-3 mr-1 bg-st rounded-full"
                                             ></span>
-                                        <span>Other</span>
+                                        <span>Sha Tin</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-ty rounded-full"
+                                            ></span>
+                                        <span>Tsing Yi</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-lwl rounded-full"
+                                            ></span>
+                                        <span>Lee Wai Lee</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-cw rounded-full"
+                                            ></span>
+                                        <span>Chai Wan</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div
+                                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                >
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                                    Lines
+                                </h4>
+                                <canvas id="line"></canvas>
+                                <div
+                                    class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
+                                    >
+                                    <!-- Chart legend -->
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
+                                            ></span>
+                                        <span>Organic</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+                                            ></span>
+                                        <span>Paid</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
 
 
 

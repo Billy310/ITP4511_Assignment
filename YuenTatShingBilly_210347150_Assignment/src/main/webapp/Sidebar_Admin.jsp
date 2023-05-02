@@ -14,6 +14,11 @@
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/EditType.jsp");
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/AccountManagement.jsp");
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/EditAccountForm.jsp");
+    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/ShowChart.jsp");
+    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/ShowChart_AllVenue.jsp");
+    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/EditBookingFrom_Admin.jsp");
+
+ 
 %>
 
 <aside
@@ -29,14 +34,14 @@
 
         <ul class="mt-6">
             <li class="relative px-6 py-3">
-                <% if (PageName.equals(pagenamelist.get(0)) || PageName.equals(pagenamelist.get(6))) {
+                <% if (PageName.equals(pagenamelist.get(0)) || PageName.equals(pagenamelist.get(6))||PageName.equals(pagenamelist.get(12))||PageName.equals(pagenamelist.get(13))) {
                         out.print("<span class=\"absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg\" aria-hidden=\"true\"></span>");
 
                     } %>
 
 
                 <a
-                    <% if (PageName.equals(pagenamelist.get(0)) || PageName.equals(pagenamelist.get(6))) {
+                    <% if (PageName.equals(pagenamelist.get(0)) || PageName.equals(pagenamelist.get(6))||PageName.equals(pagenamelist.get(12))||PageName.equals(pagenamelist.get(13))) {
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100\"");
                         } else {
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200\"");
@@ -106,13 +111,13 @@
         <ul>
             <li class="relative px-6 py-3">
 
-                <% if (PageName.equals(pagenamelist.get(1))) {
+                <% if (PageName.equals(pagenamelist.get(1))||PageName.equals(pagenamelist.get(14))) {
                         out.print("<span class=\"absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg\" aria-hidden=\"true\"></span>");
 
                     } %>
 
                 <a
-                    <% if (PageName.equals(pagenamelist.get(1))) {
+                    <% if (PageName.equals(pagenamelist.get(1))||PageName.equals(pagenamelist.get(14))) {
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100\"");
                         } else {
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200\"");
