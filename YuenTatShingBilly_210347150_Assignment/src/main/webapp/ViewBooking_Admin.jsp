@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Windmill Dashboard</title>
+        <title></title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -14,9 +14,28 @@
             defer
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
- 
-        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+                $(".Extend").hide();
+                $("#hide").click(function () {
+
+                    $(".Extend").hide();
+                });
+
+                $("#display").click(function () {
+
+                    $(".Extend").show();
+                });
+
+            });
+
+
+        </script> 
+
+
+
+
     </head>
     <body>
         <div
@@ -43,49 +62,186 @@
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
 
+
+
             <div class="flex flex-col flex-1 w-full">
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full overflow-y-auto">
-                    <div class="container px-6 mx-auto grid">
-                        <h2
-                            class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                            >
-                            Booking Request
-                        </h2>
-
-                        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-
-                        </div>
-
-                        <!-- New Table -->
-                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                            <div class="w-full overflow-x-auto">
-                                <table class="w-full whitespace-no-wrap">
-                                    <thead>
-                                        <tr
-                                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    <div class="container px-6 mx-auto grid"> 
+                        <form action="SearchBookingResult_Admin.jsp" method="GET"> 
+                            <div
+                                class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                                >
+                                <h2
+                                    class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+                                    >
+                                    Search
+                                </h2>
+                                <div class="mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Specific Name
+                                    </span>
+                                    <div class="mt-2">
+                                        <label
+                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
                                             >
-                                            <th class="px-4 py-3">Booking ID</th>
-                                            <th class="px-4 py-3">User Name</th>
-                                            <th class="px-4 py-3">Created Date</th>
-                                            <th class="px-4 py-3">Status</th>
-                                            <th class="px-4 py-3">View Details</th>
-            
-                                        </tr>
-                                    </thead>
-                                    <tbody
-                                        class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                                        >     
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="user"
+                                                value="1"
+                                                id="display"
 
-                                        <jsp:include page="ListBooking_Admin.jsp" />
 
-                                    </tbody>
-                                </table>
+                                                />
+                                            <span class="ml-2">Yes</span>
+                                        </label>
+                                        <label
+                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="user"
+                                                value="0"
+                                                id="hide"
+                                                checked
+
+                                                />
+                                            <span class="ml-2">No</span>
+                                        </label>
+                                    </div>
+                                </div>  
+
+                                <label class="block text-sm  Extend">
+                                    <span class="text-gray-700 dark:text-gray-400">Username</span>
+                                    <input
+                                        name="Username"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        placeholder="Username"
+
+                                        />
+                                </label>
+
+
+
+                                <div class="mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Time Order
+                                    </span>
+                                    <div class="mt-2">
+                                        <label
+                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="order"
+                                                value="1"
+                                                checked
+
+                                                />
+                                            <span class="ml-2">Ascending </span>
+                                        </label>
+                                        <label
+                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="order"
+                                                value="0"
+
+
+                                                />
+                                            <span class="ml-2">Descending Order</span>
+                                        </label>
+                                    </div>
+                                </div>    
+
+                                <div class="mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Status
+                                    </span>
+                                    <div class="mt-2">
+                                        <label
+                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="status"
+                                                value="1"
+
+                                                />
+                                            <span class="ml-2">Paid</span>
+                                        </label>
+                                        <label
+                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="status"
+                                                value="2"
+
+                                                />
+                                            <span class="ml-2">Not Paid</span>
+                                        </label>
+                                        <label
+                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="status"
+                                                value="3"
+
+                                                />
+                                            <span class="ml-2">Waiting</span>
+                                        </label>
+
+                                        <label
+                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                                            >
+                                            <input
+                                                type="radio"
+                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                                name="status"
+                                                value="4"
+                                                checked
+
+                                                />
+                                            <span class="ml-2">All</span>
+                                        </label>
+                                    </div>
+                                </div> 
+                                <br>
+                                <button
+
+                                    type="submit"
+
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    >
+                                    Search
+                                </button>
+
                             </div>
-                        </div>
+                        </form>
                     </div>
+
+
+
                 </main>
+
             </div>
+
+
+
+
+
+
+
         </div>
     </body>
 </html>

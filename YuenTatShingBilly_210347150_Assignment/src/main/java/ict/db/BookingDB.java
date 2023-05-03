@@ -7,6 +7,7 @@ package ict.db;
 import ict.bean.BookingBean;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -197,6 +198,7 @@ public class BookingDB {
             System.out.println("Date formatted         : " + df.format(utilDate));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
             java.util.Date currentDate = new java.util.Date();
             java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
 
@@ -768,4 +770,191 @@ public class BookingDB {
         }
         return bookingbean;
     }
+
+    public ArrayList<BookingBean> QueryVenueBookingByStatusAndOrder(int Order, int Status) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList();
+        String OrderType;
+        String Status_Str;
+        String Where;
+        if (Status != 4) {
+            Where = "WHERE ";
+
+        } else {
+            Where = "";
+        }
+
+        if (Status == 1) {
+            Status_Str = " STATUS = 1";
+        } else if (Status == 2) {
+            Status_Str = "STATUS = 2";
+        } else if (Status == 3) {
+            Status_Str = "STATUS = 3";
+        } else {
+            Status_Str = "";
+        }
+
+        if (Order == 1) {
+            OrderType = "ASC";
+        } else {
+            OrderType = "DESC";
+        }
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM BOOKING " + Where + Status_Str + " ORDER BY CREATEDTIME " + OrderType;
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
+    public ArrayList<BookingBean> QueryVenueBookingByStatusAndOrderUserID(int Order, int Status, String UserID) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList();
+        String OrderType;
+        if (Order == 1) {
+            OrderType = "ASC";
+        } else {
+            OrderType = "DESC";
+        }
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM BOOKING  WHERE STATUS = ? AND USERID ?  ORDER BY CREATEDTIME " + OrderType;
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, Status);
+            pStmnt.setString(2, UserID);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
+    public ArrayList<BookingBean> QueryForSimilarBooking(int LocationID, Date BookingDate, int StartTime, int EndTime) throws ParseException {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM BOOKING  WHERE VENUEID = ? AND BOOKINGDATE = ? AND BOOKINGSTART >= ? AND BOOKINGEND <= ?  ORDER BY CREATEDTIME ASC";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, LocationID);
+//            java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
+            pStmnt.setDate(2, BookingDate);
+            pStmnt.setInt(3, StartTime);
+            pStmnt.setInt(4, EndTime);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
 }

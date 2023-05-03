@@ -40,7 +40,7 @@
         <link href="css/ButtonCss.css" rel="stylesheet" type="text/css"/>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Windmill Dashboard - Forms</title>
+        <title></title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -88,7 +88,6 @@
                                     <input
                                         name="BookingID"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="UserID" 
                                         readonly
                                         value="<%=bb.getBookingID()%>" 
 
@@ -164,100 +163,52 @@
                             </form>
                         </div>
                     </div>
-
-                    
                     <div class="container px-6 mx-auto grid">
 
-                        <div
-                            class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                        <h2
+                            class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
+                            Similar Result
+                        </h2>
 
-                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
-
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Booking ID</span>
-                                <input
-                                    name="BookingID"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="UserID" 
-                                    readonly
-                                    value="<%=bb.getBookingID()%>" 
-
-                                    />
-                            </label>
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue</span>
-                                <input
-                                    name="username"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Username"
-                                    readonly
-                                    value="<%= vb.getVenueName()%>"
-                                    />
-                            </label>
-
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Location</span>
-                                <input
-                                    name="password"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Password"
-                                    readonly
-                                    value="<%=vlb.getVenueLocationName()%>"
-                                    />
-                            </label>
-
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
-                                <input
-                                    name="email"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
-                                    readonly
-                                    value="<%=vt.getVenueTypeName()%>"
-                                    />
-                            </label>
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Booking Date</span>
-                                <input
-                                    name="email"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
-                                    readonly
-                                    value="<%=tf.TransferDate(bb.getBookingDate())%>"
-                                    />
-                            </label>
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (Start)</span>
-                                <input
-                                    name="email"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
-                                    readonly
-                                    value="<%=TransferTime(bb.getBookingStart())%>"
-                                    />
-                            </label>
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (End)</span>
-                                <input
-                                    name="email"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
-                                    readonly
-                                    value="<%=TransferTime(bb.getBookingEnd())%>"
-                                    />
-                            </label>
-
-                            <div class="flex mt-6 text-sm">
-                                <button name="action" type="submit" class="bn632-hover bn22" value="approve" onclick="formSubmit()" >Approve</button>
-                                <button  name="action" type="submit" class="bn633-hover bn24" value="deny" onclick="formSubmit()" >Deny</button>
-                            </div>
+                        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
 
                         </div>
 
 
+                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                            <div class="w-full overflow-x-auto">
+                                <table class="w-full whitespace-no-wrap">
+                                    <thead>
+                                        <tr
+                                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                                            >
+                                            <th class="px-4 py-3">Booking ID</th>
+                                            <th class="px-4 py-3">User Name</th>
+                                            <th class="px-4 py-3">Booking Date</th>
+                                            <th class="px-4 py-3">Booking Time</th>
+                                            <th class="px-4 py-3">Created Time</th>
+                                            <th class="px-4 py-3">Status</th>
+                                            <th class="px-4 py-3">Action</th>
 
-                    </div>
+                                        </tr>
+                                    </thead>
+                                    <tbody
+                                        class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                                        >     
+
+                                        <jsp:include page="ListSimilarBooking.jsp" />
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>              
+
+
+
 
                 </main>
             </div>

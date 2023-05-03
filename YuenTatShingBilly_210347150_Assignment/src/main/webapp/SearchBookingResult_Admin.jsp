@@ -14,9 +14,7 @@
             defer
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
- 
-        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script>
+
     </head>
     <body>
         <div
@@ -24,7 +22,7 @@
             :class="{ 'overflow-hidden': isSideMenuOpen }"
             >
             <!-- Desktop sidebar -->
-            <jsp:include page="Sidebar.jsp">
+            <jsp:include page="Sidebar_Admin.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <!-- Mobile sidebar -->
@@ -43,22 +41,26 @@
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
 
+
+
             <div class="flex flex-col flex-1 w-full">
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full overflow-y-auto">
-                 
+
+
                     <div class="container px-6 mx-auto grid">
+
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Booking Request
+                            Booking Result
                         </h2>
 
                         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
 
                         </div>
 
-                        <!-- New Table -->
+
                         <div class="w-full overflow-hidden rounded-lg shadow-xs">
                             <div class="w-full overflow-x-auto">
                                 <table class="w-full whitespace-no-wrap">
@@ -67,28 +69,26 @@
                                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                                             >
                                             <th class="px-4 py-3">Booking ID</th>
-                                            <th class="px-4 py-3">Location</th>
-                                            <th class="px-4 py-3">Venue Name</th>
-                                            <th class="px-4 py-3">Booked Date</th>
+                                            <th class="px-4 py-3">User Name</th>
                                             <th class="px-4 py-3">Created Date</th>
                                             <th class="px-4 py-3">Status</th>
                                             <th class="px-4 py-3">View Details</th>
-                                             
+
                                         </tr>
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                                         >     
 
-                                        <jsp:include page="ListBooking.jsp" />
+                                        <jsp:include page="ListBooking_Admin.jsp" />
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
+
                 </main>
+
             </div>
-        </div>
-    </body>
-</html>

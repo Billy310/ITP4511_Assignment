@@ -27,7 +27,26 @@
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
     BookingDB db = new BookingDB(dbUrl, dbUser, dbPassword);
-    ArrayList<BookingBean> venueBookings = db.QueryVenueBookingNotApproved();
+    ArrayList<BookingBean> venueBookings;
+    int Order = Integer.parseInt(request.getParameter("order"));
+    int Status = Integer.parseInt(request.getParameter("status"));
+    String User = request.getParameter("user");
+
+    if (User.equals("1")) {
+        String UserName = request.getParameter("Username");
+
+        UserBean ub = userdb.QueryUserByName(UserName);
+        if (ub != null) {
+            String UserID = ub.getUserID();
+//        out.print("<p class=\"font-semibold\">" + UserID + "</p>");
+            venueBookings = db.QueryVenueBookingByStatusAndOrderUserID(Order, Status,UserID);
+//                    out.print("<p class=\"font-semibold\">" + venueBookings.size() + "</p>");
+        } else {
+            venueBookings = new ArrayList();
+        }
+    } else {
+        venueBookings = db.QueryVenueBookingByStatusAndOrder(Order, Status);
+    }
 
     for (int x = 0; x < venueBookings.size(); x++) {
         BookingBean vb = venueBookings.get(x);
@@ -43,7 +62,8 @@
         out.print("<td class=\"px-4 py-3 text-sm\">" + userdb.QueryUserByID(vb.getUserID()).getUsername() + "</td>");
 //        out.print("<td class=\"px-4 py-3 text-sm\">" + venueDB.queueVenueByVenueID(vb.getVenueID()).getVenueName() + "</td>");
 //        out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getBookingDate()) + "</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getCreatedDate()) + "</td>");
+//        out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getCreatedDate()) + "</td>");
+        out.print("<td class=\"px-4 py-3 text-sm\">" + vb.getCreatedTime() + "</td>");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         if (vb.getStatus() == 1) {
             out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100\">Approved</span>");

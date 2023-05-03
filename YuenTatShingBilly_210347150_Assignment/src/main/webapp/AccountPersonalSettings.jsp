@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <%@page import="ict.bean.UserBean,ict.db.UserDB" %>
 <%
-    String UserID = "J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5";
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-//    VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
-//    ArrayList<VenueTypeBean> VenueTypes = vtb.QueryAllVenueType();
     UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
-    UserBean ub = userdb.QueryUserByID(request.getParameter(UserID));
+    UserBean ub = userdb.QueryUserByID(request.getParameter("userid"));
 
 %>
 
@@ -26,7 +23,6 @@
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
         ></script>
-        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
         <script src="./assets/js/init-alpine.js"></script>
 
     </head>
