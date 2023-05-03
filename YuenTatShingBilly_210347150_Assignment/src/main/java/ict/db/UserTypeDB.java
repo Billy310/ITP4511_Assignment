@@ -157,4 +157,42 @@ public class UserTypeDB {
         return UTB;
 
     }
+    
+       public boolean AddRecord(String UserTypeName) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        int rowCount = 0;
+
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatment = "INSERT INTO USERTYPE VALUES(?,?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setInt(1, QueueUserType().size()+1);
+            pStmnt.setString(2, UserTypeName);
+
+            rowCount = pStmnt.executeUpdate();
+
+            if (rowCount >= 1) {
+
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return isSuccess;
+
+    }
 }

@@ -722,7 +722,7 @@ public class BookingDB {
             BookingBean bb = QueryByID(BookingID);
             String UserID = bb.getUserID();
             java.sql.Date create_date = bb.getCreatedDate();
-            String preQueryStatment = "UPDATE BOOKING SET STATUS=1 WHERE BOOKINGID = ?";
+            String preQueryStatment = "UPDATE BOOKING SET STATUS=2 WHERE BOOKINGID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setString(1, BookingID);
 

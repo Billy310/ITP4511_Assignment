@@ -62,17 +62,22 @@ public class HandleUser extends HttpServlet {
                         rd = getServletContext().getRequestDispatcher("/loginadmin.jsp");
                         rd.forward(request, response);
                     }
-                     if (UserType == 2) {
+                    if (UserType == 2) {
 //                    request.setAttribute("usertype", UserType);
                         rd = getServletContext().getRequestDispatcher("/loginsenior.jsp");
                         rd.forward(request, response);
                     }
-                      if (UserType == 3) {
+                    if (UserType == 3) {
 //                    request.setAttribute("usertype", UserType);
                         rd = getServletContext().getRequestDispatcher("/login.jsp");
                         rd.forward(request, response);
                     }
-                }  
+                } else {
+                    RequestDispatcher rd;
+                    rd = getServletContext().getRequestDispatcher("/index.jsp");
+                    rd.forward(request, response);
+
+                }
             } else {
                 RequestDispatcher rd;
                 rd = getServletContext().getRequestDispatcher("/index.jsp");

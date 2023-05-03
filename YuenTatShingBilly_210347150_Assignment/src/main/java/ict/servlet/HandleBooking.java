@@ -1,5 +1,6 @@
 package ict.servlet;
 
+import ict.bean.BookingBean;
 import ict.db.BookingDB;
 import ict.personal.RandomString;
 import java.io.IOException;
@@ -217,8 +218,10 @@ public class HandleBooking extends HttpServlet {
             String BookingID = request.getParameter("BookingID");
 
             RequestDispatcher rd;
-            String BookingID_New = db.DenyBooking(BookingID).getBookingID();
-            if (BookingID_New != null) {
+            BookingBean bb = db.DenyBooking(BookingID);
+
+            if (bb != null) {
+                String BookingID_New = bb.getBookingID();
                 request.setAttribute("BookingID_", BookingID_New);
                 request.setAttribute("userid", userID);
                 rd = getServletContext().getRequestDispatcher("/HandleDenyBooking.jsp");
