@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ict.db.VenueDB;
 
 /**
  *
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class HandleBooking extends HttpServlet {
 
     private BookingDB db;
+    private VenueDB vdb;
 
     @Override
 
@@ -59,37 +61,15 @@ public class HandleBooking extends HttpServlet {
             int BookingStart = Integer.parseInt(request.getParameter("BookingStart1"));
             int BookingEnd = Integer.parseInt(request.getParameter("BookingEnd1"));
             int VenueID = Integer.parseInt(request.getParameter("BookingVenue1"));
-            db.AddRecord(BookingID, userID, VenueID, BookingDate, BookingStart, BookingEnd, 3, 1);
+            String Comment = request.getParameter("Comment1");
+            Double PersonInCharge = vdb.queueVenueByVenueID(VenueID).getPersonInCharge();
+            db.AddRecord(BookingID, userID, VenueID, BookingDate, BookingStart, BookingEnd, 3, 1, 200, PersonInCharge, "", Comment);
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
             rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
             rd.forward(request, response);
         } else if (action.equals("book1")) {
-            String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
-            RandomString tickets = new RandomString(25, new SecureRandom(), easy);
-            String BookingID1 = tickets.nextString();
-            String BookingID2 = tickets.nextString();
-
-            String BookingDate1 = request.getParameter("BookingDate1");
-            int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
-            int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
-            int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
-
-            db.AddRecord(BookingID1, userID, VenueID1, BookingDate1, BookingStart1, BookingEnd1, 3, 1);
-
-            String BookingDate2 = request.getParameter("BookingDate2");
-            int BookingStart2 = Integer.parseInt(request.getParameter("BookingStart2"));
-            int BookingEnd2 = Integer.parseInt(request.getParameter("BookingEnd2"));
-            int VenueID2 = Integer.parseInt(request.getParameter("BookingVenue2"));
-
-            db.AddRecord(BookingID2, userID, VenueID2, BookingDate2, BookingStart2, BookingEnd2, 3, 2);
-
-            RequestDispatcher rd;
-            request.setAttribute("userid", userID);
-            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
-            rd.forward(request, response);
-        } else if (action.equals("book1")) {
 
             String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
             RandomString tickets = new RandomString(25, new SecureRandom(), easy);
@@ -100,15 +80,19 @@ public class HandleBooking extends HttpServlet {
             int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
             int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
             int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
+            String Comment1 = request.getParameter("Comment1");
+            Double PersonInCharge1 = vdb.queueVenueByVenueID(VenueID1).getPersonInCharge();
 
-            db.AddRecord(BookingID1, userID, VenueID1, BookingDate1, BookingStart1, BookingEnd1, 3, 1);
+            db.AddRecord(BookingID1, userID, VenueID1, BookingDate1, BookingStart1, BookingEnd1, 3, 1, 200, PersonInCharge1, "", Comment1);
 
             String BookingDate2 = request.getParameter("BookingDate2");
             int BookingStart2 = Integer.parseInt(request.getParameter("BookingStart2"));
             int BookingEnd2 = Integer.parseInt(request.getParameter("BookingEnd2"));
             int VenueID2 = Integer.parseInt(request.getParameter("BookingVenue2"));
+            String Comment2 = request.getParameter("Comment2");
+            Double PersonInCharge2 = vdb.queueVenueByVenueID(VenueID2).getPersonInCharge();
 
-            db.AddRecord(BookingID2, userID, VenueID2, BookingDate2, BookingStart2, BookingEnd2, 3, 2);
+            db.AddRecord(BookingID2, userID, VenueID2, BookingDate2, BookingStart2, BookingEnd2, 3, 2, 200, PersonInCharge2, "", Comment2);
 
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
@@ -120,26 +104,33 @@ public class HandleBooking extends HttpServlet {
             String BookingID1 = tickets.nextString();
             String BookingID2 = tickets.nextString();
             String BookingID3 = tickets.nextString();
+
             String BookingDate1 = request.getParameter("BookingDate1");
             int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
             int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
             int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
+            String Comment1 = request.getParameter("Comment1");
+            Double PersonInCharge1 = vdb.queueVenueByVenueID(VenueID1).getPersonInCharge();
 
-            db.AddRecord(BookingID1, userID, VenueID1, BookingDate1, BookingStart1, BookingEnd1, 3, 1);
+            db.AddRecord(BookingID1, userID, VenueID1, BookingDate1, BookingStart1, BookingEnd1, 3, 1, 200, PersonInCharge1, "", Comment1);
 
             String BookingDate2 = request.getParameter("BookingDate2");
             int BookingStart2 = Integer.parseInt(request.getParameter("BookingStart2"));
             int BookingEnd2 = Integer.parseInt(request.getParameter("BookingEnd2"));
             int VenueID2 = Integer.parseInt(request.getParameter("BookingVenue2"));
+            String Comment2 = request.getParameter("Comment2");
+            Double PersonInCharge2 = vdb.queueVenueByVenueID(VenueID2).getPersonInCharge();
 
-            db.AddRecord(BookingID2, userID, VenueID2, BookingDate2, BookingStart2, BookingEnd2, 3, 2);
+            db.AddRecord(BookingID2, userID, VenueID2, BookingDate2, BookingStart2, BookingEnd2, 3, 2, 200, PersonInCharge2, "", Comment2);
 
             String BookingDate3 = request.getParameter("venuedate");
             int BookingStart3 = Integer.parseInt(request.getParameter("venuetimestart"));
             int BookingEnd3 = Integer.parseInt(request.getParameter("venuetimeend"));
             int VenueID3 = Integer.parseInt(request.getParameter("venue"));
-
-            db.AddRecord(BookingID3, userID, VenueID3, BookingDate3, BookingStart3, BookingEnd3, 3, 3);
+            String Comment3 = request.getParameter("Comment3");
+            Double PersonInCharge3 = vdb.queueVenueByVenueID(VenueID3).getPersonInCharge();
+            
+            db.AddRecord(BookingID3, userID, VenueID3, BookingDate3, BookingStart3, BookingEnd3, 3, 3, 200, PersonInCharge3, "", Comment3);
 
             RequestDispatcher rd;
 
@@ -152,12 +143,15 @@ public class HandleBooking extends HttpServlet {
             int BookingStart = Integer.parseInt(request.getParameter("BookingStart1"));
             int BookingEnd = Integer.parseInt(request.getParameter("BookingEnd1"));
             int VenueID = Integer.parseInt(request.getParameter("BookingVenue1"));
+            String Comment1 = request.getParameter("Comment1");
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
             request.setAttribute("BookingVenue1", VenueID);
             request.setAttribute("BookingDate1", BookingDate);
             request.setAttribute("BookingStart1", BookingStart);
             request.setAttribute("BookingEnd1", BookingEnd);
+            request.setAttribute("Comment1", Comment1);
+
             rd = getServletContext().getRequestDispatcher("/BookingRequestForm_SecondChoice.jsp");
 
             rd.forward(request, response);
@@ -167,11 +161,13 @@ public class HandleBooking extends HttpServlet {
             int BookingStart = Integer.parseInt(request.getParameter("BookingStart2"));
             int BookingEnd = Integer.parseInt(request.getParameter("BookingEnd2"));
             int VenueID = Integer.parseInt(request.getParameter("BookingVenue2"));
+            String Comment2 = request.getParameter("Comment2");
 
             String BookingDate1 = request.getParameter("BookingDate1");
             int BookingStart1 = Integer.parseInt(request.getParameter("BookingStart1"));
             int BookingEnd1 = Integer.parseInt(request.getParameter("BookingEnd1"));
             int VenueID1 = Integer.parseInt(request.getParameter("BookingVenue1"));
+            String Comment1 = request.getParameter("Comment1");
 
             RequestDispatcher rd;
 
@@ -181,11 +177,13 @@ public class HandleBooking extends HttpServlet {
             request.setAttribute("BookingDate1", BookingDate1);
             request.setAttribute("BookingStart1", BookingStart1);
             request.setAttribute("BookingEnd1", BookingEnd1);
+            request.setAttribute("Comment1", Comment1);
 
             request.setAttribute("BookingVenue2", VenueID);
             request.setAttribute("BookingDate2", BookingDate);
             request.setAttribute("BookingStart2", BookingStart);
             request.setAttribute("BookingEnd2", BookingEnd);
+            request.setAttribute("Comment2", Comment1);
 
             rd = getServletContext().getRequestDispatcher("/BookingRequestForm_ThirdChoice.jsp");
             rd.forward(request, response);
@@ -242,5 +240,6 @@ public class HandleBooking extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         db = new BookingDB(dbUrl, dbUser, dbPassword);
+        vdb = new VenueDB(dbUrl, dbUser, dbPassword);
     }
 }

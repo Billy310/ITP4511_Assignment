@@ -96,7 +96,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue</span>
                                     <input
-                                        name="username"
+                                        
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Username"
                                         readonly
@@ -107,7 +107,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Location</span>
                                     <input
-                                        name="password"
+                                        
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Password"
                                         readonly
@@ -118,7 +118,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
                                     <input
-                                        name="email"
+                                        
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Email"
                                         readonly
@@ -128,7 +128,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Booking Date</span>
                                     <input
-                                        name="email"
+                                        
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Email"
                                         readonly
@@ -138,9 +138,9 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (Start)</span>
                                     <input
-                                        name="email"
+                                        
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Email"
+                                        
                                         readonly
                                         value="<%=TransferTime(bb.getBookingStart())%>"
                                         />
@@ -148,16 +148,16 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (End)</span>
                                     <input
-                                        name="email"
+                                        
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Email"
+                                        
                                         readonly
                                         value="<%=TransferTime(bb.getBookingEnd())%>"
                                         />
                                 </label>
 
                                 <div class="flex mt-6 text-sm">
-                                    <button name="action" type="submit" class="bn632-hover bn22" value="approve" onclick="formSubmit()" >Approve</button>
+                                    <button id="SubmitBtn" name="action" type="submit" class="bn632-hover bn22" value="approve" onclick="formSubmit()" >Approve</button>
                                     <button  name="action" type="submit" class="bn633-hover bn24" value="deny" onclick="formSubmit()" >Deny</button>
                                 </div>
                             </form>

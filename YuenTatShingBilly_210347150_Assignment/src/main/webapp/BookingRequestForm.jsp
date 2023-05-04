@@ -137,7 +137,7 @@
                             >
                             Select Venue
                         </h4>
-                        <form method="GET" action="ContinueBooking.jsp">
+                        <form method="POST" action="ContinueBooking.jsp">
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"
                                    <div
                                    class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"

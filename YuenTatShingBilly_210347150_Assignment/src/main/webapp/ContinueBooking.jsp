@@ -20,9 +20,9 @@
 %>
 
 <script>
-function formSubmit() {
-    document.forms["myForm"].submit();
-}
+    function formSubmit() {
+        document.forms["myForm"].submit();
+    }
 </script>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
@@ -43,23 +43,23 @@ function formSubmit() {
         <script src="./assets/js/init-alpine.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKIm352enWiDL0qbvU5Cy2GABBiFkvVIk"></script>
         <script>
-            $(document).ready(function () {
-                var selectedvalue_X = document.getElementById("useless_x").value;
-                var selectedvalue_Y = document.getElementById("useless_y").value;
-                initMap(selectedvalue_X, selectedvalue_Y, 20);
-            });
-            function initMap(x_Cord, y_Cord, zoom) {
-                var myLatLng = {lat: parseFloat(x_Cord), lng: parseFloat(y_Cord)};
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: zoom,
-                    center: myLatLng
-                });
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map,
-                    title: 'Venue Location'
-                });
-            }
+    $(document).ready(function () {
+        var selectedvalue_X = document.getElementById("useless_x").value;
+        var selectedvalue_Y = document.getElementById("useless_y").value;
+        initMap(selectedvalue_X, selectedvalue_Y, 20);
+    });
+    function initMap(x_Cord, y_Cord, zoom) {
+        var myLatLng = {lat: parseFloat(x_Cord), lng: parseFloat(y_Cord)};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: zoom,
+            center: myLatLng
+        });
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Venue Location'
+        });
+    }
         </script>
     </head>
     <body>
@@ -88,10 +88,10 @@ function formSubmit() {
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
-           
+
                         </h4>
-                        <form method="GET" action="HandleBooking"  name="myForm"> 
-                             
+                        <form method="POST" action="HandleBooking"  name="myForm"> 
+
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("venue")%>" />
                             <div
@@ -114,7 +114,7 @@ function formSubmit() {
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
                                     <input
-                                        
+
                                         readonly
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         value="<%= vtb.QueryByID(vbc.getVenueTypeID()).getVenueTypeName()%>"
@@ -193,12 +193,24 @@ function formSubmit() {
 
                                         %>
                                     </select>
-                                </label>     
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Comment
+
+                                    </span>
+                                    <input
+                                        type="text"
+                                        name="Comment1"
+                                        placeholder="Comment"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        />
+                                </label>
                                 <div class="flex mt-6 text-sm">
                                     <button name="action" type="submit" class="bn632-hover bn22" value="continue" onclick="formSubmit()" >Second Choice Selection</button>
                                     <button  name="action" type="submit" class="bn633-hover bn24" value="book" onclick="formSubmit()" >Submit</button>
                                 </div>
-                                 
+
                             </div>
                         </form>
                     </div>

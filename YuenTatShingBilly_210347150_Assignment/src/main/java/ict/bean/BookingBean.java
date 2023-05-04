@@ -14,17 +14,21 @@ import java.sql.Timestamp;
  */
 public class BookingBean implements Serializable {
 
-    private String BookingID, UserID;
+    private String BookingID, UserID, Remark, Comment;
     private int VenueID;
     private Date BookingDate, CreatedDate;
     private Timestamp CreatedTime;
     private int BookingStart, BookingEnd;
-    private int Status,Priority ;
+    private int Status, Priority, CheckStatus;
+    private double BookingFee, BookingInCharge;
 
     public BookingBean() {
     }
 
-    public BookingBean(String BookingID, String UserID, int VenueID,  Date BookingDate, Date CreatedDate,Timestamp CreatedTime, int BookingStart, int BookingEnd, int Status, int Priority) {
+    public BookingBean(String BookingID, String UserID, int VenueID, Date BookingDate, Date CreatedDate, Timestamp CreatedTime, int BookingStart, int BookingEnd, int Status,
+            int Priority, double BookingFee, double BookingInCharge,
+            String Remark,
+            String Comment, int CheckStatus ) {
         this.BookingID = BookingID;
         this.UserID = UserID;
         this.VenueID = VenueID;
@@ -35,6 +39,11 @@ public class BookingBean implements Serializable {
         this.BookingEnd = BookingEnd;
         this.Status = Status;
         this.Priority = Priority;
+        this.Remark = Remark;
+        this.Comment = Comment;
+        this.BookingFee = BookingFee;
+        this.BookingInCharge = BookingInCharge;
+        this.CheckStatus = CheckStatus;
     }
 
     public String getBookingID() {
@@ -84,7 +93,6 @@ public class BookingBean implements Serializable {
     public void setCreatedTime(Timestamp CreatedTime) {
         this.CreatedTime = CreatedTime;
     }
-    
 
     public int getBookingStart() {
         return BookingStart;
@@ -102,7 +110,6 @@ public class BookingBean implements Serializable {
         this.BookingEnd = BookingEnd;
     }
 
-
     public int getStatus() {
         return Status;
     }
@@ -119,5 +126,45 @@ public class BookingBean implements Serializable {
         this.Priority = Priority;
     }
 
+    public String getRemark() {
+        return Remark;
+    }
+
+    public void setRemark(String Remark) {
+        this.Remark = Remark;
+    }
+
+    public String getComment() {
+        return Comment;
+    }
+
+    public void setComment(String Comment) {
+        this.Comment = Comment;
+    }
+
+    public double getBookingFee() {
+        return BookingFee;
+    }
+
+    public void setBookingFee(double BookingFee) {
+        this.BookingFee = BookingFee;
+    }
+
+    public double getBookingInCharge() {
+        return BookingInCharge;
+    }
+
+    public void setBookingInCharge(double BookingInCharge) {
+        this.BookingInCharge = BookingInCharge;
+    }
+
+    public int getCheckStatus() {
+        return CheckStatus;
+    }
+
+    public void setCheckStatus(int CheckStatus) {
+        this.CheckStatus = CheckStatus;
+    }
+    
 
 }

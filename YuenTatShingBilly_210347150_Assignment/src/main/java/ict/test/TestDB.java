@@ -42,8 +42,8 @@ public class TestDB {
         String dbPassword = "root";
         UserDB db = new UserDB(dbUrl ,dbUser ,dbPassword);
         BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-//        bookingDB.createTable();
-        bookingDB.DeleteNoNeed("M1dKe0Yv41G1XMv8GQXHURXeb");
+        bookingDB.createTable();
+//        bookingDB.DeleteNoNeed("M1dKe0Yv41G1XMv8GQXHURXeb");
 //            UserBean userbean = db.QueryUserByName("Admin");
 
 //        System.out.print(bookingDB.QueryVenueBookingByUserIDForToday("iivQf91PxrMdiGMPw0r4FP0iW").size());
@@ -52,7 +52,7 @@ public class TestDB {
 ////                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
 //iivQf91PxrMdiGMPw0r4FP0iW
 
-////                bookingDB.AddRecord(dbPassword, dbUser, 0, dbPassword, 0, 0, 0, 0)
+//                bookingDB.AddRecord(dbPassword, dbUser, 0, dbPassword, 0, 0, 0, 0);
 ////        VenueTypeDB vlb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
 ////        vlb.AddRecord(vlb.QueryAllVenueType().size()+1, "123");
 //        VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
@@ -62,8 +62,8 @@ public class TestDB {
 //        Hong Kong Institute of Vocational Education (Tuen Mun)
 //        BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
 //        bookingDB.createTable();
-//        bookingDB.AddRecord(dbPassword, dbUser, 1, "2022-3-3", 1, 2, 3, 1);
-
+        bookingDB.AddRecord(dbPassword, dbUser, 1, "2022-3-3", 1, 2, 3, 1,200,200.0,"","");
+        System.out.print(bookingDB.QueryVenueBookingByUserID(dbUser).size());
     }
 
 

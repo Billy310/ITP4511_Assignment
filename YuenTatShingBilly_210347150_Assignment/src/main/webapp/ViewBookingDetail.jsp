@@ -99,9 +99,9 @@
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Venue</span>
                                 <input
-                                    name="username"
+                                 
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Username"
+                              
                                     readonly
                                     value="<%= vb.getVenueName()%>"
                                     />
@@ -110,9 +110,9 @@
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Venue Location</span>
                                 <input
-                                    name="password"
+                                   
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Password"
+                           
                                     readonly
                                     value="<%=vlb.getVenueLocationName()%>"
                                     />
@@ -121,9 +121,9 @@
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
                                 <input
-                                    name="email"
+                                   
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
+                            
                                     readonly
                                     value="<%=vt.getVenueTypeName()%>"
                                     />
@@ -131,9 +131,9 @@
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Venue Booking Date</span>
                                 <input
-                                    name="email"
+                                    
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
+                           
                                     readonly
                                     value="<%=tf.TransferDate(bb.getBookingDate())%>"
                                     />
@@ -141,9 +141,9 @@
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (Start)</span>
                                 <input
-                                    name="email"
+                                   
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
+                                  
                                     readonly
                                     value="<%=TransferTime(bb.getBookingStart())%>"
                                     />
@@ -151,14 +151,33 @@
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (End)</span>
                                 <input
-                                    name="email"
+                                    
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Email"
+                           
                                     readonly
                                     value="<%=TransferTime(bb.getBookingEnd())%>"
                                     />
                             </label>
-
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Remark From Senior Manager</span>
+                                <input
+                                    
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    
+                                    readonly
+                                    value="<%=bb.getRemark()%>"
+                                    />
+                            </label>
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Comment</span>
+                                <input
+                                   
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="Comment"
+                                    readonly
+                                    value="<%=bb.getComment()%>"
+                                    />
+                            </label>
                             <br>
                             <button
                                 form="ChangeGuessList"

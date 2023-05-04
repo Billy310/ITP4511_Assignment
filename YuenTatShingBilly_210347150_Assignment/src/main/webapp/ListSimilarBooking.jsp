@@ -7,9 +7,8 @@
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     BookingDB bdb = new BookingDB(dbUrl, dbUser, dbPassword);
     ArrayList<BookingBean> bbs;
-    String LocationID;
     BookingBean bb = bdb.QueryByID(request.getParameter("BookingID"));
-    bbs = bdb.QueryForSimilarBooking(bb.getVenueID(), bb.getBookingDate(), bb.getBookingStart(), bb.getBookingEnd());
+    bbs = bdb.QueryForSimilarBooking(bb.getVenueID(), bb.getBookingDate(), bb.getBookingStart(), bb.getBookingEnd(),bb.getBookingID());
 
     String UserID = request.getParameter("userid");
     for (int x = 0; x < bbs.size(); x++) {

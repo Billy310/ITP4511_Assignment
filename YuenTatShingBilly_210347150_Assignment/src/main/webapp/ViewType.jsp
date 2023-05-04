@@ -14,7 +14,7 @@
             defer
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
- 
+
         <script src="./assets/js/charts-lines.js" defer></script>
         <script src="./assets/js/charts-pie.js" defer></script>
     </head>
@@ -68,7 +68,7 @@
                                             <th class="px-4 py-3">Location Type ID</th>
                                             <th class="px-4 py-3">Location Name</th>
                                             <th class="px-4 py-3">Enabled</th>
-                                             <th class="px-4 py-3">Action</th>
+                                            <th class="px-4 py-3">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody
@@ -81,6 +81,18 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="flex mt-6 text-sm">
+                            <form action="AddType.jsp" method="POST"> 
+                                <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
+                                <button 
+                                    type="submit"  
+                                    class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    value="continue"
+                                    >
+                                    Add Type
+                                </button>
+                            </form>
+                        </div>   
                     </div>
                 </main>
             </div>

@@ -92,12 +92,12 @@
                             >
                             Select Venue <% out.print("Count" + disabledtime.size());%>
                         </h4>
-                        <form method="GET" action="HandleBooking"  > 
+                        <form method="POST" action="HandleBooking"  > 
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
                             <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
                             <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
                             <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
-
+                            <input type="hidden" name="Comment1" value="<%=request.getParameter("Comment1")%>" />
 
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                             <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("venue")%>" />
@@ -200,6 +200,19 @@
                                         %>
                                     </select>
                                 </label>     
+
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Comment
+
+                                    </span>
+                                    <input
+                                        type="text"
+                                        name="Comment2"
+                                        placeholder="Comment"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        />
+                                </label>
                                 <div class="flex mt-6 text-sm">
                                     <button name="action" type="submit" class="bn632-hover bn22" value="continue1" onclick="formSubmit()" >Third Choice Selection</button>
                                     <button  name="action" type="submit" class="bn633-hover bn24" value="book1" onclick="formSubmit()" >Submit</button>

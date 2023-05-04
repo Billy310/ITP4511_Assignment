@@ -91,24 +91,26 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Time Selection -- Third Choicr
+                            Time Selection -- Third Choice
                         </h2>
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
                             Select Venue <% out.print("Count" + disabledtime.size());%>
                         </h4>
-                        <form method="GET" action="HandleBooking"  > 
+                        <form method="POST" action="HandleBooking"  > 
 
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
                             <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
                             <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
                             <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
+                            <input type="hidden" name="Comment1" value="<%=request.getParameter("Comment1")%>" />
 
                             <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
                             <input type="hidden" name="BookingDate2" value="<%=request.getParameter("BookingDate2")%>" />
                             <input type="hidden" name="BookingStart2" value="<%=request.getParameter("BookingStart2")%>" />
                             <input type="hidden" name="BookingEnd2" value="<%=request.getParameter("BookingEnd2")%>" />
+                            <input type="hidden" name="Comment2" value="<%=request.getParameter("Comment2")%>" />
 
 
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
@@ -211,7 +213,19 @@
 
                                         %>
                                     </select>
-                                </label>     
+                                </label>   
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Comment
+
+                                    </span>
+                                    <input
+                                        type="text"
+                                        name="Comment3"
+                                        placeholder="Comment"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        />
+                                </label>
                                 <div class="flex mt-6 text-sm">
                                     <button name="action"  type="submit" class="bn633-hover bn24" value="book2">Submit</button>
                                 </div>

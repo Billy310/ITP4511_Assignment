@@ -126,6 +126,22 @@ public class HandleUser extends HttpServlet {
             rd = getServletContext().getRequestDispatcher("/login.jsp");
             rd.forward(request, response);
 
+        } else if (action.equals("add")) {
+            String UserID = request.getParameter("userid");
+            String Username = request.getParameter("username");
+            String Password = request.getParameter("password");
+            String Email = request.getParameter("email");
+            String UserType = request.getParameter("usertype");
+            String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
+            RandomString tickets = new RandomString(25, new SecureRandom(), easy);
+            String UserID_Reg = tickets.nextString();
+            db.AddRecord(UserID_Reg, Username, Email, Password, Integer.parseInt(UserType), 1);
+            
+            
+            RequestDispatcher rd;
+            request.setAttribute("userid", UserID);
+            rd = getServletContext().getRequestDispatcher("/ToAdminMainPage.jsp");
+            rd.forward(request, response);
         } else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");

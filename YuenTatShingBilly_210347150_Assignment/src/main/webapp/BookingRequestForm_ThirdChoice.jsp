@@ -104,18 +104,20 @@
                             >
                             Select Venue
                         </h4>
-                        <form method="GET" action="ContinueBooking_ThirdChoice.jsp">
+                        <form method="POST" action="ContinueBooking_ThirdChoice.jsp">
 
 
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
                             <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
                             <input type="hidden" name="BookingStart1" value="<%=request.getParameter("BookingStart1")%>" />
                             <input type="hidden" name="BookingEnd1" value="<%=request.getParameter("BookingEnd1")%>" />
+                            <input type="hidden" name="Comment1" value="<%=request.getParameter("Comment1")%>" />
 
                             <input type="hidden" name="BookingVenue2" value="<%=request.getParameter("BookingVenue2")%>" />
                             <input type="hidden" name="BookingDate2" value="<%=request.getParameter("BookingDate2")%>" />
                             <input type="hidden" name="BookingStart2" value="<%=request.getParameter("BookingStart2")%>" />
                             <input type="hidden" name="BookingEnd2" value="<%=request.getParameter("BookingEnd2")%>" />
+                            <input type="hidden" name="Comment2" value="<%=request.getParameter("Comment2")%>" />
 
 
 

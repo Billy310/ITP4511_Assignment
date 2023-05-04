@@ -81,8 +81,22 @@
                                 </table>
                             </div>
                         </div>
+                                                <div class="flex mt-6 text-sm">
+                            <form action="AddLocation.jsp" method="POST"> 
+                                <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
+                                <button 
+                                    type="submit"  
+                                    class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    value="continue"
+                                    >
+                                    Add Location
+                                </button>
+                            </form>
+                        </div>  
                     </div>
                 </main>
+                                        
+                                        
             </div>
         </div>
     </body>

@@ -68,6 +68,11 @@ public class BookingDB {
                     + "CreatedTime DATETIME NOT NULL,"
                     + "Status INT(1) NOT NULL,"
                     + "Priority INT(1) NOT NULL,"
+                    + "BookingFee DOUBLE(6,2) NOT NULL,"
+                    + "PersonInCharge DOUBLE(6,2) NOT NULL,"
+                    + "Remark VARCHAR(100) NOT NULL,"
+                    + "Comment VARCHAR(100) NOT NULL,"
+                    + "CheckStatus INT(1) NOT NULL,"
                     + "PRIMARY KEY (BookingID)"
                     + ")";
             stmnt.execute(sql);
@@ -112,8 +117,17 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
+//                                 + "BOOKINGFEE DOUBLE(6,2) NOT NULL,"
+//                    + "PERSONINCHARGE DOUBLE(6,2) NOT NULL,"
+//                    + "REMARK VARCHAR(100) NOT NULL,"
+//                    + "COMMENT VARCHAR(100) NOT NULL,"
                 bookingBeans.add(bookingbean);
             }
 
@@ -160,7 +174,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -183,7 +202,7 @@ public class BookingDB {
 
     }
 
-    public boolean AddRecord(String BookingID, String UserID, int VenueID, String BookingDate, int BookingStart, int BookingEnd, int Status, int Priority) throws ParseException {
+    public boolean AddRecord(String BookingID, String UserID, int VenueID, String BookingDate, int BookingStart, int BookingEnd, int Status, int Priority, double BookingFee, Double PersonInCharge, String Remark, String Comment) throws ParseException {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -203,7 +222,7 @@ public class BookingDB {
             java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
 
             cnnct = getConnection();
-            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?,?)";
+            String preQueryStatment = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setString(1, BookingID);
             pStmnt.setString(2, UserID);
@@ -215,6 +234,11 @@ public class BookingDB {
             pStmnt.setTimestamp(8, sqlTS);
             pStmnt.setInt(9, Status);
             pStmnt.setInt(10, Priority);
+            pStmnt.setDouble(11, BookingFee);
+            pStmnt.setDouble(12, PersonInCharge);
+            pStmnt.setString(13, Remark);
+            pStmnt.setString(14, Comment);
+            pStmnt.setInt(15, 3);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
 
@@ -263,7 +287,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -315,7 +344,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -365,7 +399,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
 
             }
@@ -416,7 +455,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
 
             }
@@ -466,7 +510,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -517,7 +566,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -568,7 +622,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -623,7 +682,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -751,7 +815,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
             }
 
@@ -823,7 +892,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -880,7 +954,12 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
@@ -903,7 +982,7 @@ public class BookingDB {
 
     }
 
-    public ArrayList<BookingBean> QueryForSimilarBooking(int LocationID, Date BookingDate, int StartTime, int EndTime) throws ParseException {
+    public ArrayList<BookingBean> QueryForSimilarBooking(int LocationID, Date BookingDate, int StartTime, int EndTime, String BookingID) throws ParseException {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -912,15 +991,15 @@ public class BookingDB {
 
         try {
 
-            String preQueryStatement = "SELECT * FROM BOOKING  WHERE VENUEID = ? AND BOOKINGDATE = ? AND BOOKINGSTART >= ? AND BOOKINGEND <= ?  ORDER BY CREATEDTIME ASC";
+            String preQueryStatement = "SELECT * FROM BOOKING  WHERE VENUEID = ? AND BOOKINGDATE = ? AND BOOKINGSTART >= ? AND BOOKINGEND <= ? AND BOOKINGID != ? ORDER BY CREATEDTIME ASC";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setInt(1, LocationID);
-//            java.sql.Date bookingdate = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
             pStmnt.setDate(2, BookingDate);
             pStmnt.setInt(3, StartTime);
             pStmnt.setInt(4, EndTime);
+            pStmnt.setString(5, BookingID);
             rs = pStmnt.executeQuery();
             while (rs.next()) {
                 BookingBean bookingbean;
@@ -934,7 +1013,70 @@ public class BookingDB {
                         rs.getInt("BookingStart"),
                         rs.getInt("BookingEnd"),
                         rs.getInt("Status"),
-                        rs.getInt("Priority")
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+    
+        public ArrayList<BookingBean> QueryVenueBookingByDateAndPlaceAndBookingID(int VenueID, String BookingDate,String BookingID) throws ParseException {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.sql.Date bookingdate_date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND Status = 1 AND BOOKINGID != ?";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, VenueID);
+            pStmnt.setDate(2, bookingdate_date);
+             pStmnt.setString(3, BookingID);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
                 );
                 bookingBeans.add(bookingbean);
             }
