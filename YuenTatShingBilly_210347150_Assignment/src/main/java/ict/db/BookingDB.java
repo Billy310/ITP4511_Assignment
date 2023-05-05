@@ -546,7 +546,7 @@ public class BookingDB {
         ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
 
         try {
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate >= ? AND BookingDate <= ?";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE VenueID = ? AND BookingDate >= ? AND BookingDate <= ?";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -1040,8 +1040,8 @@ public class BookingDB {
         return bookingBeans;
 
     }
-    
-        public ArrayList<BookingBean> QueryVenueBookingByDateAndPlaceAndBookingID(int VenueID, String BookingDate,String BookingID) throws ParseException {
+
+    public ArrayList<BookingBean> QueryVenueBookingByDateAndPlaceAndBookingID(int VenueID, String BookingDate, String BookingID) throws ParseException {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -1057,7 +1057,7 @@ public class BookingDB {
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setInt(1, VenueID);
             pStmnt.setDate(2, bookingdate_date);
-             pStmnt.setString(3, BookingID);
+            pStmnt.setString(3, BookingID);
             rs = pStmnt.executeQuery();
             while (rs.next()) {
                 BookingBean bookingbean;
@@ -1098,5 +1098,151 @@ public class BookingDB {
         return bookingBeans;
 
     }
+
+    public boolean ChangeBookingCheckStatus(String BookingID, int BookingCheckStatus) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatment = "UPDATE BOOKING SET CHECKSTATUS = ? WHERE BOOKINGID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setInt(1, BookingCheckStatus);
+            pStmnt.setString(2, BookingID);
+
+            int rowCount = pStmnt.executeUpdate();
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+
+    public ArrayList<BookingBean> QueryVenueBookingWithCheckStatus(int VenueID, ArrayList<java.sql.Date> rangeofdate, int CheckStatus) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID != ? AND BookingDate >= ? AND BookingDate <= ? AND CheckStatus = ? ";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, VenueID);
+            pStmnt.setDate(2, rangeofdate.get(0));
+            pStmnt.setDate(3, rangeofdate.get(1));
+            pStmnt.setInt(4, CheckStatus);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+
+    public ArrayList<BookingBean> QueryVenueBookingWithNoCheckStatus(int VenueID, ArrayList<java.sql.Date> rangeofdate) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID != ? AND BookingDate >= ? AND BookingDate <= ? AND CheckStatus = 3 AND STATUS = 1 ";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, VenueID);
+            pStmnt.setDate(2, rangeofdate.get(0));
+            pStmnt.setDate(3, rangeofdate.get(1));
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
+    }
+    
+ 
 
 }

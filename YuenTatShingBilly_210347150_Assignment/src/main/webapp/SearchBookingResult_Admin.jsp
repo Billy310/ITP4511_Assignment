@@ -71,8 +71,10 @@
                                             <th class="px-4 py-3">Booking ID</th>
                                             <th class="px-4 py-3">User Name</th>
                                             <th class="px-4 py-3">Created Date</th>
-                                            <th class="px-4 py-3">Status</th>
+                                            <th class="px-4 py-3">Booking Status</th>
                                             <th class="px-4 py-3">View Details</th>
+                                            <th class="px-4 py-3">Check-In Status</th>
+                                            <th class="px-4 py-3">Check-In / Check-Out</th>
 
                                         </tr>
                                     </thead>

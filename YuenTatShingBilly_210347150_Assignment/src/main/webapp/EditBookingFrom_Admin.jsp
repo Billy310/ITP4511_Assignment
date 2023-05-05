@@ -16,6 +16,9 @@
     VenueBean vb = venueDB.queueVenueByVenueID(bb.getVenueID());
     VenueLocationBean vlb = LocationDB.QueryByLocationID(vb.getVenueLocationID());
     VenueTypeBean vt = vtb.QueryByID(bb.getVenueID());
+
+    ArrayList<BookingBean> bbs;
+    bbs = db.QueryForSimilarBooking(bb.getVenueID(), bb.getBookingDate(), bb.getBookingStart(), bb.getBookingEnd(), bb.getBookingID());
 %>
 <%!
     public String TransferTime(int Time_book) {
@@ -29,6 +32,29 @@
     }
 
 %>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+
+        if ($("#hassimular").val() > 0) {
+            
+            $("#SubmitBtn").hide();
+
+        }
+        
+        if($("#bookingstatus").val()<3){
+            
+            $("#SubmitBtn").hide();
+            $("#DenyBtn").hide();
+            
+            
+        }
+
+    });
+
+
+
+</script>
 <script>
     function formSubmit() {
 
@@ -96,7 +122,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue</span>
                                     <input
-                                        
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Username"
                                         readonly
@@ -107,7 +133,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Location</span>
                                     <input
-                                        
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Password"
                                         readonly
@@ -118,7 +144,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
                                     <input
-                                        
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Email"
                                         readonly
@@ -128,7 +154,7 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Booking Date</span>
                                     <input
-                                        
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         placeholder="Email"
                                         readonly
@@ -138,9 +164,9 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (Start)</span>
                                     <input
-                                        
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        
+
                                         readonly
                                         value="<%=TransferTime(bb.getBookingStart())%>"
                                         />
@@ -148,17 +174,19 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Venue Booking Time (End)</span>
                                     <input
-                                        
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        
+
                                         readonly
                                         value="<%=TransferTime(bb.getBookingEnd())%>"
                                         />
                                 </label>
 
                                 <div class="flex mt-6 text-sm">
-                                    <button id="SubmitBtn" name="action" type="submit" class="bn632-hover bn22" value="approve" onclick="formSubmit()" >Approve</button>
-                                    <button  name="action" type="submit" class="bn633-hover bn24" value="deny" onclick="formSubmit()" >Deny</button>
+                                    <input type="hidden" id="hassimular" value="<%=bbs.size()%>" />
+                                    <input type="hidden" id="bookingstatus" value="<%=bb.getStatus() %>" />
+                                           <button id="SubmitBtn" name="action" type="submit" class="bn632-hover bn22" value="approve" onclick="formSubmit()" >Approve</button>
+                                           <button  id="DenyBtn" name="action" type="submit" class="bn633-hover bn24" value="deny" onclick="formSubmit()" >Deny</button>
                                 </div>
                             </form>
                         </div>

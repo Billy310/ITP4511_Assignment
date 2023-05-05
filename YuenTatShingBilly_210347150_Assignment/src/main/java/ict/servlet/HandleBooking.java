@@ -129,7 +129,7 @@ public class HandleBooking extends HttpServlet {
             int VenueID3 = Integer.parseInt(request.getParameter("venue"));
             String Comment3 = request.getParameter("Comment3");
             Double PersonInCharge3 = vdb.queueVenueByVenueID(VenueID3).getPersonInCharge();
-            
+
             db.AddRecord(BookingID3, userID, VenueID3, BookingDate3, BookingStart3, BookingEnd3, 3, 3, 200, PersonInCharge3, "", Comment3);
 
             RequestDispatcher rd;
@@ -228,6 +228,48 @@ public class HandleBooking extends HttpServlet {
                 rd = getServletContext().getRequestDispatcher("/ViewBooking_Admin.jsp");
             }
             rd.forward(request, response);
+        } else if (action.equals("CheckIn")) {
+            String BookingID = request.getParameter("BookingID");
+            String SearchUser = request.getParameter("user");
+            String Order = request.getParameter("order");
+            String Status = request.getParameter("status");
+            db.ChangeBookingCheckStatus(BookingID, 1);
+            request.setAttribute("userid", userID);
+            request.setAttribute("user", SearchUser);
+            request.setAttribute("order", Order);
+            request.setAttribute("status", Status);
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
+            rd.forward(request, response);
+
+        } else if (action.equals("CheckOut")) {
+            String BookingID = request.getParameter("BookingID");
+            String SearchUser = request.getParameter("user");
+            String Order = request.getParameter("order");
+            String Status = request.getParameter("status");
+            db.ChangeBookingCheckStatus(BookingID, 2);
+            request.setAttribute("userid", userID);
+            request.setAttribute("user", SearchUser);
+            request.setAttribute("order", Order);
+            request.setAttribute("status", Status);
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
+            rd.forward(request, response);
+
+        } else if (action.equals("Finish")) {
+            String BookingID = request.getParameter("BookingID");
+            String SearchUser = request.getParameter("user");
+            String Order = request.getParameter("order");
+            String Status = request.getParameter("status");
+            db.ChangeBookingCheckStatus(BookingID, 4);
+            request.setAttribute("userid", userID);
+            request.setAttribute("user", SearchUser);
+            request.setAttribute("order", Order);
+            request.setAttribute("status", Status);
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
+            rd.forward(request, response);
+
         } else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");

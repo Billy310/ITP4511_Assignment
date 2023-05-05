@@ -91,7 +91,7 @@
                         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', "August", "September", "October", "November", "December"],
                         datasets: [
                             {
-                                label: 'Organic',
+                                label: 'Booking Count',
                                 /**
                                  * These colors come from Tailwind CSS palette
                                  * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
@@ -142,7 +142,59 @@
             }
         </script>
 
+        <script type="text/javascript">
+            function drawAttendance() {
+
+                var ThisMonthFromUs = document.getElementById("attended").value;
+                var ThisNonthNotFromUs = document.getElementById("notattended").value;
+
+                var stars = [ThisMonthFromUs, ThisNonthNotFromUs];
+                var frameworks = ['Attend', 'Do Not Attend'];
+                new Chart('attendance', {
+                    type: 'pie',
+                    data: {
+                        labels: frameworks,
+                        datasets: [{
+                                data: stars,
+                                backgroundColor: ['#54bebe', '#badbdb', '#e4bcad', '#d7658b', '#c80064']
+                            }]
+                    }, options: {
+                        responsive: true,
+                        cutoutPercentage: 0, legend: {
+                            display: false
+                        }
+                    }
+                });
+            }
+        </script>
+          <script type="text/javascript">
+            function drawIncome() {
+
+                var ThisMonthFromUs = document.getElementById("incomefromus").value;
+                var ThisNonthNotFromUs = document.getElementById("incomenotfromus").value;
+
+                var stars = [ThisMonthFromUs, ThisNonthNotFromUs];
+                var frameworks = ['Attend', 'Do Not Attend'];
+                new Chart('income', {
+                    type: 'pie',
+                    data: {
+                        labels: frameworks,
+                        datasets: [{
+                                data: stars,
+                                backgroundColor: ['#54bebe', '#badbdb', '#e4bcad', '#d7658b', '#c80064']
+                            }]
+                    }, options: {
+                        responsive: true,
+                        cutoutPercentage: 0, legend: {
+                            display: false
+                        }
+                    }
+                });
+            }
+        </script>
+
         <%@page import="java.util.ArrayList,ict.db.VenueDB,ict.bean.VenueBean,ict.bean.BookingBean,ict.db.BookingDB, java.sql.Date,java.util.Calendar"%>
+        <%@page import="ict.db.GuessDB,ict.bean.GuessBean"%>
         <%!
             public int GetAllMonth(int LocationID, int Month, int Year) {
                 String dbUser = this.getServletContext().getInitParameter("dbUser");
@@ -162,6 +214,68 @@
                 return bbs.size();
             }
 
+            public int CountOfAttend(int LocationID, int Month, int Year) {
+                String dbUser = this.getServletContext().getInitParameter("dbUser");
+                String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+                String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingWithCheckStatus(LocationID, getfirstandend(Year, Month), 4);
+                return bbs.size();
+            }
+
+            public int CountOfDoNotAttend(int LocationID, int Month, int Year) {
+                String dbUser = this.getServletContext().getInitParameter("dbUser");
+                String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+                String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingWithNoCheckStatus(LocationID, getfirstandend(Year, Month));
+                return bbs.size();
+            }
+
+            public double CountOfIncomeFromUs(int LocationID, int Month, int Year) {
+                String dbUser = this.getServletContext().getInitParameter("dbUser");
+                String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+                String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+                GuessDB guessDB = new GuessDB(dbUrl, dbUser, dbPassword);
+                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDate(LocationID, getfirstandend(Year, Month));
+                double TotalIncome = 0.0;
+                if (bbs != null) {
+                    for (int x = 0; x < bbs.size(); x++) {
+                        BookingBean bean = bbs.get(x);
+                        ArrayList<GuessBean> guesslist = guessDB.QueryGuessBeanByGuessListID(bean.getBookingID());
+                        TotalIncome += bean.getBookingFee();
+                        if (guesslist != null) {
+                            TotalIncome += bean.getBookingInCharge() * guesslist.size();
+                        }
+
+                    }
+                }
+                return TotalIncome;
+            }
+
+            public double CountOfIncomeNotFromUs(int LocationID, int Month, int Year) {
+                String dbUser = this.getServletContext().getInitParameter("dbUser");
+                String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+                String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
+                GuessDB guessDB = new GuessDB(dbUrl, dbUser, dbPassword);
+                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDateNotEqual(LocationID, getfirstandend(Year, Month));
+                double TotalIncome = 0.0;
+                if (bbs != null) {
+                    for (int x = 0; x < bbs.size(); x++) {
+                        BookingBean bean = bbs.get(x);
+                        ArrayList<GuessBean> guesslist = guessDB.QueryGuessBeanByGuessListID(bean.getBookingID());
+                        TotalIncome += bean.getBookingFee();
+                        if (guesslist != null) {
+                            TotalIncome += bean.getBookingInCharge() * guesslist.size();
+                        }
+
+                    }
+                }
+                return TotalIncome;
+            }
+
             public Calendar c = Calendar.getInstance();
             public int numOfDaysInMonth;
 
@@ -176,8 +290,14 @@
             }
         %>
 
+
     </head>
-    <body onload="drawLine(); drawChart();">
+    <body onload="
+            drawLine();
+            drawChart();
+            drawAttendance();
+            drawIncome();
+          ">
         <% int VenueID = Integer.parseInt(request.getParameter("Venue"));%>
         <% int Year = Integer.parseInt(request.getParameter("Year"));%>
         <% int Month = Integer.parseInt(request.getParameter("Month"));%>
@@ -263,6 +383,60 @@
                                     Total Count Of Booking
                                 </h4>
                                 <canvas id="myChart"></canvas>
+                                <div
+                                    class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
+                                    >
+                                    <!-- Chart legend -->
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-tm rounded-full"
+                                            ></span>
+                                        <span><%=VenueName%></span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-st rounded-full"
+                                            ></span>
+                                        <span>Other</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                >
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                                    Booking Attendance Rate 
+                                </h4>
+                                <input type="hidden" id="attended" value="<%=CountOfAttend(VenueID, Month, Year)%>" />
+                                <input type="hidden" id="notattended" value="<%=CountOfDoNotAttend(VenueID, Month, Year)%>" />
+                                <canvas id="attendance"></canvas>
+                                <div
+                                    class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
+                                    >
+                                    <!-- Chart legend -->
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-tm rounded-full"
+                                            ></span>
+                                        <span>Attend</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span
+                                            class="inline-block w-3 h-3 mr-1 bg-st rounded-full"
+                                            ></span>
+                                        <span>Do Not Attend</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                >
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                                    Income
+                                </h4>
+                                <input type="hidden" id="incomefromus" value="<%=CountOfIncomeFromUs(VenueID, Month, Year)%>" />
+                                <input type="hidden" id="incomenotfromus" value="<%=CountOfIncomeNotFromUs(VenueID, Month, Year)%>" />
+                                <canvas id="income"></canvas>
                                 <div
                                     class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
                                     >

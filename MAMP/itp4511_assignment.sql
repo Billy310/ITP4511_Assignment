@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 29, 2023 at 05:21 PM
+-- Generation Time: May 05, 2023 at 08:21 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -35,22 +35,25 @@ CREATE TABLE `booking` (
   `BookingStart` int(2) NOT NULL,
   `BookingEnd` int(2) NOT NULL,
   `CreatedDate` date NOT NULL,
-  `PersonInCharge` double(5,2) NOT NULL,
+  `CreatedTime` datetime NOT NULL,
   `Status` int(1) NOT NULL,
-  `Priority` int(1) NOT NULL
+  `Priority` int(1) NOT NULL,
+  `BookingFee` double(6,2) NOT NULL,
+  `PersonInCharge` double(6,2) NOT NULL,
+  `Remark` varchar(100) NOT NULL,
+  `Comment` varchar(100) NOT NULL,
+  `CheckStatus` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `BookingStart`, `BookingEnd`, `CreatedDate`, `PersonInCharge`, `Status`, `Priority`) VALUES
-('8swksdc79e0fuaPr1KcRGPu4A', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 10, 10, '2023-04-29', 80.00, 3, 1),
-('JvHsKpGbiWuiYrLeQCaFMYVf4', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 8, 8, '2023-04-29', 80.00, 3, 1),
-('KfQwvki9PYW4b7t7LQePdrKJR', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 9, 9, '2023-04-29', 80.00, 3, 2),
-('pK8x5A4WLkaU6p4QdxeKtvNkN', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-04-30', 8, 8, '2023-04-29', 80.00, 3, 3),
-('x247iHPfLxkPxP3KLthCsi1CF', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 17, 20, '2023-04-29', 80.00, 3, 3),
-('Y2MY6P5KLQt4rCkMXwCuAbH75', 'bUWudGaQbEA3Mt7kYKR0Kww5N', 1, '2023-05-01', 11, 13, '2023-04-29', 80.00, 3, 2);
+INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `BookingStart`, `BookingEnd`, `CreatedDate`, `CreatedTime`, `Status`, `Priority`, `BookingFee`, `PersonInCharge`, `Remark`, `Comment`, `CheckStatus`) VALUES
+('4322cjAji7r3V34', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 1, 1, 200.00, 80.00, '', '', 1),
+('jNJuhJLRKeN2V43V', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 2, 1, 200.00, 80.00, '', '', 3),
+('jNJuhJLRKeNVd2cjAji7j8r3V', 'iivQf91PxrMdiGMPw0r4FP0iW', 2, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 2, 1, 200.00, 80.00, '', '', 3),
+('jNJuhJLRKeNVd2cjAji7r3V34', 'iivQf91PxrMdiGMPw0r4FP0iW', 2, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 1, 1, 200.00, 80.00, '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -94,14 +97,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`, `email`, `Role`, `Enable`) VALUES
-('2kEVpxX2p7W2suaffEx32kY6v', 'Billy0310', '2', '3', 1, 1),
+('2kEVpxX2p7W2suaffEx32kY6v', 'Billy0310', 'Billy0310', '3', 1, 1),
+('2LHJ5urEfWL90e8W6sdQ2JtWQ', 'a', 'a', 'a', 3, 1),
 ('bUWudGaQbEA3Mt7kYKR0Kww5N', 'Admin', 'Admin', 'Admin', 1, 1),
-('CQd1p7tdxG6GWNjb9d1xLi53P', 'HowRonaldoStart', 'Ronaldo', 'billy0310.yts@gmail.com', 3, 1),
-('iivQf91PxrMdiGMPw0r4FP0iW', 'b', 'b', 'b', 3, 1),
+('iivQf91PxrMdiGMPw0r4FP0iW', 'b', 'B', 'b', 3, 1),
 ('iVJPt5eFacYHpVpGbaFVRrdWx', '423', '324', '43', 3, 1),
 ('QM1hpb8kj31CtNMicw0pGGL8c', 'Hello', 'Hello', 'Hello', 3, 1),
-('UWx2JpXR54QG0wURGpAL2v0KH', '423523532', 'r32', '43', 3, 1),
-('wiLEGtG6XuQjr7rthxXfd1A6L', '55434', '543345534', '43543534', 3, 1);
+('tbK4tpibkfuPGQVe5vW1QRYR0', 'dsa', 'sads', 'adsd', 2, 1),
+('UCNRfU19VH4hkFrNvNtE42YMu', 'Senior', 'Senior', 'Senior', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -133,22 +136,22 @@ CREATE TABLE `venue` (
   `venueID` int(1) NOT NULL,
   `venueTypeID` int(1) NOT NULL,
   `venueLocationID` int(1) NOT NULL,
-  `venueName` varchar(75) NOT NULL,
+  `venueName` varchar(100) NOT NULL,
   `venueDescription` varchar(100) NOT NULL,
-  `Enable` tinyint(1) NOT NULL DEFAULT '1'
+  `Enable` tinyint(1) NOT NULL DEFAULT '1',
+  `PersonInCharge` double(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `venue`
 --
 
-INSERT INTO `venue` (`venueID`, `venueTypeID`, `venueLocationID`, `venueName`, `venueDescription`, `Enable`) VALUES
-(1, 2, 3, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'Venue For the', 1),
-(2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotels', 1),
-(3, 1, 3, 'Hong Kong Institute Of Vocational Education (Tsing Yi)', '', 1),
-(4, 1, 4, 'Hong Kong Institute of Vocational Education (Lee Wai Lee)', '', 1),
-(5, 1, 5, 'Hong Kong Institute of Vocational Education (Chai Wan)', '', 1),
-(6, 2, 1, 'sadsdasad', '53', 1);
+INSERT INTO `venue` (`venueID`, `venueTypeID`, `venueLocationID`, `venueName`, `venueDescription`, `Enable`, `PersonInCharge`) VALUES
+(1, 2, 3, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'Venue For the', 1, 80.00),
+(2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotels', 1, 80.00),
+(3, 1, 3, 'Hong Kong Institute Of Vocational Education (Tsing Yi)', '', 1, 80.00),
+(4, 1, 4, 'Hong Kong Institute of Vocational Education (Lee Wai Lee)', '', 1, 80.00),
+(5, 1, 5, 'Hong Kong Institute of Vocational Education (Chai Wan)', '', 1, 80.00);
 
 -- --------------------------------------------------------
 
@@ -193,7 +196,8 @@ CREATE TABLE `venuetype` (
 
 INSERT INTO `venuetype` (`VenueTypeID`, `VenueTypeName`, `Enable`) VALUES
 (1, 'Resort', 1),
-(2, 'Art Galleries', 1);
+(2, 'Art Galleries', 1),
+(3, '43435354', 1);
 
 --
 -- Indexes for dumped tables

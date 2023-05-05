@@ -69,6 +69,7 @@
                 <main class="h-full overflow-y-auto">
                     <div class="container px-6 mx-auto grid"> 
                         <form action="SearchBookingResult_Admin.jsp" method="GET"> 
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid") %>" />
                              <h2
                                     class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                     >
@@ -142,7 +143,7 @@
                                                 checked
 
                                                 />
-                                            <span class="ml-2">Ascending </span>
+                                            <span class="ml-2">Ascending Order </span>
                                         </label>
                                         <label
                                             class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
