@@ -174,10 +174,10 @@
                                                 type="radio"
                                                 class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                                 name="status"
-                                                value="0"
+                                                value="1"
 
                                                 />
-                                            <span class="ml-2">Approved With No Payment</span>
+                                            <span class="ml-2">Handled</span>
                                         </label>
                                         <label
                                             class="inline-flex items-center text-gray-600 dark:text-gray-400"
@@ -186,35 +186,12 @@
                                                 type="radio"
                                                 class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                                 name="status"
-                                                value="1"
-
-                                                />
-                                            <span class="ml-2">Paid</span>
-                                        </label>
-                                        <label
-                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                type="radio"
-                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="status"
-                                                value="2"
-
-                                                />
-                                            <span class="ml-2">Not Paid</span>
-                                        </label>
-                                        <label
-                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                type="radio"
-                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="status"
                                                 value="3"
 
                                                 />
-                                            <span class="ml-2">Waiting</span>
+                                            <span class="ml-2">Not Handled</span>
                                         </label>
+                                    
 
                                         <label
                                             class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"

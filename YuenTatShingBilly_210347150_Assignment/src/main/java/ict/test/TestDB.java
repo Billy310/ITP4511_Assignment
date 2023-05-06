@@ -39,21 +39,24 @@ public class TestDB {
 //        System.out.print(CalTotalByLocationID(1));
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
-        String dbPassword = "root"; 
-        UserDB db = new UserDB(dbUrl ,dbUser ,dbPassword);
+        String dbPassword = "root";
+        UserDB db = new UserDB(dbUrl, dbUser, dbPassword);
         BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-        bookingDB.EditCustomerComment("4322cjAji7r3V34", "aszw");
-        bookingDB.QueryVenueBookingToCSV();
+//        BookingBean bb = bookingDB.QueryByID("4322cjAji7r3V34");
+//        System.out.print(bookingDB.QueryBookingPiority("iivQf91PxrMdiGMPw0r4FP0iW", bb.getCreatedDate()).size());
+
+        bookingDB.DeleteNoNeed("cCpHL5RVkWJeKJ2d2WCrxttaQ");
+
+//        bookingDB.EditCustomerComment("4322cjAji7r3V34", "aszw");
+//        bookingDB.QueryVenueBookingToCSV();
 //        bookingDB.createTable();
 //        bookingDB.DeleteNoNeed("M1dKe0Yv41G1XMv8GQXHURXeb");
 //            UserBean userbean = db.QueryUserByName("Admin");
-
 //        System.out.print(bookingDB.QueryVenueBookingByUserIDForToday("iivQf91PxrMdiGMPw0r4FP0iW").size());
 //        ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingByPlaceANDDate(1, getfirstandend(2023, 4));
 //        System.out.print(bbs.size());
 ////                BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
 //iivQf91PxrMdiGMPw0r4FP0iW
-
 //                bookingDB.AddRecord(dbPassword, dbUser, 0, dbPassword, 0, 0, 0, 0);
 ////        VenueTypeDB vlb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
 ////        vlb.AddRecord(vlb.QueryAllVenueType().size()+1, "123");
@@ -67,7 +70,6 @@ public class TestDB {
 //        bookingDB.AddRecord(dbPassword, dbUser, 1, "2022-3-3", 1, 2, 3, 1,200,200.0,"","");
 //        System.out.print(bookingDB.QueryVenueBookingByUserID(dbUser).size());
     }
-
 
     public static Calendar c = Calendar.getInstance();
     public static int numOfDaysInMonth;

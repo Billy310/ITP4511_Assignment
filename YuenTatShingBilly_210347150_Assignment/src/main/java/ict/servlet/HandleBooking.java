@@ -201,7 +201,7 @@ public class HandleBooking extends HttpServlet {
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
 
-            rd = getServletContext().getRequestDispatcher("/EditBookingFrom_Admin.jsp");
+            rd = getServletContext().getRequestDispatcher("/BackToBookingPriority.jsp");
             rd.forward(request, response);
         } else if (action.equals("viewdetail")) {
             RequestDispatcher rd;
@@ -240,42 +240,30 @@ public class HandleBooking extends HttpServlet {
             rd.forward(request, response);
         } else if (action.equals("CheckIn")) {
             String BookingID = request.getParameter("BookingID");
-            String SearchUser = request.getParameter("user");
-            String Order = request.getParameter("order");
-            String Status = request.getParameter("status");
             db.ChangeBookingCheckStatus(BookingID, 1);
             request.setAttribute("userid", userID);
-            request.setAttribute("user", SearchUser);
-            request.setAttribute("order", Order);
-            request.setAttribute("status", Status);
+            request.setAttribute("BookingID", BookingID);
+ 
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
             rd.forward(request, response);
 
         } else if (action.equals("CheckOut")) {
             String BookingID = request.getParameter("BookingID");
-            String SearchUser = request.getParameter("user");
-            String Order = request.getParameter("order");
-            String Status = request.getParameter("status");
             db.ChangeBookingCheckStatus(BookingID, 2);
             request.setAttribute("userid", userID);
-            request.setAttribute("user", SearchUser);
-            request.setAttribute("order", Order);
-            request.setAttribute("status", Status);
+            request.setAttribute("BookingID", BookingID);
+ 
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
             rd.forward(request, response);
 
         } else if (action.equals("Finish")) {
             String BookingID = request.getParameter("BookingID");
-            String SearchUser = request.getParameter("user");
-            String Order = request.getParameter("order");
-            String Status = request.getParameter("status");
             db.ChangeBookingCheckStatus(BookingID, 4);
             request.setAttribute("userid", userID);
-            request.setAttribute("user", SearchUser);
-            request.setAttribute("order", Order);
-            request.setAttribute("status", Status);
+            request.setAttribute("BookingID", BookingID);
+ 
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
             rd.forward(request, response);

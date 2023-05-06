@@ -129,7 +129,8 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Edit Booking Status: <%=TranslateStatus(bb.getStatus())%>
+                            Approve/Deny Booking Status Choice <%=bb.getPriority() %>: 
+                            <%--<%= //TranslateStatus(bb.getStatus())%>--%>
                         </h2>
                         <div
                             class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
@@ -245,7 +246,7 @@
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Similar Result
+                            Similar Result  
                         </h2>
 
                         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">

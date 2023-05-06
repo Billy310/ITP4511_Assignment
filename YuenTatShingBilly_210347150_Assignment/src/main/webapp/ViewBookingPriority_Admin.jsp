@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Windmill Dashboard</title>
+        <title>View Booking Result</title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -14,7 +14,7 @@
             defer
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
- 
+
         <script src="./assets/js/charts-lines.js" defer></script>
         <script src="./assets/js/charts-pie.js" defer></script>
     </head>
@@ -46,12 +46,12 @@
             <div class="flex flex-col flex-1 w-full">
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full overflow-y-auto">
-                 
+
                     <div class="container px-6 mx-auto grid">
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Booking Request
+                            Booking Request -- List All Choice(s)
                         </h2>
 
                         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -66,25 +66,42 @@
                                         <tr
                                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                                             >
+                                            <th class="px-4 py-3">Priority</th>
                                             <th class="px-4 py-3">Location</th>
                                             <th class="px-4 py-3">Venue Name</th>
                                             <th class="px-4 py-3">Booked Date</th>
                                             <th class="px-4 py-3">Booked Time</th>
-                                            <th class="px-4 py-3">Created Time</th>
+                                            <th class="px-4 py-3">Status</th>
                                             <th class="px-4 py-3">View Details</th>
-                                             
+                                            <th class="px-4 py-3">Check-In/Out Status</th>
+                                            <th class="px-4 py-3">Check-In </th>
+
                                         </tr>
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                                         >     
 
-                                        <jsp:include page="ListBooking.jsp" />
+                                        <jsp:include page="ListPriority_Admin.jsp" />
 
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
+                        <div class="flex mt-6 text-sm">
+                            <form action="EditBookingFrom_Admin.jsp" method="POST"> 
+                                <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
+                                <input type="hidden" name="BookingID" value="<%=request.getParameter("BookingID")%>" />
+                                <button 
+                                    type="submit"  
+                                    class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    value="continue"
+                                    >
+                                    Approve / Deny
+                                </button>
+                            </form>
+                        </div>       
                     </div>
                 </main>
             </div>

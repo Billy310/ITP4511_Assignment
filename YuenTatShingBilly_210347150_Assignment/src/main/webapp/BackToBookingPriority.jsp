@@ -1,21 +1,18 @@
-<%-- 
-    Document   : login
-    Created on : Mar 17, 2023, 2:33:04 AM
-    Author     : user
---%>
+ 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
     </head>
     <body>
- 
-        <form name="myForm" id="myForm" action="ViewBookingPriority_Admin.jsp" method="GET">
+
+        <form name="myForm" id="myForm" action="ViewBookingPriority.jsp" method="GET">
             <input type="hidden" name="userid" value=<%=request.getAttribute("userid")%> />
-              <input type="hidden" name="BookingID" value=<%=request.getAttribute("BookingID")%> />  
+            <input type="hidden" name="BookingID" value=<%=request.getAttribute("BookingID")%> />
         </form>
     </body>
     <script type="text/javascript">
@@ -25,7 +22,6 @@
             }, 1000);
 
             function submitform() {
-                //                alert('test');
                 document.forms["myForm"].submit();
             }
 
@@ -36,6 +32,6 @@
                     autoRefresh();
                 }, 100);
             }
-        }
+        };
     </script>
 </html>

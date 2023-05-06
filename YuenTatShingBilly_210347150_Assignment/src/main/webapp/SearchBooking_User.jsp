@@ -104,7 +104,7 @@
                                     </div>
                                 </div>    
 
-                                <div class="mt-4 text-sm">
+<!--                                <div class="mt-4 text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">
                                         Status
                                     </span>
@@ -160,7 +160,7 @@
                                             <span class="ml-2">All</span>
                                         </label>
                                     </div>
-                                </div> 
+                                </div> -->
                                 <br>
                                 <button
 

@@ -29,43 +29,46 @@
     VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
     VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
     String UserID = request.getParameter("userid");
-    int Order = Integer.parseInt(request.getParameter("order"));
-//    int Status = Integer.parseInt(request.getParameter("status"));
-//    ArrayList<BookingBean> venueBookings = db.QueryVenueBookingByUserID(UserID);
-    ArrayList<BookingBean> venueBookings = db.QueryVenueBookingBydOrderUserID(Order, UserID);
+    String BookingID = request.getParameter("BookingID");
+    BookingBean bb = db.QueryByID(BookingID);
+    ArrayList<BookingBean> venueBookings = db.QueryBookingPiority(UserID, bb.getCreatedDate());
 
     for (int x = 0; x < venueBookings.size(); x++) {
         BookingBean vb = venueBookings.get(x);
         VenueBean venuebean = venueDB.queueVenueByVenueID(vb.getVenueID());
         VenueLocationBean locationbean = LocationDB.QueryByLocationID(venuebean.getVenueLocationID());
         out.print("<tr class=\"text-gray-700 dark:text-gray-400\">");
-       // out.print("<td class=\"px-4 py-3\">");
-       // out.print("<div class=\"flex items-center text-sm\">");
-      //  out.print("<div>");
-       // out.print("<p class=\"font-semibold\">" + vb.getBookingID() + "</p>");
-//    out.print("<p class=\"text-xs text-gray-600 dark:text-gray-400\">10x Developer</p>");
-        //out.print("</div>");
-       // out.print("</div>");
-      //  out.print("</td>");
+        out.print("<td class=\"px-4 py-3\">");
+        out.print("<div class=\"flex items-center text-sm\">");
+        out.print("<div>");
+        out.print("<p class=\"font-semibold\">" + vb.getPriority() + "</p>");
+ 
+        out.print("</div>");
+        out.print("</div>");
+        out.print("</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + locationbean.getVenueLocationName() + "</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + venueDB.queueVenueByVenueID(vb.getVenueID()).getVenueName() + "</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" +  vb.getBookingStart()+"->"+vb.getBookingEnd() + "</td>");
+        out.print("<td class=\"px-4 py-3 text-sm\">" + vb.getBookingStart() + "->" + vb.getBookingEnd() + "</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getBookingDate()) + "</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" + vb.getCreatedTime() + "</td>");
-        
-        //out.print("<td class=\"px-4 py-3 text-xs\">");
-//        if (vb.getStatus() == 1) {
-//            out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100\">Approved</span>");
-//
-//        } else if (vb.getStatus() == 2) {
-//            out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700\">Denied</span>");
-//
-//        } else if (vb.getStatus() == 3) {
-//            out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600\">Pending</span>");
-//        }
-//        out.print("</td>");
+//        out.print("<td class=\"px-4 py-3 text-sm\">" + vb.getCreatedTime() + "</td>");
 
-        out.print("<form action='ViewBookingPriority.jsp' method=\"GET\" >");
+        out.print("<td class=\"px-4 py-3 text-xs\">");
+        if (vb.getStatus() == 0) {
+            out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100\">Pay For Booking</span>");
+
+        }
+        if (vb.getStatus() == 1) {
+            out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100\">Approved</span>");
+
+        } else if (vb.getStatus() == 2) {
+            out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700\">Denied</span>");
+
+        } else if (vb.getStatus() == 3) {
+            out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600\">Pending</span>");
+        }
+        out.print("</td>");
+
+        out.print("<form action='ViewBookingDetail.jsp' method=\"GET\" >");
         out.print("<input type=hidden value=" + UserID + " name=userid />");
         out.print("<input type=hidden value=" + vb.getBookingID() + " name=BookingID />");
         out.print("<td class=\"px-4 py-3 text-xs\">");
