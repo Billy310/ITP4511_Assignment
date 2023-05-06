@@ -70,7 +70,7 @@
                                             <th class="px-4 py-3">Location</th>
                                             <th class="px-4 py-3">Venue Name</th>
                                             <th class="px-4 py-3">Booked Date</th>
-                                            <th class="px-4 py-3">Created Date</th>
+                                            <th class="px-4 py-3">Created Time</th>
                                             <th class="px-4 py-3">Status</th>
                                             <th class="px-4 py-3">View Details</th>
                                              

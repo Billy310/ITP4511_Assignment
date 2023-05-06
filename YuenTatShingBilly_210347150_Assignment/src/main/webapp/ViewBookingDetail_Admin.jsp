@@ -32,25 +32,6 @@
     }
 
 %>
-<script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
-<script src="./assets/js/init-alpine.js"></script>
-<script>
-    $(document).ready(function () {
-
-        if ($("#Status").val() != 0) {
-            
-            $(".Payment").hide();
-        }
-
-    });
-
-
-
-</script>
-
-
-
-
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
@@ -87,22 +68,17 @@
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        <form action="EditBookingForm.jsp" method="GET" id="EditBookingForm"> 
-                            <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
-                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
-                        </form>
-                        <form action="GuessList.jsp" method="GET" id="ChangeGuessList" >        
-                            <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
-                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
-                        </form>          
-                        <form action="Payment.jsp" method="GET" id="Payment" >        
-                            <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
-                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
-                        </form>   
+
+                        <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
+                        <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
+                        <input type="hidden" name="order" value="<%=request.getParameter("order")%>"/>
+                        <input type="hidden" name="status" value="<%=request.getParameter("status")%>"/>
+                        <input type="hidden" name="user" value="<%=request.getParameter("user")%>"/>
+
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                             >
-                            Booking View
+                            Booking Detail
                         </h2>
 
                         <div
@@ -202,31 +178,11 @@
                                     />
                             </label>
                             <br>
-                            <button
-                                form="ChangeGuessList"
-                                type="submit"
-                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                >
-                                View Guess List
-                            </button>
-                            <button
-                                form="EditBookingForm"
-                                type="submit"
-                                class=" px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                >
-                                Edit Booking Detail
-                            </button>
 
-                            <input type="hidden" id="Status" value="<%=bb.getStatus()%>" />
-                                   <button 
-                                   
-                                   form="Payment"
-                                   type="submit"
-                                   class="Payment px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                   >
-                            Payment
-                            </button>
+
+
                         </div>
+
 
 
                     </div>

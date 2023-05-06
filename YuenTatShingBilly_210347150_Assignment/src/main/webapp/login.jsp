@@ -10,7 +10,7 @@
     </head>
     <body>
 
-        <form name="myForm" id="myForm" action="ViewBooking.jsp" method="GET">
+        <form name="myForm" id="myForm" action="SearchBooking_User.jsp" method="GET">
             <input type="hidden" name="userid" value=<%=request.getAttribute("userid")%> />
         </form>
     </body>

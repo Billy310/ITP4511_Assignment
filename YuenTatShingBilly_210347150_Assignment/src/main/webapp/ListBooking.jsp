@@ -29,7 +29,10 @@
     VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
     VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
     String UserID = request.getParameter("userid");
-    ArrayList<BookingBean> venueBookings = db.QueryVenueBookingByUserID(UserID);
+    int Order = Integer.parseInt(request.getParameter("order"));
+    int Status = Integer.parseInt(request.getParameter("status"));
+//    ArrayList<BookingBean> venueBookings = db.QueryVenueBookingByUserID(UserID);
+    ArrayList<BookingBean> venueBookings = db.QueryVenueBookingByStatusAndOrderAndUserID(Order,Status,UserID);
 
     for (int x = 0; x < venueBookings.size(); x++) {
         BookingBean vb = venueBookings.get(x);
@@ -47,7 +50,7 @@
         out.print("<td class=\"px-4 py-3 text-sm\">" + locationbean.getVenueLocationName() + "</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + venueDB.queueVenueByVenueID(vb.getVenueID()).getVenueName() + "</td>");
         out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getBookingDate()) + "</td>");
-        out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getCreatedDate()) + "</td>");
+        out.print("<td class=\"px-4 py-3 text-sm\">" + vb.getCreatedTime() + "</td>");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         if (vb.getStatus() == 1) {
             out.print("<span class=\"px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100\">Approved</span>");

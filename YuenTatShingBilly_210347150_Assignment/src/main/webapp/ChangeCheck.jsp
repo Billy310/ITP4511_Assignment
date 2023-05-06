@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+ 
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date,ict.personal.TransferFormat"%>
 <%@page import="java.util.ArrayList,ict.bean.BookingBean,ict.bean.VenueBean,ict.bean.VenueLocationBean,ict.db.BookingDB,ict.db.VenueLocationDB,ict.db.VenueDB,ict.db.VenueTypeDB,ict.bean.VenueTypeBean" %>
+
 <%
     TransferFormat tf = new TransferFormat();
     String BookingID = "BookingID";
@@ -17,8 +19,6 @@
     VenueLocationBean vlb = LocationDB.QueryByLocationID(vb.getVenueLocationID());
     VenueTypeBean vt = vtb.QueryByID(bb.getVenueID());
 
-    ArrayList<BookingBean> bbs;
-    bbs = db.QueryForSimilarBooking(bb.getVenueID(), bb.getBookingDate(), bb.getBookingStart(), bb.getBookingEnd(), bb.getBookingID());
 %>
 <%!
     public String TransferTime(int Time_book) {
@@ -31,71 +31,13 @@
 
     }
 
-    public String TranslateStatus(int Status) {
-
-        if (Status == 1) {
-            return "Approved";
-        } else if (Status == 2) {
-            return "Denied";
-
-        } else if (Status == 3) {
-            return "Waiting For the Response";
-        } else {
-            return "";
-        }
-
-    }
-
 %>
-<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
- 
-        if ($("#hassimular").val() > 0) {
-
-            $("#SubmitBtn").hide();
-
-        }
-
-        if ($("#bookingstatus").val() < 3) {
-
-            $("#SubmitBtn").hide();
-            $("#DenyBtn").hide();
-
-
-        }
-
-        function submitform() {
-            document.forms["myForm"].submit();
-        }
-
-        function autoRefresh() {
-            clearTimeout(auto);
-            auto = setTimeout(function () {
-                submitform();
-                autoRefresh();
-            }, 100);
-        }
-    });
-
-
-
-
-
-</script>
-
-<script>
-    function formSubmit() {
-
-        document.forms["myForm"].submit();
-    }
-</script>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en" >
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
-        <link href="css/ButtonCss.css" rel="stylesheet" type="text/css"/>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title></title>
+        <title>View Booking Detail -- <%=bb.getBookingID()%></title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -119,24 +61,29 @@
             </jsp:include>
             <!-- Mobile sidebar -->
             <!-- Backdrop -->
-            <jsp:include page="MobileScreenSideBar.jsp" >
+            <jsp:include page="MobileScreenSideBar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <div class="flex flex-col flex-1">
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        <h2
-                            class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                            >
-                            Edit Booking Status: <%=TranslateStatus(bb.getStatus())%>
-                        </h2>
-                        <div
-                            class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-                            >
-                            <form action="HandleBooking" method="GET"  name="myForm"> 
+                        <form action="HandleBooking" method="GET" id="EditBookingForm"> 
+                            <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
+                            <input type="hidden" name="order" value="<%=request.getParameter("order")%>"/>
+                            <input type="hidden" name="status" value="<%=request.getParameter("status")%>"/>
+                            <input type="hidden" name="user" value="<%=request.getParameter("user")%>"/>
 
-                                <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
+                            <h2
+                                class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+                                >
+                                Booking Detail
+                            </h2>
+
+                            <div
+                                class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                                >
 
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Booking ID</span>
@@ -153,7 +100,7 @@
                                     <input
 
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Username"
+
                                         readonly
                                         value="<%= vb.getVenueName()%>"
                                         />
@@ -164,7 +111,7 @@
                                     <input
 
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Password"
+
                                         readonly
                                         value="<%=vlb.getVenueLocationName()%>"
                                         />
@@ -175,7 +122,7 @@
                                     <input
 
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Email"
+
                                         readonly
                                         value="<%=vt.getVenueTypeName()%>"
                                         />
@@ -185,7 +132,7 @@
                                     <input
 
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Email"
+
                                         readonly
                                         value="<%=tf.TransferDate(bb.getBookingDate())%>"
                                         />
@@ -213,80 +160,52 @@
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Remark From Senior Manager</span>
                                     <input
-                                        name="Remark"
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
 
-
+                                        readonly
                                         value="<%=bb.getRemark()%>"
                                         />
                                 </label>
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Comment</span>
                                     <input
-                                        readonly
+
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        placeholder="Comment"
+                                        readonly
                                         value="<%=bb.getComment()%>"
-
-
                                         />
-                                </label> 
+                                </label>
+                                <br>
+                                <button
 
-                                <div class="flex mt-6 text-sm">
-                                    <input type="hidden" id="hassimular" value="<%=bbs.size()%>" />
-                                    <input type="hidden" id="bookingstatus" value="<%=bb.getStatus()%>" />
-                                    <button id="SubmitBtn" name="action" type="submit" class="bn632-hover bn22" value="approve" onclick="formSubmit()" >Approve</button>
-                                    <button  id="DenyBtn" name="action" type="submit" class="bn633-hover bn24" value="deny" onclick="formSubmit()" >Deny</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="container px-6 mx-auto grid">
+                                    type="submit"
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    >
+                                    <%if (bb.getCheckStatus() == 1) {
+                                            out.print("Check-Out");
+                                            out.print("<input type=hidden name=action value=CheckOut  ");
+                                        }
+                                        if (bb.getCheckStatus() == 2) {
+                                            out.print("Finish");
+                                            out.print("<input type=hidden name=action value=Finish  ");
 
-                        <h2
-                            class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                            >
-                            Similar Result
-                        </h2>
+                                        }
+                                        if (bb.getCheckStatus() == 3) {
+                                            out.print("Check-In");
+                                            out.print("<input type=hidden name=action value=CheckIn  ");
+                                        }
 
-                        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-
-                        </div>
-
-
-                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                            <div class="w-full overflow-x-auto">
-                                <table class="w-full whitespace-no-wrap">
-                                    <thead>
-                                        <tr
-                                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                                            >
-                                            <th class="px-4 py-3">Booking ID</th>
-                                            <th class="px-4 py-3">User Name</th>
-                                            <th class="px-4 py-3">Booking Date</th>
-                                            <th class="px-4 py-3">Booking Time</th>
-                                            <th class="px-4 py-3">Created Time</th>
-                                            <th class="px-4 py-3">Status</th>
-                                            <th class="px-4 py-3">Action</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody
-                                        class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                                        >     
-
-                                        <jsp:include page="ListSimilarBooking.jsp" />
+                                    %>
+                                </button>
 
 
-
-                                    </tbody>
-                                </table>
                             </div>
-                        </div>
-                    </div>              
+                        </form>
 
 
-
-
+                    </div>
                 </main>
             </div>
 

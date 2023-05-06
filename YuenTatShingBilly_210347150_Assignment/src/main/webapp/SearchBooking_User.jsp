@@ -17,16 +17,7 @@
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
-                $(".Extend").hide();
-                $("#hide").click(function () {
 
-                    $(".Extend").hide();
-                });
-
-                $("#display").click(function () {
-
-                    $(".Extend").show();
-                });
 
             });
 
@@ -43,7 +34,7 @@
             :class="{ 'overflow-hidden': isSideMenuOpen }"
             >
             <!-- Desktop sidebar -->
-            <jsp:include page="Sidebar_Admin.jsp">
+            <jsp:include page="Sidebar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <!-- Mobile sidebar -->
@@ -68,8 +59,7 @@
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full overflow-y-auto">
                     <div class="container px-6 mx-auto grid"> 
-                        <form action="SearchBookingResult_Admin.jsp" method="GET"> 
- 
+                        <form action="ViewBooking.jsp" method="GET"> 
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
@@ -79,54 +69,6 @@
                             <div
                                 class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                                 >
-
-                                <div class="mt-4 text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">
-                                        Specific Name
-                                    </span>
-                                    <div class="mt-2">
-                                        <label
-                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                type="radio"
-                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="user"
-                                                value="1"
-                                                id="display"
-
-
-                                                />
-                                            <span class="ml-2">Yes</span>
-                                        </label>
-                                        <label
-                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                type="radio"
-                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="user"
-                                                value="0"
-                                                id="hide"
-                                                checked
-
-                                                />
-                                            <span class="ml-2">No</span>
-                                        </label>
-                                    </div>
-                                </div>  
-
-                                <label class="block text-sm  Extend">
-                                    <span class="text-gray-700 dark:text-gray-400">Username</span>
-                                    <input
-                                        name="Username"
-                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="Username"
-
-                                        />
-                                </label>
-
-
 
                                 <div class="mt-4 text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">
@@ -167,18 +109,6 @@
                                         Status
                                     </span>
                                     <div class="mt-2">
-                                         <label
-                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                type="radio"
-                                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="status"
-                                                value="0"
-
-                                                />
-                                            <span class="ml-2">Approved With No Payment</span>
-                                        </label>
                                         <label
                                             class="inline-flex items-center text-gray-600 dark:text-gray-400"
                                             >
@@ -189,7 +119,7 @@
                                                 value="1"
 
                                                 />
-                                            <span class="ml-2">Paid</span>
+                                            <span class="ml-2">Accept</span>
                                         </label>
                                         <label
                                             class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
@@ -201,7 +131,7 @@
                                                 value="2"
 
                                                 />
-                                            <span class="ml-2">Not Paid</span>
+                                            <span class="ml-2">Denied</span>
                                         </label>
                                         <label
                                             class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
@@ -213,7 +143,7 @@
                                                 value="3"
 
                                                 />
-                                            <span class="ml-2">Waiting</span>
+                                            <span class="ml-2">Pending</span>
                                         </label>
 
                                         <label
@@ -243,17 +173,7 @@
 
                             </div>
                         </form>
-                        <form action="HandleBooking" method="POST"> 
-                            <button
-                                target="_blank"
-                                name="action"
-                                type="submit"
-                                value="export"
-                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                >
-                                Export All Booking Record To CSV (Excel)
-                            </button>
-                        </form>
+
 
                     </div>
 

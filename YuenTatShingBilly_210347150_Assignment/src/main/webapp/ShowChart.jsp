@@ -58,7 +58,7 @@
                         labels: frameworks,
                         datasets: [{
                                 data: stars,
-                                backgroundColor: ['#54bebe', '#badbdb', '#e4bcad', '#d7658b', '#c80064']
+                                backgroundColor: ['#003f5c', '#ffa600']
                             }]
                     }, options: {
                         responsive: true,
@@ -96,8 +96,8 @@
                                  * These colors come from Tailwind CSS palette
                                  * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
                                  */
-                                backgroundColor: '#0694a2',
-                                borderColor: '#0694a2',
+                                backgroundColor: '#ffa600',
+                                borderColor: '#ffa600',
                                 data: [January, February, March, April, May, June, July, August, September, October, November, December],
                                 fill: false,
                             },
@@ -156,7 +156,7 @@
                         labels: frameworks,
                         datasets: [{
                                 data: stars,
-                                backgroundColor: ['#54bebe', '#badbdb', '#e4bcad', '#d7658b', '#c80064']
+                                backgroundColor: ['#003f5c', '#ffa600']
                             }]
                     }, options: {
                         responsive: true,
@@ -174,14 +174,14 @@
                 var ThisNonthNotFromUs = document.getElementById("incomenotfromus").value;
 
                 var stars = [ThisMonthFromUs, ThisNonthNotFromUs];
-                var frameworks = ['Attend', 'Do Not Attend'];
+                var frameworks = ['The Venue', 'Others'];
                 new Chart('income', {
                     type: 'pie',
                     data: {
                         labels: frameworks,
                         datasets: [{
                                 data: stars,
-                                backgroundColor: ['#54bebe', '#badbdb', '#e4bcad', '#d7658b', '#c80064']
+                                backgroundColor: ['#003f5c', '#ffa600']
                             }]
                     }, options: {
                         responsive: true,
@@ -370,7 +370,7 @@
                                     <!-- Chart legend -->
                                     <div class="flex items-center">
                                         <span
-                                            class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
+                                            class="inline-block w-3 h-3 mr-1 bg-mango rounded-full"
                                             ></span>
                                         <span><%=VenueName%></span>
                                     </div>
@@ -389,13 +389,13 @@
                                     <!-- Chart legend -->
                                     <div class="flex items-center">
                                         <span
-                                            class="inline-block w-3 h-3 mr-1 bg-tm rounded-full"
+                                            class="inline-block w-3 h-3 mr-1 bg-darkblue rounded-full"
                                             ></span>
                                         <span><%=VenueName%></span>
                                     </div>
                                     <div class="flex items-center">
                                         <span
-                                            class="inline-block w-3 h-3 mr-1 bg-st rounded-full"
+                                        class="inline-block w-3 h-3 mr-1 bg-mango rounded-full"
                                             ></span>
                                         <span>Other</span>
                                     </div>
@@ -416,13 +416,13 @@
                                     <!-- Chart legend -->
                                     <div class="flex items-center">
                                         <span
-                                            class="inline-block w-3 h-3 mr-1 bg-tm rounded-full"
+                                            class="inline-block w-3 h-3 mr-1 bg-darkblue rounded-full"
                                             ></span>
                                         <span>Attend</span>
                                     </div>
                                     <div class="flex items-center">
                                         <span
-                                            class="inline-block w-3 h-3 mr-1 bg-st rounded-full"
+                                            class="inline-block w-3 h-3 mr-1 bg-mango rounded-full"
                                             ></span>
                                         <span>Do Not Attend</span>
                                     </div>
@@ -443,14 +443,12 @@
                                     <!-- Chart legend -->
                                     <div class="flex items-center">
                                         <span
-                                            class="inline-block w-3 h-3 mr-1 bg-tm rounded-full"
+                                            class="inline-block w-3 h-3 mr-1 bg-darkblue rounded-full"
                                             ></span>
                                         <span><%=VenueName%></span>
                                     </div>
                                     <div class="flex items-center">
-                                        <span
-                                            class="inline-block w-3 h-3 mr-1 bg-st rounded-full"
-                                            ></span>
+                                        <span class="inline-block w-3 h-3 mr-1 bg-mango rounded-full"></span>
                                         <span>Other</span>
                                     </div>
                                 </div>

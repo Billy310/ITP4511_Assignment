@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB,ict.db.BookingDB,ict.bean.BookingBean" %>
+<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB,ict.db.BookingDB,ict.bean.BookingBean,ict.personal.TransferFormat" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+    TransferFormat transferformat = new TransferFormat();
     VenueLocationDB vlb = new VenueLocationDB(dbUrl, dbUser, dbPassword);
     VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
@@ -54,156 +55,173 @@
             <div class="flex flex-col flex-1">
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full pb-16 overflow-y-auto">
-                    <div class="container px-6 mx-auto grid">
-                        <h2
-                            class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                            >
-                            Edit Booking
-                        </h2>
-                        <div
-                            class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-                            >
-                            <input type="hidden" value="edit" name="action" />
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Booking ID</span>
-                                <input
-
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-
-
-                                    />
-                            </label>
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue</span>
-                                <input
-
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-
-
-                                    />
-                            </label>
-
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Location</span>
-                                <input
-
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-
-
-                                    />
-                            </label>
-
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
-                                <input
-
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-
-
-                                    />
-                            </label>
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Venue Booking Date</span>
-                                <input
-
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-
-
-
-                                    />
-                            </label>
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Venue Time (Start)
-                                </span>
-                                <select           name="BookingStart1"
-                                                  id="venuetimestart"
-                                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                    <%                                        for (int x = 8; x < 21; x++) {
-                                            if (disabledtime.contains(x)) {
-                                                if (x < 10) {
-                                                    out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                } else {
-                                                    out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                }
-                                            } else {
-
-                                                if (x < 10) {
-                                                    if (x == bb.getBookingStart()) {
-                                                        out.print("<option selected value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                    } else {
-                                                        out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                    }
-                                                } else {
-                                                    if (x == bb.getBookingStart()) {
-                                                        out.print("<option selected value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                    } else {
-                                                        out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    %>
-                                </select>
-                            </label>
-                            <label class="block mt-4 text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Venue Time (End)
-                                </span>
-                                <select           name="BookingEnd"
-
-                                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                    <%                                        for (int x = 8; x < 21; x++) {
-                                            if (disabledtime.contains(x)) {
-                                                if (x < 10) {
-                                                    out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                } else {
-                                                    out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                }
-                                            } else {
-
-                                                if (x < 10) {
-                                                    if (x == bb.getBookingEnd()) {
-                                                        out.print("<option selected value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                    } else {
-                                                        out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
-                                                    }
-                                                } else {
-                                                    if (x == bb.getBookingEnd()) {
-                                                        out.print("<option selected value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                    } else {
-                                                        out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    %>
-                                </select>
-                            </label>
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Comment</span>
-                                <input
-                                    name="Comment"
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Comment"
-
-
-                                    />
-                            </label>   
-
-                            <br>
-                            <button
-
-                                type="submit"
-                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                    <form action="HandleBooking" method="GET" > 
+                        <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
+                        <input type="hidden" name="BookingID" value="<%=request.getParameter("BookingID")%>" />
+                        <div class="container px-6 mx-auto grid">
+                            <h2
+                                class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >
-                                Confirm Edit
-                            </button>
+                                Edit Booking
+                            </h2>
+                            <div
+                                class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                                >
 
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Booking ID</span>
+                                    <input
+
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        readonly
+                                        value="<%=bb.getBookingID()%>"
+                                        />
+                                </label>
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Venue</span>
+                                    <input
+                                        readonly
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        value="<%=vb.queueVenueByVenueID(bb.getVenueID()).getVenueName()%>"
+
+                                        />
+                                </label>
+
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Location</span>
+                                    <input
+                                        readonly
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        value="<%=vlb.QueryByLocationID(vb.queueVenueByVenueID(bb.getVenueID()).getVenueLocationID()).getVenueLocationName()%>"
+
+                                        />
+                                </label>
+
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Type</span>
+                                    <input
+                                        readonly
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        value="<%=vtb.QueryByID(vb.queueVenueByVenueID(bb.getVenueID()).getVenueTypeID()).getVenueTypeName()%>"
+
+                                        />
+                                </label>
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Venue Booking Date</span>
+                                    <input
+                                        readonly
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        value="<%=transferformat.TransferDate(bb.getBookingDate())%>"
+
+
+                                        />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Venue Time (Start)
+
+                                    </span>
+                                    <select           name="BookingStart"
+                                                      id="venuetimestart"
+                                                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                        <%                                        for (int x = 8; x < 21; x++) {
+                                                if (disabledtime.contains(x)) {
+                                                    if (x < 10) {
+                                                        out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                    } else {
+                                                        out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                    }
+                                                } else {
+
+                                                    if (x < 10) {
+                                                        if (x == bb.getBookingStart()) {
+                                                            out.print("<option selected value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                        } else {
+                                                            out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                        }
+                                                    } else {
+                                                        if (x == bb.getBookingStart()) {
+                                                            out.print("<option selected value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                        } else {
+                                                            out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        %>
+                                    </select>
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                        Venue Time (End)
+                                    </span>
+                                    <select           name="BookingEnd"
+
+                                                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                        <%                                        for (int x = 8; x < 21; x++) {
+                                                if (disabledtime.contains(x)) {
+                                                    if (x < 10) {
+                                                        out.print("<option disabled value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                    } else {
+                                                        out.print("<option disabled value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                    }
+                                                } else {
+
+                                                    if (x < 10) {
+                                                        if (x == bb.getBookingEnd()) {
+                                                            out.print("<option selected value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                        } else {
+                                                            out.print("<option value=" + x + ">" + "0" + x + ":" + "00" + "</option>");
+                                                        }
+                                                    } else {
+                                                        if (x == bb.getBookingEnd()) {
+                                                            out.print("<option selected value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                        } else {
+                                                            out.print("<option value=" + x + ">" + x + ":" + "00" + "</option>");
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        %>
+                                    </select>
+                                </label>
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Remark From Senior Manager</span>
+                                    <input
+
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+
+                                        readonly
+                                        value="<%=bb.getRemark()%>"
+                                        />
+                                </label>
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Comment</span>
+                                    <input
+                                        name="Comment"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        placeholder="Comment"
+                                        value="<%=bb.getComment()%>"
+
+
+                                        />
+                                </label>   
+
+                                <br>
+                                <button
+                                    name="action"
+                                    value="edit"
+                                    type="submit"
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    >
+                                    Confirm Edit
+                                </button>
+
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </main>
             </div>
 

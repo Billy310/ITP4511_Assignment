@@ -67,7 +67,7 @@ public class HandleBooking extends HttpServlet {
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
-            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
+            rd = getServletContext().getRequestDispatcher("/SearchBooking_User.jsp");
             rd.forward(request, response);
         } else if (action.equals("book1")) {
 
@@ -96,7 +96,7 @@ public class HandleBooking extends HttpServlet {
 
             RequestDispatcher rd;
             request.setAttribute("userid", userID);
-            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
+            rd = getServletContext().getRequestDispatcher("/SearchBooking_User.jsp");
             rd.forward(request, response);
         } else if (action.equals("book2")) {
             String easy = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
@@ -135,7 +135,7 @@ public class HandleBooking extends HttpServlet {
             RequestDispatcher rd;
 
             request.setAttribute("userid", userID);
-            rd = getServletContext().getRequestDispatcher("/ViewBooking.jsp");
+            rd = getServletContext().getRequestDispatcher("/SearchBooking_User.jsp");
             rd.forward(request, response);
         } else if (action.equals("continue")) {
 
@@ -183,16 +183,24 @@ public class HandleBooking extends HttpServlet {
             request.setAttribute("BookingDate2", BookingDate);
             request.setAttribute("BookingStart2", BookingStart);
             request.setAttribute("BookingEnd2", BookingEnd);
-            request.setAttribute("Comment2", Comment1);
+            request.setAttribute("Comment2", Comment2);
 
             rd = getServletContext().getRequestDispatcher("/BookingRequestForm_ThirdChoice.jsp");
             rd.forward(request, response);
 
         } else if (action.equals("edit")) {
+            String BookingID = request.getParameter("BookingID");
+            String Comment = request.getParameter("Comment");
+            int BookingStart = Integer.parseInt(request.getParameter("BookingStart"));
+            int BookingEnd = Integer.parseInt(request.getParameter("BookingEnd"));
+            db.BookingEditTime(BookingID, BookingStart, BookingEnd);
+            db.EditCustomerComment(BookingID, Comment);
+
             RequestDispatcher rd;
 
             request.setAttribute("userid", userID);
-            request.setAttribute("BookingID", request.getParameter("BookingID"));
+            request.setAttribute("BookingID", BookingID);
+
             rd = getServletContext().getRequestDispatcher("/EditBookingFrom_Admin.jsp");
             rd.forward(request, response);
         } else if (action.equals("viewdetail")) {
@@ -201,9 +209,10 @@ public class HandleBooking extends HttpServlet {
             rd = getServletContext().getRequestDispatcher("/EditBookingFrom_Admin.jsp");
             rd.forward(request, response);
         } else if (action.equals("approve")) {
+            String Remark = request.getParameter("Remark");
             String BookingID = request.getParameter("BookingID");
 
-            db.ApproveBooking(BookingID);
+            db.ApproveBooking(BookingID, Remark);
 
             db.DeleteNoNeed(BookingID);
             RequestDispatcher rd;
@@ -213,10 +222,11 @@ public class HandleBooking extends HttpServlet {
             rd = getServletContext().getRequestDispatcher("/ViewBooking_Admin.jsp");
             rd.forward(request, response);
         } else if (action.equals("deny")) {
+            String Remark = request.getParameter("Remark");
             String BookingID = request.getParameter("BookingID");
 
             RequestDispatcher rd;
-            BookingBean bb = db.DenyBooking(BookingID);
+            BookingBean bb = db.DenyBooking(BookingID,Remark);
 
             if (bb != null) {
                 String BookingID_New = bb.getBookingID();
@@ -268,6 +278,13 @@ public class HandleBooking extends HttpServlet {
             request.setAttribute("status", Status);
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
+            rd.forward(request, response);
+
+        } else if (action.equals("export")) {
+
+            db.QueryVenueBookingToCSV();
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/ViewBooking_Admin.jsp");
             rd.forward(request, response);
 
         } else {

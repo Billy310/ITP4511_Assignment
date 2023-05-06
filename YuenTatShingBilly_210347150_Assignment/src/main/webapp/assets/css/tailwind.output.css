@@ -543,6 +543,21 @@ img,video{
     background-color:#7e3af2;
     background-color:rgba(126,58,242,var(--bg-opacity))
 }
+/*#003f5c
+#bc5090
+#ffa600*/
+
+.bg-darkblue{
+    --bg-opacity:1;
+    background-color:#003f5c;
+    background-color:rgba(0, 63, 92,var(--bg-opacity))
+}
+
+.bg-mango{
+    --bg-opacity:1;
+    background-color:#ffa600;
+    background-color:rgba(255,166,0,var(--bg-opacity))
+}
 
 .bg-tm{
     --bg-opacity:1;

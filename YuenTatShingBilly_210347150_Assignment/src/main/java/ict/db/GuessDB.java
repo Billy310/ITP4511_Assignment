@@ -198,5 +198,52 @@ public class GuessDB {
         return isSuccess;
 
     }
+     
+      public ArrayList<GuessBean> QueryGuessBeanByLastName(String GuessListID,String LastName) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<GuessBean> guessbeans = new ArrayList<GuessBean>();
+
+        try {
+
+            String preQueryStatement = "SELECT * FROM GUESS WHERE GUESSLISTID = ? AND LASTNAME = ?";
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, GuessListID);
+            pStmnt.setString(2, LastName);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                GuessBean guessbean;
+                guessbean = new GuessBean(
+                        rs.getString("GuessID"),
+                        rs.getString("GuessListID"),
+                        rs.getString("FirstName"),
+                        rs.getString("LastName"),
+                        rs.getString("Email"),
+                        rs.getString("PhoneNumber")
+                );
+                guessbeans.add(guessbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return guessbeans;
+
+    }
 
 }

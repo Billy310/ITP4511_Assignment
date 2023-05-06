@@ -80,7 +80,7 @@
                                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                                         >
 
-                                        <jsp:include page="ListGuess.jsp" />
+                                        <jsp:include page="ListSearchGuess.jsp" />
 
                                     </tbody>
                                 </table>
@@ -91,7 +91,7 @@
                         <form action="ViewGuessSearch.jsp" method="GET"> 
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
                             <input type="hidden" name="BookingID" value="<%=request.getParameter("BookingID")%>" />
-                            
+
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >
@@ -129,7 +129,7 @@
                             </button>
                         </form>
                     </div>
-                  
+
 
 
             </div>

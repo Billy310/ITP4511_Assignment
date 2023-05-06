@@ -110,7 +110,7 @@
             class="flex h-screen bg-gray-50 dark:bg-gray-900"
             :class="{ 'overflow-hidden': isSideMenuOpen}"
             >
-            <form action="ViewBooking.jsp" method="POST" id="myForm">
+            <form action="SearchBooking_User.jsp" method="POST" id="myForm">
                 <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
             </form>
             <input type="hidden" id="MadeCount" value="<%=bdb.QueryVenueBookingByUserIDForToday(request.getParameter("userid")).size()%>"

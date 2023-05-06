@@ -9,7 +9,10 @@
         <param-name>dbUrl</param-name>
         <param-value>jdbc:mysql://localhost:3306/itp4511_assignment</param-value>
     </context-param>
-
+    <context-param>
+        <param-name>dbUrl_php</param-name>
+        <param-value>jdbc:mysql://localhost:80/Assignment</param-value>
+    </context-param>
     <context-param>
         <param-name>dbUser</param-name>
         <param-value>root</param-value>
@@ -18,8 +21,8 @@
         <param-name>dbPassword</param-name>
         <param-value>root</param-value>
     </context-param>
-        <context-param>
+<!--        <context-param>
         <param-name>UserID</param-name>
         <param-value>J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5</param-value>
-    </context-param>
+    </context-param>-->
 </web-app>
