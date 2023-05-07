@@ -226,7 +226,7 @@ public class HandleBooking extends HttpServlet {
             String BookingID = request.getParameter("BookingID");
 
             RequestDispatcher rd;
-            BookingBean bb = db.DenyBooking(BookingID,Remark);
+            BookingBean bb = db.DenyBooking(BookingID, Remark);
 
             if (bb != null) {
                 String BookingID_New = bb.getBookingID();
@@ -243,7 +243,7 @@ public class HandleBooking extends HttpServlet {
             db.ChangeBookingCheckStatus(BookingID, 1);
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
- 
+
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
             rd.forward(request, response);
@@ -253,7 +253,7 @@ public class HandleBooking extends HttpServlet {
             db.ChangeBookingCheckStatus(BookingID, 2);
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
- 
+
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
             rd.forward(request, response);
@@ -263,7 +263,7 @@ public class HandleBooking extends HttpServlet {
             db.ChangeBookingCheckStatus(BookingID, 4);
             request.setAttribute("userid", userID);
             request.setAttribute("BookingID", BookingID);
- 
+
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/HandleAdminSearchEdit.jsp");
             rd.forward(request, response);
@@ -275,6 +275,16 @@ public class HandleBooking extends HttpServlet {
             rd = getServletContext().getRequestDispatcher("/ViewBooking_Admin.jsp");
             rd.forward(request, response);
 
+        } else if (action.equals("Pay")) {
+            String BookingID = request.getParameter("BookingID");
+            db.SetToPay(BookingID);
+            RequestDispatcher rd;
+
+            request.setAttribute("userid", userID);
+            request.setAttribute("BookingID", BookingID);
+
+            rd = getServletContext().getRequestDispatcher("/BackToBookingPriority.jsp");
+            rd.forward(request, response);
         } else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");

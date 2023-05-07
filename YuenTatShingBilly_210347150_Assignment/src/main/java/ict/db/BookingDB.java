@@ -1633,5 +1633,38 @@ public class BookingDB {
         return Status;
 
     }
+    
+       public boolean SetToPay(String BookingID) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+          
+//            String preQueryStatment = "DELETE FROM BOOKING WHERE BOOKINGID != ? AND CREATEDDATE = ? AND USERID = ?";
+            String preQueryStatment = "UPDATE BOOKING SET STATUS = 1 WHERE  BOOKINGID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setString(1, BookingID);
+
+
+            pStmnt.executeUpdate();
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
 
 }

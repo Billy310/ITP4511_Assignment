@@ -3,6 +3,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date,ict.personal.TransferFormat"%>
 <%@page import="java.util.ArrayList,ict.bean.BookingBean,ict.bean.VenueBean,ict.bean.VenueLocationBean,ict.db.BookingDB,ict.db.VenueLocationDB,ict.db.VenueDB,ict.db.VenueTypeDB,ict.bean.VenueTypeBean" %>
+<%@page import="ict.bean.GuessBean,ict.db.GuessDB"%>
 
 <%
     TransferFormat tf = new TransferFormat();
@@ -14,6 +15,7 @@
     VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
     VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
     VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
+    GuessDB guessdb = new GuessDB(dbUrl, dbUser, dbPassword);
     BookingBean bb = db.QueryByID(request.getParameter(BookingID));
     VenueBean vb = venueDB.queueVenueByVenueID(bb.getVenueID());
     VenueLocationBean vlb = LocationDB.QueryByLocationID(vb.getVenueLocationID());
@@ -38,7 +40,7 @@
     $(document).ready(function () {
 
         if ($("#Status").val() != 0) {
-            
+
             $(".Payment").hide();
         }
 
@@ -98,6 +100,9 @@
                         <form action="Payment.jsp" method="GET" id="Payment" >        
                             <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
+                            <input type="hidden" name="BookingFee" value="<%=bb.getBookingFee()%>" />
+                            <input type="hidden" name="Quantity" value="<%= guessdb.QueryGuessBeanByGuessListID(bb.getBookingID()).size()%>" />
+                            <input type="hidden" name="PersonInCharge" value="<%=venueDB.queueVenueByVenueID(bb.getVenueID()).getPersonInCharge() * guessdb.QueryGuessBeanByGuessListID(bb.getBookingID()).size()%>" />
                         </form>   
                         <h2
                             class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
@@ -218,13 +223,13 @@
                             </button>
 
                             <input type="hidden" id="Status" value="<%=bb.getStatus()%>" />
-                                   <button 
-                                   
-                                   form="Payment"
-                                   type="submit"
-                                   class="Payment px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                   >
-                            Payment
+                            <button 
+
+                                form="Payment"
+                                type="submit"
+                                class="Payment px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                >
+                                Payment
                             </button>
                         </div>
 
