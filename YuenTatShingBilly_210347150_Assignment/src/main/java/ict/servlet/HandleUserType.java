@@ -37,16 +37,21 @@ public class HandleUserType extends HttpServlet {
         String action = request.getParameter("action");
         if (action.equals("edit")) {
 
+            int UserTypeID = Integer.parseInt(request.getParameter("TypeID"));
+            String UserTypeName = request.getParameter("TypeName");
+            db.EditRecord(UserTypeID, UserTypeName);
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
-            rd = getServletContext().getRequestDispatcher("/ViewType.jsp");
+
+            rd = getServletContext().getRequestDispatcher("/ViewUserRole.jsp");
             rd.forward(request, response);
 
         } else if (action.equals("add")) {
+            
             db.AddRecord(request.getParameter("UserTypeName"));
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
-            rd = getServletContext().getRequestDispatcher("/ViewType.jsp");
+            rd = getServletContext().getRequestDispatcher("/ViewUserRole.jsp");
             rd.forward(request, response);
 
         } else {

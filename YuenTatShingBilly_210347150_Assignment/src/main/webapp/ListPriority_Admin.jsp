@@ -69,7 +69,7 @@
         }
         out.print("</td>");
 
-        out.print("<form action='ViewBookingDetail.jsp' method=\"GET\" >");
+        out.print("<form action='ViewBookingDetail_Admin.jsp' method=\"GET\" >");
         out.print("<input type=hidden value=" + UserID + " name=userid />");
         out.print("<input type=hidden value=" + vb.getBookingID() + " name=BookingID />");
         out.print("<td class=\"px-4 py-3 text-xs\">");

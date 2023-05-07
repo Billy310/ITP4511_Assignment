@@ -36,7 +36,7 @@
             :class="{ 'overflow-hidden': isSideMenuOpen}"
             >
             <!-- Desktop sidebar -->
-            <jsp:include page="Sidebar_Admin.jsp">
+            <jsp:include page="Sidebar_Senior.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <!-- Mobile sidebar -->
@@ -49,7 +49,7 @@
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
                         <form action="HandleType" method="GET" >
-                            <input type="hidden" name="userid" value="<%=request.getParameter("userid") %>" />
+                            <input type="hidden" name="userid" value="<%=request.getParameter("userid") %>"  />
                             <h2
                                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
                                 >

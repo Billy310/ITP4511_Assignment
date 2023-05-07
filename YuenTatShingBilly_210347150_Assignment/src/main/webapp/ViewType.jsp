@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Windmill Dashboard</title>
+        <title></title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -24,7 +24,7 @@
             :class="{ 'overflow-hidden': isSideMenuOpen }"
             >
             <!-- Desktop sidebar -->
-            <jsp:include page="Sidebar_Admin.jsp">
+            <jsp:include page="Sidebar_Senior.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
             <!-- Mobile sidebar -->

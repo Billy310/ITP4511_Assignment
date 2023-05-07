@@ -15,7 +15,7 @@
         GuessBean gb = gbs.get(x);
 
         out.print("<form action=\"HandleGuess\" method=\"GET\"    >");
-        out.print("<input type=\"hidden\" name=\"userid\"  value=" + UserID + "/>");
+        out.print("<input type=hidden name=userid  value=" + UserID + " />");
         out.print("<input type=\"hidden\" name=\"action\"  value=\"remove\"  />");
         out.print("<input type=\"hidden\" name=\"GuessID\"  value=" + gb.getGuessID() + " />");
         out.print("<input type=\"hidden\" name=\"BookingID\"  value=" + BookingID + " />");
@@ -61,8 +61,8 @@
         out.print("</div></td></tr>");
         out.print("</form>");
     }
-    out.print("<form action=\"HandleGuess\" method=\"GET\"    >");
-    out.print("<input type=\"hidden\" name=\"userid\"  value=" + UserID + "/>");
+    out.print("<form action=HandleGuess method=GET    >");
+    out.print("<input type=hidden name=userid value=" + UserID + " />");
     out.print("<input type=\"hidden\" name=\"action\"  value=\"add\"  />");
     out.print("<input type=\"hidden\" name=\"BookingID\"  value=" + BookingID + " />");
     out.print("<tr class=\"text-gray-700 dark:text-gray-400\">");
