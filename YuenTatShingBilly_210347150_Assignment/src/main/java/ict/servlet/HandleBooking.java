@@ -285,7 +285,24 @@ public class HandleBooking extends HttpServlet {
 
             rd = getServletContext().getRequestDispatcher("/BackToBookingPriority.jsp");
             rd.forward(request, response);
-        } else {
+        }
+        else if (action.equals("updateRemark")) {
+            String Remark = request.getParameter("Remark");
+            String BookingID = request.getParameter("BookingID");
+            
+            db.UpdateRemark(BookingID, Remark);
+//            db.ApproveBooking(BookingID, Remark);
+//
+//            db.DeleteNoNeed(BookingID);
+            RequestDispatcher rd;
+            request.setAttribute("userid", userID);
+            request.setAttribute("bookingid", BookingID);
+
+            rd = getServletContext().getRequestDispatcher("/ViewBooking_Admin.jsp");
+            rd.forward(request, response);
+        }
+        
+        else {
             PrintWriter out = response.getWriter();
             out.println("No such action!!!");
         }

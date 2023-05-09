@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB,ict.bean.BookingBean,ict.db.BookingDB" %>
+<%@page import="ict.db.*,ict.bean.*,java.util.*" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
@@ -30,7 +30,6 @@
         ></script>
 
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
                 if ($("#MadeCount").val() > 0) {
@@ -39,6 +38,10 @@
                         autoRefresh();
                     }, 1);
                 }
+                
+                $("#venuedate").css({"border-color": "#C1E0FF",
+                        "border-width": "2px",
+                        "border-style": "solid"});
 
 
                 function submitform() {

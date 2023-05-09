@@ -11,6 +11,10 @@
     <script>
         $(document).ready(function () {
 
+            $(".input").css({"border-color": "#C1E0FF",
+                "border-width": "2px",
+                "border-style": "solid"});
+
             $("#tab-1").click(function () {
 
                 $(".input").val('');
@@ -20,6 +24,45 @@
             $("#tab-2").click(function () {
 
                 $(".input").val('');
+
+            });
+
+//            $(".input").click(function () {
+//
+//                $(this).css({"border-color": "#C1E0FF",
+//                    "border-width": "1px",
+//                    "border-style": "solid"});
+//
+//            });
+
+            $(".input").keyup(function () {
+
+                if ($(this).val().length > 0) {
+                    $(this).css({"border-color": "#C1E0FF",
+                        "border-width": "2px",
+                        "border-style": "hidden"});
+
+                } else {
+                    $(this).css({"border-color": "#C1E0FF",
+                        "border-width": "2px",
+                        "border-style": "solid"});
+
+                }
+
+            });
+            $(".input").keydown(function () {
+
+                if ($(this).val().length > 0) {
+                    $(this).css({"border-color": "#C1E0FF",
+                        "border-width": "2px",
+                        "border-style": "hidden"});
+
+                } else {
+                    $(this).css({"border-color": "#C1E0FF",
+                        "border-width": "2px",
+                        "border-style": "solid"});
+
+                }
 
             });
 
@@ -49,10 +92,7 @@
                                 <label for="pass" class="label">Password</label>
                                 <input id="pass" type="password" class="input" data-type="password" name="password"  placeholder="Enter Your Password" />
                             </div>
-                            <div class="group">
-                                <input id="check" type="checkbox" class="check" checked>
-                                <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                            </div>
+ 
                             <div class="group">
                                 <input type="submit" class="button" value="Sign In">
                             </div>

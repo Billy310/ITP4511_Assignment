@@ -1,9 +1,7 @@
  
+<%@page import="java.util.*,java.text.*,java.sql.*,ict.bean.*,ict.db.*,ict.personal.*" %>
 
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.sql.Date,ict.personal.TransferFormat"%>
-<%@page import="java.util.ArrayList,ict.bean.BookingBean,ict.bean.VenueBean,ict.bean.VenueLocationBean,ict.db.BookingDB,ict.db.VenueLocationDB,ict.db.VenueDB,ict.db.VenueTypeDB,ict.bean.VenueTypeBean" %>
-
+ 
 <%
     TransferFormat tf = new TransferFormat();
     String BookingID = "BookingID";
@@ -157,13 +155,13 @@
                                     value="<%=TransferTime(bb.getBookingEnd())%>"
                                     />
                             </label>
-                            <label class="block text-sm">
+                            <label class="block text-sm canedit">
                                 <span class="text-gray-700 dark:text-gray-400">Remark From Senior Manager</span>
                                 <input
-
+                                    
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-
-                                    readonly
+                                    name="Remark"
+                                    form="updateRemark"
                                     value="<%=bb.getRemark()%>"
                                     />
                             </label>
@@ -178,7 +176,31 @@
                                     />
                             </label>
                             <br>
+                            <form action="GuessList_Admin.jsp" method="POST" id="ChangeGuessList" >        
+                                <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
+                                <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
+                            </form>   
+                            <form action="HandleBooking" method="POST" id="updateRemark" >    
+                                <input type="hidden" name="action"  value="updateRemark" />
+                                <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
+                                <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
+                                
+                            </form>    
+                            <button
+                                form="ChangeGuessList"
+                                type="submit"
+                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                >
+                                View Guess List
+                            </button>
 
+                            <button
+                                form="updateRemark"
+                                type="submit"
+                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                >
+                                Update Remark
+                            </button>
 
 
                         </div>

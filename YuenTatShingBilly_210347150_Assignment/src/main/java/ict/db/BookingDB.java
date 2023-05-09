@@ -78,6 +78,7 @@ public class BookingDB {
                     + "PRIMARY KEY (BookingID)"
                     + ")";
             stmnt.execute(sql);
+             
             stmnt.close();
             cnnct.close();
         } catch (SQLException ex) {
@@ -167,7 +168,7 @@ public class BookingDB {
             while (rs.next()) {
                 BookingBean bookingbean;
                 bookingbean = new BookingBean(
-                        rs.getString("BookingID"),
+                            rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
@@ -268,7 +269,7 @@ public class BookingDB {
         Connection cnnct = null;
         ResultSet rs = null;
         ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
-
+        
         try {
 
             String preQueryStatement = "SELECT * FROM BOOKING WHERE USERID = ?";
@@ -548,7 +549,7 @@ public class BookingDB {
         ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
 
         try {
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE VenueID = ? AND BookingDate >= ? AND BookingDate <= ?";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE VenueID = ? AND BookingDate >= ? AND BookingDate <= ? AND STATUS = 1";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -661,7 +662,7 @@ public class BookingDB {
 
         try {
 
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE USERID = ? AND CREATEDDATE = ? AND STATUS = 3";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE USERID = ? AND CREATEDDATE = ? ";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -1665,6 +1666,98 @@ public class BookingDB {
             ex.printStackTrace();
         }
         return isSuccess;
+    }
+       
+       
+       public boolean UpdateRemark(String BookingID, String Remark) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatment = "UPDATE BOOKING SET  REMARK = ? WHERE BOOKINGID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setString(1, Remark);
+            pStmnt.setString(2, BookingID);
+
+            int rowCount = pStmnt.executeUpdate();
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+       
+       
+          public ArrayList<BookingBean> QueryVenueBookingSameDateSameVenueSameUser(int VenueID, String BookingDate, String UserID,String BookingID) throws ParseException {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        ResultSet rs = null;
+        ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.sql.Date bookingdate_date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND USERID = ? AND BOOKINGID != ?" ;
+            cnnct = getConnection();
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, VenueID);
+            pStmnt.setDate(2, bookingdate_date);
+            pStmnt.setString(3, UserID);
+            pStmnt.setString(4, BookingID);
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                BookingBean bookingbean;
+                bookingbean = new BookingBean(
+                        rs.getString("BookingID"),
+                        rs.getString("UserID"),
+                        rs.getInt("VenueID"),
+                        rs.getDate("BookingDate"),
+                        rs.getDate("CreatedDate"),
+                        rs.getTimestamp("CreatedTime"),
+                        rs.getInt("BookingStart"),
+                        rs.getInt("BookingEnd"),
+                        rs.getInt("Status"),
+                        rs.getInt("Priority"),
+                        rs.getDouble("BOOKINGFEE"),
+                        rs.getDouble("PERSONINCHARGE"),
+                        rs.getString("REMARK"),
+                        rs.getString("COMMENT"),
+                        rs.getInt("CheckStatus")
+                );
+                bookingBeans.add(bookingbean);
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+        return bookingBeans;
+
     }
 
 }

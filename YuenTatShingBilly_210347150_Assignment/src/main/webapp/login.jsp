@@ -12,6 +12,7 @@
 
         <form name="myForm" id="myForm" action="SearchBooking_User.jsp" method="GET">
             <input type="hidden" name="userid" value=<%=request.getAttribute("userid")%> />
+         
         </form>
     </body>
     <script type="text/javascript">

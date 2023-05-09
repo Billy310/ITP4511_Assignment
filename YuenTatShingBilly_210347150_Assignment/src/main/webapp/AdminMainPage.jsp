@@ -38,7 +38,7 @@
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
-                $("#Extend").hide();
+                $(".venue").hide();
                 var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
@@ -146,7 +146,7 @@
 
 
 
-                                <div class="mt-4 text-sm">
+                                <div class="mt-4 text-sm venue">
                                     <span class="text-gray-700 dark:text-gray-400">
                                         All Venue?
                                     </span>
@@ -200,6 +200,7 @@
 
                                     </label>
                                 </div>
+                                         
 
                                 <br>
                                 <button

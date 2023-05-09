@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB,ict.db.BookingDB,ict.bean.BookingBean,ict.personal.TransferFormat" %>
+<%@page import="ict.db.*,ict.bean.*,java.util.*,ict.personal.*" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
@@ -10,7 +10,7 @@
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
     BookingDB bdb = new BookingDB(dbUrl, dbUser, dbPassword);
     BookingBean bb = bdb.QueryByID(request.getParameter("BookingID"));
-    ArrayList<BookingBean> bbs = bdb.QueryVenueBookingByDateAndPlaceAndBookingID(bb.getVenueID(), bb.getBookingDate().toString(), bb.getBookingID());
+    ArrayList<BookingBean> bbs = bdb.QueryVenueBookingSameDateSameVenueSameUser(bb.getVenueID(), bb.getBookingDate().toString(),bb.getUserID(),bb.getBookingID());
     ArrayList<Integer> disabledtime = new ArrayList();
     for (int x = 0; x < bbs.size(); x++) {
         int starttime = bbs.get(x).getBookingStart();
@@ -24,7 +24,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Windmill Dashboard - Forms</title>
+        <title>Edit Booking Form</title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -34,7 +34,20 @@
             src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer
         ></script>
-        <script src="Jquery/jquery-3.6.4.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+        <script>
+            $(document).ready(function () {
+                
+                
+                
+                
+            });
+
+        </script>
+
+
+
         <script src="./assets/js/init-alpine.js"></script>
 
     </head>

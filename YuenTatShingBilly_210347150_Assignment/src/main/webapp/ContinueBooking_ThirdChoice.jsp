@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="ict.bean.VenueTypeBean,ict.db.VenueTypeDB,java.util.ArrayList,ict.bean.VenueBean,ict.db.VenueDB,ict.db.VenueLocationDB,ict.bean.VenueLocationBean,ict.bean.VenueTypeBean,ict.db.VenueTypeDB,ict.db.BookingDB,ict.bean.BookingBean" %>
+<%@page import="ict.db.*,ict.bean.*,java.util.*" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
@@ -55,6 +55,20 @@
                 var selectedvalue_X = document.getElementById("useless_x").value;
                 var selectedvalue_Y = document.getElementById("useless_y").value;
                 initMap(selectedvalue_X, selectedvalue_Y, 20);
+
+
+                $("#venuetimestart").css({"border-color": "#C1E0FF",
+                    "border-width": "2px",
+                    "border-style": "solid"});
+
+                $("#venuetimeend").css({"border-color": "#C1E0FF",
+                    "border-width": "2px",
+                    "border-style": "solid"});
+
+                $("#comment").css({"border-color": "#C1E0FF",
+                    "border-width": "2px",
+                    "border-style": "solid"});
+
             });
             function initMap(x_Cord, y_Cord, zoom) {
                 var myLatLng = {lat: parseFloat(x_Cord), lng: parseFloat(y_Cord)};
@@ -220,6 +234,7 @@
 
                                     </span>
                                     <input
+                                        id="comment"
                                         type="text"
                                         name="Comment3"
                                         placeholder="Comment"
