@@ -15,8 +15,6 @@
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
 
-        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script>
     </head>
     <body>
         <div
@@ -67,7 +65,8 @@
                                             >
                                             <th class="px-4 py-3">User Type ID</th>
                                             <th class="px-4 py-3">User Type Name</th>
-                                            <th class="px-4 py-3">Action</th>
+                                            <th class="px-4 py-3">Edit</th>
+                                            <th class="px-4 py-3">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody

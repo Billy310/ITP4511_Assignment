@@ -605,7 +605,7 @@ public class BookingDB {
         ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
 
         try {
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID != ? AND BookingDate >= ? AND BookingDate <= ?";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID != ? AND BookingDate >= ? AND BookingDate <= ? AND STATUS = 1";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -792,13 +792,14 @@ public class BookingDB {
             BookingBean bb = QueryByID(BookingID);
             String UserID = bb.getUserID();
             java.sql.Date create_date = bb.getCreatedDate();
-            String preQueryStatment = "UPDATE BOOKING SET REMARK = ? STATUS=2 WHERE BOOKINGID = ?";
+            String preQueryStatment = "UPDATE BOOKING SET REMARK = ? , STATUS=2 WHERE BOOKINGID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setString(1, Remark);
             pStmnt.setString(2, BookingID);
 
             pStmnt.executeUpdate();
-
+            
+            
             int Priority = bb.getPriority();
 
             preQueryStatment = "Select * FROM Booking WHERE CREATEDDATE = ? AND USERID = ? AND Priority = ?";
@@ -1130,7 +1131,7 @@ public class BookingDB {
         return isSuccess;
     }
 
-    public ArrayList<BookingBean> QueryVenueBookingWithCheckStatus(int VenueID, ArrayList<java.sql.Date> rangeofdate, int CheckStatus) {
+    public ArrayList<BookingBean> QueryVenueBookingWithCheckStatus(int VenueID, ArrayList<java.sql.Date> rangeofdate) {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -1138,14 +1139,15 @@ public class BookingDB {
         ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
 
         try {
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID != ? AND BookingDate >= ? AND BookingDate <= ? AND CheckStatus = ? ";
+//            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate >= ? AND BookingDate <= ?  ";
+             String preQueryStatement = "SELECT * FROM BOOKING WHERE VenueID = ? AND BookingDate >= ? AND BookingDate <= ? AND CHECKSTATUS = 4";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setInt(1, VenueID);
             pStmnt.setDate(2, rangeofdate.get(0));
             pStmnt.setDate(3, rangeofdate.get(1));
-            pStmnt.setInt(4, CheckStatus);
+//            pStmnt.setInt(4, CheckStatus);
             rs = pStmnt.executeQuery();
             while (rs.next()) {
                 BookingBean bookingbean;
@@ -1195,7 +1197,7 @@ public class BookingDB {
         ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
 
         try {
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID != ? AND BookingDate >= ? AND BookingDate <= ? AND CheckStatus = 3 AND STATUS = 1 ";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate >= ? AND BookingDate <= ? AND CheckStatus != 4 AND STATUS = 1  ";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);

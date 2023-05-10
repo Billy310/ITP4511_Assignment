@@ -151,11 +151,10 @@ public class UserDB {
         return isSuccess;
 
     }
-    
-    public boolean DisableAccount(String UserID){
-    
-    
-         PreparedStatement pStmnt = null;
+
+    public boolean DisableAccount(String UserID) {
+
+        PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         Connection cnnct = null;
         try {
@@ -185,10 +184,10 @@ public class UserDB {
 
         }
         return isSuccess;
-    
+
     }
 
-    public boolean EditRecord(String UserID, String Username, String Password,int Enable, String Email) {
+    public boolean EditRecord(String UserID, String Username, String Password, int Enable, String Email) {
 
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
@@ -239,6 +238,7 @@ public class UserDB {
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
+
             rs = pStmnt.executeQuery();
             while (rs.next()) {
                 UserBean userbean;
@@ -270,6 +270,8 @@ public class UserDB {
         return userbeans;
 
     }
+
+    
 
     public UserBean QueryUserByName(String Name) {
 
@@ -314,6 +316,153 @@ public class UserDB {
         }
 
         return userbean;
+
+    }
+    
+     public ArrayList<UserBean> QueryUserByAble(int Enable) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        UserBean userbean = null;
+        ArrayList<UserBean> Users = new ArrayList();
+        try {
+
+            String preQueryStatement = "SELECT * FROM USER WHERE  ENABLE = ?";
+            cnnct = getConnection();
+            ResultSet rs = null;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, Enable);
+            rs = pStmnt.executeQuery();
+
+            while (rs.next()) {
+
+                userbean = new UserBean(
+                        rs.getString("userID"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getInt("Role"),
+                        rs.getInt("Enable")
+                );
+                Users.add(userbean);
+
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return Users;
+
+    }
+
+    public ArrayList<UserBean> QueryUserByNameAndUserRole(String Name, int UserRoleID, int Enable) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        UserBean userbean = null;
+        ArrayList<UserBean> Users = new ArrayList();
+        try {
+
+            String preQueryStatement = "SELECT * FROM USER WHERE LOWER(USERNAME)=LOWER(?) AND ROLE = ? AND ENABLE = ?";
+            cnnct = getConnection();
+            ResultSet rs = null;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, Name);
+            pStmnt.setInt(2, UserRoleID);
+            pStmnt.setInt(3, Enable);
+            rs = pStmnt.executeQuery();
+
+            while (rs.next()) {
+
+                userbean = new UserBean(
+                        rs.getString("userID"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getInt("Role"),
+                        rs.getInt("Enable")
+                );
+                Users.add(userbean);
+
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return Users;
+
+    }
+
+    public ArrayList<UserBean> QueryUserUserRole(int UserRoleID, int Enable) {
+
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        UserBean userbean = null;
+        ArrayList<UserBean> Users = new ArrayList();
+        try {
+
+            String preQueryStatement = "SELECT * FROM USER WHERE  ROLE = ? AND ENABLE = ?";
+            cnnct = getConnection();
+            ResultSet rs = null;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, UserRoleID);
+            pStmnt.setInt(2, Enable);
+            rs = pStmnt.executeQuery();
+
+            while (rs.next()) {
+
+                userbean = new UserBean(
+                        rs.getString("userID"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getInt("Role"),
+                        rs.getInt("Enable")
+                );
+                Users.add(userbean);
+
+            }
+
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return Users;
 
     }
 
@@ -362,7 +511,7 @@ public class UserDB {
         return userbean;
 
     }
-    
+
     public boolean EditPersonalRecord(String UserID, String Username, String Password, String Email) {
 
         PreparedStatement pStmnt = null;
@@ -399,10 +548,5 @@ public class UserDB {
         }
         return isSuccess;
     }
-
-    
-    
-    
-    
 
 }

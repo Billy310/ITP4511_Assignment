@@ -50,9 +50,7 @@
                                 >
                                 Account Information Edit Page
                             </h2>
-                            <!-- CTA -->
-
-                            <!-- General elements -->
+              
 
                             <div
                                 class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
@@ -60,7 +58,7 @@
                                 <input type="hidden" value="edit" name="action" />
 
                                 <label class="block text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">UserID</span>
+                                    <span class="text-gray-700 dark:text-gray-400">User ID</span>
                                     <input
                                         name="userid"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"

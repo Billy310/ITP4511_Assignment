@@ -219,7 +219,7 @@
                 String dbPassword = this.getServletContext().getInitParameter("dbPassword");
                 String dbUrl = this.getServletContext().getInitParameter("dbUrl");
                 BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingWithCheckStatus(LocationID, getfirstandend(Year, Month), 4);
+                ArrayList<BookingBean> bbs = bookingDB.QueryVenueBookingWithCheckStatus(LocationID, getfirstandend(Year, Month));
                 return bbs.size();
             }
 

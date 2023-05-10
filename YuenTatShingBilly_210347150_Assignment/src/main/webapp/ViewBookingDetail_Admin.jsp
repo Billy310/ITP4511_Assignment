@@ -1,7 +1,7 @@
  
 <%@page import="java.util.*,java.text.*,java.sql.*,ict.bean.*,ict.db.*,ict.personal.*" %>
 
- 
+
 <%
     TransferFormat tf = new TransferFormat();
     String BookingID = "BookingID";
@@ -11,6 +11,7 @@
     BookingDB db = new BookingDB(dbUrl, dbUser, dbPassword);
     VenueDB venueDB = new VenueDB(dbUrl, dbUser, dbPassword);
     VenueLocationDB LocationDB = new VenueLocationDB(dbUrl, dbUser, dbPassword);
+    UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
     VenueTypeDB vtb = new VenueTypeDB(dbUrl, dbUser, dbPassword);
     BookingBean bb = db.QueryByID(request.getParameter(BookingID));
     VenueBean vb = venueDB.queueVenueByVenueID(bb.getVenueID());
@@ -82,7 +83,16 @@
                         <div
                             class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                             >
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">User Name</span>
+                                <input
+                                   
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    readonly
+                                    value="<%=userdb.QueryUserByID(bb.getUserID()).getUsername() %>" 
 
+                                    />
+                            </label>
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Booking ID</span>
                                 <input
@@ -158,7 +168,7 @@
                             <label class="block text-sm canedit">
                                 <span class="text-gray-700 dark:text-gray-400">Remark From Senior Manager</span>
                                 <input
-                                    
+
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                     name="Remark"
                                     form="updateRemark"
@@ -184,7 +194,7 @@
                                 <input type="hidden" name="action"  value="updateRemark" />
                                 <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
                                 <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
-                                
+
                             </form>    
                             <button
                                 form="ChangeGuessList"

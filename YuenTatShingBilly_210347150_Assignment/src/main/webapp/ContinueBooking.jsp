@@ -49,17 +49,76 @@
         initMap(selectedvalue_X, selectedvalue_Y, 20);
 
 
-        $("#venuetimestart").css({"border-color": "#C1E0FF",
+        $("#VenueTimeOfStart").css({"border-color": "#C1E0FF",
             "border-width": "2px",
             "border-style": "solid"});
 
         $("#venuetimeend").css({"border-color": "#C1E0FF",
             "border-width": "2px",
             "border-style": "solid"});
-        
+
         $("#comment").css({"border-color": "#C1E0FF",
             "border-width": "2px",
             "border-style": "solid"});
+
+
+        $("#VenueTimeOfStart").change(function () {
+
+
+              var box = document.getElementById('VenueTimeOfStart');
+
+            StartTime = box.options[box.selectedIndex].value;
+
+
+
+            if ((parseInt(StartTime) > parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                alert("The Starting Time cannot later than The Ending Time.");
+                var Total = (parseInt(StartTime) + 3);
+
+                $("#venuetimeend").val(Total);
+
+            }
+
+            if (($("#venuetimeend").find(":selected").val() - StartTime) > 3) {
+
+                alert("Booking Period can not Longer than 3 Hours");
+                var Total = (parseInt(StartTime) + 3);
+
+                $("#venuetimeend").val(Total);
+            }
+             
+            
+            
+            
+        });
+
+        $("#venuetimeend").change(function () {
+            var box = document.getElementById('VenueTimeOfStart');
+
+            StartTime = box.options[box.selectedIndex].value;
+
+
+
+            if ((parseInt(StartTime) > parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                alert("The Starting Time cannot later than The Ending Time.");
+                var Total = (parseInt(StartTime) + 3);
+
+                $("#venuetimeend").val(Total);
+
+            }
+
+            if (($("#venuetimeend").find(":selected").val() - StartTime) > 3) {
+
+                alert("Booking Period can not Longer than 3 Hours");
+                var Total = (parseInt(StartTime) + 3);
+
+                $("#venuetimeend").val(Total);
+            }
+
+
+        });
 
     });
 
@@ -164,7 +223,7 @@
                                         Venue Time (Start)
                                     </span>
                                     <select           name="BookingStart1"
-                                                      id="venuetimestart"
+                                                      id="VenueTimeOfStart"
                                                       class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                         <%
                                             for (int x = 8; x < 21; x++) {

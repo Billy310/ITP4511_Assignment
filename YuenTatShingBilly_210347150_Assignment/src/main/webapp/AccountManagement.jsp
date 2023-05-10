@@ -14,16 +14,7 @@
             defer
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
-            />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-            defer
-        ></script>
-<!--        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script>-->
+
     </head>
     <body>
         <div
@@ -52,8 +43,8 @@
 
             <div class="flex flex-col flex-1 w-full">
                 <jsp:include page="Topbar.jsp" />
-                
-                <%   %>
+
+                <%%>
                 <main class="h-full overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
                         <h2
@@ -87,8 +78,8 @@
                                     <tbody
                                         class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                                         >     
-                                    
-                                       <jsp:include page="ListAccount.jsp">
+
+                                        <jsp:include page="ListAccount.jsp">
                                             <jsp:param name="userid" value="<%=request.getParameter("J0En5tVRksLgYfJb12skuWQHT8r5H3MA0L5")%>" />
                                         </jsp:include>
 
@@ -96,7 +87,7 @@
                                 </table>
                             </div>
                         </div>
-                                 <div class="flex mt-6 text-sm">
+                        <div class="flex mt-6 text-sm">
                             <form action="AddUser.jsp" method="POST"> 
                                 <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
                                 <button 

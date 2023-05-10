@@ -233,4 +233,41 @@ public class UserTypeDB {
         return isSuccess;
 
     }
+       
+       public boolean DeleteType(int TypeID) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        int rowCount = 0;
+
+        try {
+
+            cnnct = getConnection();
+            String preQueryStatment = "DELETE FROM USERTYPE WHERE USERTYPEID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setInt(1, TypeID);
+
+            rowCount = pStmnt.executeUpdate();
+
+            if (rowCount >= 1) {
+
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return isSuccess;
+
+    }
 }

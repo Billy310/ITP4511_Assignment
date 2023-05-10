@@ -12,8 +12,28 @@
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
     UserTypeDB usertypedb = new UserTypeDB(dbUrl, dbUser, dbPassword);
-    ArrayList<UserBean> Users = userdb.QueryUser();
-   
+    String action = request.getParameter("action");
+    ArrayList<UserBean> Users = null;
+    int Able = Integer.parseInt(request.getParameter("action_able"));
+    if (action.equals("norequirementserach")) {
+        Users = userdb.QueryUserByAble(Able);
+    } else if (action.equals("twosearch")) {
+        String username = request.getParameter("username");
+        int UserRole = Integer.parseInt(request.getParameter("usertype"));
+        Users = userdb.QueryUserByNameAndUserRole(username, UserRole,Able);
+
+    } else if (action.equals("serachuserrole")) {
+        int UserRole = Integer.parseInt(request.getParameter("usertype"));
+        Users = userdb.QueryUserUserRole(UserRole,Able);
+    } else if (action.equals("serachusername")) {
+    
+        String username = request.getParameter("username");
+        UserBean ub = userdb.QueryUserByName(username);
+        Users = new ArrayList();
+        Users.add(ub);
+    } else {
+        Users = userdb.QueryUser();
+    }
 
     for (int x = 0; x < Users.size(); x++) {
         UserBean user = Users.get(x);
@@ -39,16 +59,16 @@
 
         }
         out.print("</td>");
- 
+
         out.print("<form action='EditAccountForm.jsp'>");
-        out.print("<input type=hidden value="+user.getUserID()+ " name=userid />");
+        out.print("<input type=hidden value=" + user.getUserID() + " name=userid />");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         out.print("<button type=submit class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>Edit</button>");
         out.print("</td>");
         out.print("</form>");
         out.print("<form action='HandleUser?'>");
         out.print("<input type=hidden value=disable name=action />");
-        out.print("<input type=hidden value="+user.getUserID()+ " name=userid />");
+        out.print("<input type=hidden value=" + user.getUserID() + " name=userid />");
         out.print("<td class=\"px-4 py-3 text-xs\">");
         out.print("<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>Disable</button>");
         out.print("</td>");

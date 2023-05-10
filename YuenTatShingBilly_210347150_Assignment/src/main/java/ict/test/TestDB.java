@@ -4,26 +4,12 @@
  */
 package ict.test;
 
-import ict.bean.BookingBean;
-import ict.bean.UserBean;
-import ict.bean.VenueBean;
-import ict.bean.VenueLocationBean;
-import ict.db.BookingDB;
-import ict.db.GuessDB;
-import ict.db.UserDB;
-import ict.db.VenueDB;
-import ict.db.VenueLocationDB;
-import ict.db.VenueTypeDB;
-import ict.personal.RandomString;
-import java.nio.charset.Charset;
-import java.security.SecureRandom;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Random;
-import javax.servlet.RequestDispatcher;
-import ict.db.UserTypeDB;
-import java.util.Calendar;
-
+import ict.bean.*;
+import ict.personal.*;
+import ict.db.*;
+import java.sql.*;
+import java.util.*;
+import java.text.*;
 /**
  *
  * @author user
@@ -40,16 +26,14 @@ public class TestDB {
         String dbUrl = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String dbUser = "root";
         String dbPassword = "root";
-        UserDB db = new UserDB(dbUrl, dbUser, dbPassword);
         BookingDB bookingDB = new BookingDB(dbUrl, dbUser, dbPassword);
-//        BookingBean bb = bookingDB.QueryByID("4322cjAji7r3V34");
-//        System.out.print(bookingDB.QueryBookingPiority("iivQf91PxrMdiGMPw0r4FP0iW", bb.getCreatedDate()).size());
-
-        bookingDB.DeleteNoNeed("cCpHL5RVkWJeKJ2d2WCrxttaQ");
+        BookingBean bb = bookingDB.DenyBooking("6Nw5Hf1rdGrpcu9FAH0Y3QexJ", "");
+        System.out.print(bookingDB.QueryVenueBookingWithCheckStatus(1,getfirstandend(2023,4)).size());
 
 //        bookingDB.EditCustomerComment("4322cjAji7r3V34", "aszw");
 //        bookingDB.QueryVenueBookingToCSV();
-//        bookingDB.createTable();
+//        bookingDB.createTable(); 
+
 //        bookingDB.DeleteNoNeed("M1dKe0Yv41G1XMv8GQXHURXeb");
 //            UserBean userbean = db.QueryUserByName("Admin");
 //        System.out.print(bookingDB.QueryVenueBookingByUserIDForToday("iivQf91PxrMdiGMPw0r4FP0iW").size());

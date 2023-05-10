@@ -11,6 +11,7 @@
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/ViewUserRole.jsp");
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/AddUserRole.jsp");
     pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/EditUserRole.jsp");
+    pagenamelist.add("/YuenTatShingBilly_210347150_Assignment/UserSearch_Admin.jsp");
 %> 
 
 <aside
@@ -70,20 +71,20 @@
         <ul>
 
             <li class="relative px-6 py-3">
-                <% if (PageName.equals(pagenamelist.get(3)) || PageName.equals(pagenamelist.get(4)) || PageName.equals(pagenamelist.get(5))) {
+                <% if (PageName.equals(pagenamelist.get(3)) || PageName.equals(pagenamelist.get(4)) || PageName.equals(pagenamelist.get(5)) || PageName.equals(pagenamelist.get(9))) {
                         out.print("<span class=\"absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg\" aria-hidden=\"true\"></span>");
 
                     } %>
 
 
                 <a
-                    <% if (PageName.equals(pagenamelist.get(3)) || PageName.equals(pagenamelist.get(4)) || PageName.equals(pagenamelist.get(5))) {
+                    <% if (PageName.equals(pagenamelist.get(3)) || PageName.equals(pagenamelist.get(4)) || PageName.equals(pagenamelist.get(5)) || PageName.equals(pagenamelist.get(9))) {
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100\"");
                         } else {
                             out.print("class=\"inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200\"");
                         }
                     %>
-                    href="AccountManagement.jsp?userid=<%=request.getParameter("userid")%>"
+                    href="UserSearch_Admin.jsp?userid=<%=request.getParameter("userid")%>"
 
                     >
 

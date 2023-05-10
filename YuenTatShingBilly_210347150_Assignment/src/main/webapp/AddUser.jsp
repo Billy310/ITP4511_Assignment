@@ -4,8 +4,6 @@
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-    UserDB userdb = new UserDB(dbUrl, dbUser, dbPassword);
-    UserBean ub = userdb.QueryUserByID(request.getParameter("userid"));
     UserTypeDB utdb = new UserTypeDB(dbUrl, dbUser, dbPassword);
 
 %>

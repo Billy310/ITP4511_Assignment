@@ -31,13 +31,13 @@ public class HandleChart extends HttpServlet {
 
         init();
         String UserID = request.getParameter("userid");
-        String action = request.getParameter("action");
+ 
         String Year = request.getParameter("Year");
         String Month = request.getParameter("Month");
         PrintWriter out = response.getWriter();
         RequestDispatcher rd;
 
-        if (action.equals("single")) {
+  
             out.println("single!!!");
              
             rd = getServletContext().getRequestDispatcher("/ShowChart.jsp");
@@ -48,19 +48,7 @@ public class HandleChart extends HttpServlet {
             request.setAttribute("Year", Year);
             rd.forward(request, response);
 
-        } else if (action.equals("all")) {
-
-            request.setAttribute("userid", UserID);
-            request.setAttribute("Month", Month);
-            request.setAttribute("Year", Year);
-
-            rd = getServletContext().getRequestDispatcher("/ShowChart_AllVenue.jsp");
-            rd.forward(request, response);
-        } else {
-
-            out.println("No such action!!!");
-
-        }
+        
 
     }
 

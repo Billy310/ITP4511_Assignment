@@ -1,6 +1,5 @@
 package ict.servlet;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import ict.db.UserTypeDB;
@@ -45,8 +44,16 @@ public class HandleUserType extends HttpServlet {
             rd.forward(request, response);
 
         } else if (action.equals("add")) {
-            
+
             db.AddRecord(request.getParameter("UserTypeName"));
+            RequestDispatcher rd;
+            request.setAttribute("userid", UserID);
+            rd = getServletContext().getRequestDispatcher("/ViewUserRole.jsp");
+            rd.forward(request, response);
+
+        } else if (action.equals("remove")) {
+            int UserTypeID = Integer.parseInt(request.getParameter("UserTypeID"));
+            db.DeleteType(UserTypeID);
             RequestDispatcher rd;
             request.setAttribute("userid", UserID);
             rd = getServletContext().getRequestDispatcher("/ViewUserRole.jsp");

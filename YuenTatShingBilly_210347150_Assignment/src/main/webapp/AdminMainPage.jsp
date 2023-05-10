@@ -146,40 +146,7 @@
 
 
 
-                                <div class="mt-4 text-sm venue">
-                                    <span class="text-gray-700 dark:text-gray-400">
-                                        All Venue?
-                                    </span>
-                                    <div class="mt-2">
-                                        <label
-                                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                id="allow"
-                                                type="radio"
-                                                class="venuespec text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="action"
-                                                value="all"
-                                                checked
-
-                                                />
-                                            <span class="ml-2">Yes</span>
-                                        </label>
-                                        <label
-                                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                                            >
-                                            <input
-                                                id="disallow"
-                                                type="radio"
-                                                class="venuespec text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                                name="action"
-                                                value="single"
-
-                                                />
-                                            <span class="ml-2">No (Please Specific)</span>
-                                        </label>
-                                    </div>
-                                </div>
+              
 
 
                                 <div id="Extend">          
