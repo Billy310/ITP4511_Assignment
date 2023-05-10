@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 10, 2023 at 09:03 AM
+-- Generation Time: May 10, 2023 at 07:39 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -52,9 +52,12 @@ CREATE TABLE `booking` (
 INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `BookingStart`, `BookingEnd`, `CreatedDate`, `CreatedTime`, `Status`, `Priority`, `BookingFee`, `PersonInCharge`, `Remark`, `Comment`, `CheckStatus`) VALUES
 ('0dktiNNhw2P4LYk5X4U13rQjU', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-17', 15, 18, '2023-05-17', '2023-05-17 13:49:08', 0, 1, 200.00, 80.00, '', '', 3),
 ('0xcCP1k2PexKK3iGkU6pPH69u', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-03', 8, 9, '2023-05-03', '2023-05-03 13:40:56', 1, 1, 200.00, 80.00, '', '', 3),
+('1HtfXtN8usL1ePGtMArUX0Fh6', 'QM1hpb8kj31CtNMicw0pGGL8c', 1, '2023-05-12', 8, 11, '2023-05-11', '2023-05-11 03:33:25', 3, 1, 200.00, 100.00, '', '', 3),
 ('1pXPPbX6c8kVjtFFWWV3cVLWR', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-01-28', 8, 11, '2023-01-28', '2023-01-28 13:50:58', 1, 1, 200.00, 80.00, '', '', 4),
 ('1QvH08JaarC3QesW6F22MF5Fj', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-11', 8, 11, '2023-05-10', '2023-05-10 15:53:04', 2, 2, 200.00, 80.00, '', '', 3),
 ('22esAktfHQ5i47pubFRCYGVAV', 'XXY3a5MApKtj9U0eaRx1EN5p1', 1, '2023-05-11', 9, 10, '2023-05-10', '2023-05-10 16:53:43', 2, 1, 200.00, 80.00, '', '', 3),
+('24X1hVs9PNX2NUbbpMLtUw4b6', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-15', 8, 11, '2023-05-11', '2023-05-11 03:16:49', 3, 2, 200.00, 80.00, '', '', 3),
+('2RthARixd6jCdPGsXfii2QJPh', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-14', 14, 17, '2023-05-11', '2023-05-11 03:16:49', 3, 3, 200.00, 80.00, '', '', 3),
 ('33G1a25YMVYddNwQvwFxALV2w', 'XXY3a5MApKtj9U0eaRx1EN5p1', 1, '2023-05-11', 13, 14, '2023-05-10', '2023-05-10 16:53:43', 0, 2, 200.00, 80.00, '', '', 3),
 ('4diHk30XcfhQwsAk9Le9fks9R', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 1, '2023-05-11', 9, 10, '2023-05-10', '2023-05-10 16:20:46', 2, 2, 200.00, 80.00, '', '', 3),
 ('4ecpEuLfxbY25CWU2Rte4j3FH', 'YrEQPAtesPh9Fs7C9Ytx4jkLU', 1, '2023-05-11', 9, 9, '2023-05-12', '2023-05-12 14:13:35', 2, 2, 200.00, 80.00, '', '', 3),
@@ -74,9 +77,10 @@ INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `Booking
 ('e9HevvEWFEW2ecAfiYQ1NQtfa', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 5, '2023-05-25', 14, 17, '2023-05-07', '2023-05-07 13:34:07', 1, 1, 200.00, 80.00, '', '', 3),
 ('edHW78ierEHutLEHYFGk0PfXH', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-11', 8, 8, '2023-05-01', '2023-05-01 13:33:06', 1, 1, 200.00, 80.00, '', 'ddd', 3),
 ('EGRMjkQaYG7GNQc9GbKbC4P3H', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-16', 8, 10, '2023-05-05', '2023-05-05 13:33:28', 1, 1, 200.00, 80.00, '', '', 3),
-('ERP3LL877bru92bpdPwAfufY8', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-11', 11, 12, '2023-05-10', '2023-05-10 15:53:04', 1, 3, 200.00, 80.00, '', '', 3),
+('ERP3LL877bru92bpdPwAfufY8', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-11', 11, 12, '2023-05-10', '2023-05-10 15:53:04', 0, 3, 200.00, 80.00, '', '', 3),
 ('exchiEJPpQXdjMM89k39fRXdP', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-28', 11, 14, '2023-05-28', '2023-05-28 13:39:24', 1, 1, 200.00, 80.00, '', '', 3),
 ('F8v9GCrFbXRNYFG2E8eR5FXuj', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-03-23', 16, 19, '2023-03-23', '2023-03-23 13:49:28', 1, 1, 200.00, 80.00, '', '', 4),
+('FE2eFbE592dfNJi3NxVL0rCM0', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-15', 8, 10, '2023-05-11', '2023-05-11 03:16:49', 3, 1, 200.00, 80.00, '', '', 3),
 ('fJ8CxURJts0G7wdF8uUEiEWr8', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 5, '2023-05-09', 11, 14, '2023-05-09', '2023-05-09 13:38:46', 1, 1, 200.00, 80.00, '', '', 3),
 ('fJb43Fj2Ww9hsEd6f68r58iLL', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-11', 9, 10, '2023-05-10', '2023-05-10 15:53:04', 2, 1, 200.00, 80.00, '', '', 3),
 ('GAxK4w0QQWk3ktEA5091QFapJ', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-08', 15, 18, '2023-05-08', '2023-05-08 13:38:26', 1, 1, 200.00, 80.00, '', '', 3),
@@ -93,6 +97,7 @@ INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `Booking
 ('MG2XpE51H8N9kta4stF316wM2', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 3, '2023-05-14', 14, 17, '2023-05-14', '2023-05-14 13:34:28', 1, 1, 200.00, 80.00, '', '', 3),
 ('P8JAcdYhAsEaGvEF5dHK3AHXK', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 5, '2023-05-22', 14, 17, '2023-05-22', '2023-05-22 13:37:17', 1, 1, 200.00, 80.00, '', '', 3),
 ('pAXpQ9jR17wNvfVLEE1bPRbce', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-03-10', 13, 16, '2023-03-10', '2023-03-10 13:49:46', 1, 1, 200.00, 80.00, '', '', 4),
+('pjEN87eKVUJ11EA2KKMfpQp2Y', 'QM1hpb8kj31CtNMicw0pGGL8c', 1, '2023-05-13', 8, 9, '2023-05-11', '2023-05-11 03:33:25', 3, 2, 200.00, 100.00, '', '', 3),
 ('Qk40Qsx3icKP6fRRub99dsbd9', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 1, '2023-05-11', 9, 11, '2023-05-10', '2023-05-10 16:20:46', 2, 3, 200.00, 80.00, '', '', 3),
 ('r9QPYJsWUC6MEcb6aaGrrfCre', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-04-09', 14, 17, '2023-04-09', '2023-04-09 13:53:00', 1, 1, 200.00, 80.00, '', '', 4),
 ('rCMQ4PjJe7AXWpE0w695A6E6d', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-05', 12, 15, '2023-05-05', '2023-05-05 13:41:42', 1, 1, 200.00, 80.00, '', '', 4),
@@ -105,6 +110,7 @@ INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `Booking
 ('vPhWiHFPuwLrepEVFEaFNrYsx', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-01-10', 8, 10, '2023-01-10', '2023-01-10 13:50:22', 1, 1, 200.00, 80.00, '', '', 4),
 ('VWssx0jkFVceMfHFXfbhXfkYu', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-03-02', 14, 17, '2023-03-02', '2023-03-02 13:48:50', 1, 1, 200.00, 80.00, '', '', 3),
 ('wHQpU11Ciji7x3E3ActJpQ17r', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-02-10', 11, 14, '2023-02-10', '2023-02-10 13:45:24', 1, 1, 200.00, 80.00, '', '', 4),
+('WUpxGeV1xRRFL77LWNuCskFv7', 'QM1hpb8kj31CtNMicw0pGGL8c', 5, '2023-05-14', 8, 11, '2023-05-11', '2023-05-11 03:33:25', 3, 3, 200.00, 50.00, '', '', 3),
 ('WxaCjKpssRXH9WcYMht2sp08b', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-02-10', 13, 16, '2023-02-10', '2023-02-10 13:45:51', 1, 1, 200.00, 80.00, '', '', 4),
 ('YQs46LxECK0k0aj1PNu6uj8pd', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-21', 11, 14, '2023-05-21', '2023-05-21 13:36:06', 1, 1, 200.00, 80.00, '', '', 3);
 
@@ -129,9 +135,12 @@ CREATE TABLE `guess` (
 
 INSERT INTO `guess` (`GuessID`, `GuessListID`, `FirstName`, `LastName`, `Email`, `PhoneNumber`) VALUES
 ('4Fu4epWEXhWRJpRuiWfiQ2jA2', 'Y5dX7sPFKVkitruYcEHJJjVM0', 'Tom', 'Caniey', 'billy1@onionmail.org', '324432'),
+('AsHC54QprJRtK9EudAt9LMEQ3', 'ERP3LL877bru92bpdPwAfufY8', 'Tom', 'Caniey', 'billy1@onionmail.org', '324432'),
 ('G8xG214UhbQjw6U8djAxkhA3s', 'MUuvL529hJ7YPiKEYhdwV4s9p', 'Tom', 'Caniey', 'billy1@onionmail.org', '324432'),
 ('jwVhsjjXx8UrfJPvCvFxCKKw8', 'firRQ9HCuUMN0Y867J6Wi6QQ4', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873'),
 ('LsWA7N982J50MJMdsLiCdwpNR', 'firRQ9HCuUMN0Y867J6Wi6QQ4', '&#36948;&#35488;', '&#38446;', 'billy_0310@hotmail.com', '54206873'),
+('QJVhiWuE2f39M1RHeNM37vEbs', 'ERP3LL877bru92bpdPwAfufY8', '&#32626;&#32626;&#27700;&#30000;', '&#27833;ae&#27833;&#26194;&#26368;', 'billy0310.yts@gmail.com', ''),
+('rj8YVUrj2cvdscP7caw6UsM0M', 'ERP3LL877bru92bpdPwAfufY8', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873'),
 ('s9b6xVhHir7hi10Fx5pWWE1bv', 'MUuvL529hJ7YPiKEYhdwV4s9p', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873'),
 ('uKFexPbp4EwhetYd7rb95Uk8w', 'Y5dX7sPFKVkitruYcEHJJjVM0', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873');
 
@@ -167,7 +176,7 @@ INSERT INTO `user` (`userID`, `username`, `password`, `email`, `Role`, `Enable`)
 ('PtPuGxNNGLLxKwPGvYMd0JkGi', 'C', 'c', 'c', 3, 1),
 ('QM1hpb8kj31CtNMicw0pGGL8c', 'Hello', 'Hello', 'Hello', 3, 1),
 ('tbK4tpibkfuPGQVe5vW1QRYR0', 'dsa', 'sads', 'adsd', 2, 1),
-('UCNRfU19VH4hkFrNvNtE42YMu', 'Senior', 'Senior', 'Senior', 2, 1),
+('UCNRfU19VH4hkFrNvNtE42YMu', 'Staff', 'Staff', 'Staff', 2, 1),
 ('XXY3a5MApKtj9U0eaRx1EN5p1', 'Bi', 'Bi', 'Bi', 3, 1),
 ('YrEQPAtesPh9Fs7C9Ytx4jkLU', 'd', 'd', 'dsasda', 3, 1);
 
@@ -202,7 +211,7 @@ CREATE TABLE `venue` (
   `venueTypeID` int(1) NOT NULL,
   `venueLocationID` int(1) NOT NULL,
   `venueName` varchar(100) NOT NULL,
-  `venueDescription` varchar(100) NOT NULL,
+  `venueDescription` varchar(500) NOT NULL,
   `Enable` tinyint(1) NOT NULL DEFAULT '1',
   `PersonInCharge` double(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -212,11 +221,11 @@ CREATE TABLE `venue` (
 --
 
 INSERT INTO `venue` (`venueID`, `venueTypeID`, `venueLocationID`, `venueName`, `venueDescription`, `Enable`, `PersonInCharge`) VALUES
-(1, 2, 1, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'Venue For the', 1, 80.00),
-(2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotels', 1, 80.00),
-(3, 1, 3, 'Hong Kong Institute Of Vocational Education (Tsing Yi)', '', 1, 80.00),
-(4, 1, 4, 'Hong Kong Institute of Vocational Education (Lee Wai Lee)', '', 1, 80.00),
-(5, 1, 5, 'Hong Kong Institute of Vocational Education (Chai Wan)', '', 1, 80.00);
+(1, 2, 1, 'Event Point Centre (Tuen Mun)', 'Located on a 2.4-hectare site adjacent to the Tuen Mun Town Centre, Event Point Centre (Tuen Mun) is equipped with facilities to provide simulated working environment', 1, 100.00),
+(2, 1, 2, 'Event Point Centre  (Sha Tin)', 'Event Point Centre (Sha Tin) is known for its spacious, nurturing and creative learning environment with its harmonious design.', 1, 150.00),
+(3, 1, 3, 'Event Point Centre  (Tsing Yi)', 'Event Point Centre (Tsing Yi) has a splendid architectural design which offers students a green, modern and spacious learning environment.', 1, 60.00),
+(4, 1, 4, 'Event Point Centre  (Lee Wai Lee)', 'Event Point Centre  (Lee Wai Lee) is equipped with specialised teaching and learning facilities including Interactive Media Studio.', 1, 40.00),
+(5, 1, 5, 'Event Point Centre  (Chai Wan)', 'Event Point Centre  (Chai Wan) is a dynamic and welcoming campus, fostering active learning for our students’ long-term development.', 1, 50.00);
 
 -- --------------------------------------------------------
 
