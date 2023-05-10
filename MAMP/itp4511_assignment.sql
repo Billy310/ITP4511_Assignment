@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 10, 2023 at 01:49 PM
+-- Generation Time: May 10, 2023 at 09:03 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -50,7 +50,7 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `BookingStart`, `BookingEnd`, `CreatedDate`, `CreatedTime`, `Status`, `Priority`, `BookingFee`, `PersonInCharge`, `Remark`, `Comment`, `CheckStatus`) VALUES
-('0dktiNNhw2P4LYk5X4U13rQjU', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-07', 15, 18, '2023-05-08', '2023-05-08 13:49:08', 0, 1, 200.00, 80.00, '', '', 3),
+('0dktiNNhw2P4LYk5X4U13rQjU', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-17', 15, 18, '2023-05-17', '2023-05-17 13:49:08', 0, 1, 200.00, 80.00, '', '', 3),
 ('0xcCP1k2PexKK3iGkU6pPH69u', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-03', 8, 9, '2023-05-03', '2023-05-03 13:40:56', 1, 1, 200.00, 80.00, '', '', 3),
 ('1pXPPbX6c8kVjtFFWWV3cVLWR', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-01-28', 8, 11, '2023-01-28', '2023-01-28 13:50:58', 1, 1, 200.00, 80.00, '', '', 4),
 ('1QvH08JaarC3QesW6F22MF5Fj', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-11', 8, 11, '2023-05-10', '2023-05-10 15:53:04', 2, 2, 200.00, 80.00, '', '', 3),
@@ -59,42 +59,39 @@ INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `Booking
 ('4diHk30XcfhQwsAk9Le9fks9R', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 1, '2023-05-11', 9, 10, '2023-05-10', '2023-05-10 16:20:46', 2, 2, 200.00, 80.00, '', '', 3),
 ('4ecpEuLfxbY25CWU2Rte4j3FH', 'YrEQPAtesPh9Fs7C9Ytx4jkLU', 1, '2023-05-11', 9, 9, '2023-05-12', '2023-05-12 14:13:35', 2, 2, 200.00, 80.00, '', '', 3),
 ('6Jc845xYepP4U7hcWWPr2MiGp', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-03-01', 12, 15, '2023-03-01', '2023-03-01 13:48:14', 1, 1, 200.00, 80.00, '', '', 3),
-('6Pr0cNQ8651ktP2x9j0K2sVNA', '3a6JhQ8fJhxHiAJhk2KvvhVtL', 1, '2023-05-11', 14, 16, '2023-05-10', '2023-05-10 20:00:51', 1, 1, 200.00, 80.00, 'Finish', 'Can I have a chance to get this booking.', 4),
 ('6UYFdRMNpa2YU8ueHju8dJt8N', 'YrEQPAtesPh9Fs7C9Ytx4jkLU', 1, '2023-05-09', 8, 8, '2023-05-09', '2023-05-09 14:13:35', 1, 1, 200.00, 80.00, 'Finish', '', 4),
 ('8WsEv6AP88cVYM0VUsuX5ahb8', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-02', 8, 8, '2023-05-02', '2023-05-02 13:32:59', 1, 1, 200.00, 80.00, '', '', 3),
-('92c8YsePtV6XVrb76Qt8CYEXe', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 3, '2023-05-30', 11, 14, '2023-05-01', '2023-05-01 13:35:01', 1, 1, 200.00, 80.00, '', '', 3),
+('92c8YsePtV6XVrb76Qt8CYEXe', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 3, '2023-05-30', 11, 14, '2023-05-30', '2023-05-30 13:35:01', 1, 1, 200.00, 80.00, '', '', 3),
 ('9r2X446f96P1uucrP975r0EPY', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-02-12', 10, 13, '2023-02-12', '2023-02-12 13:47:07', 1, 1, 200.00, 80.00, '', '', 4),
 ('A8ax4bQxQKJfA6PYprXQE4GLR', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 3, '2023-05-21', 15, 18, '2023-05-10', '2023-05-10 13:39:41', 1, 1, 200.00, 80.00, '', '', 3),
-('aL3hPXHcXwuMeje9aJG8Y9s0e', 'wkA5sucaWbJhECsQf1VEEPh5i', 1, '2023-06-10', 8, 9, '2023-05-10', '2023-05-10 18:22:04', 1, 1, 200.00, 80.00, '', '', 4),
 ('bEtfGudEFv7Xw9reRJHHpd0f9', 'P7uaF1FVARLchbeYuxtjj6cx4', 1, '2023-05-11', 13, 14, '2023-05-10', '2023-05-10 16:53:05', 2, 2, 200.00, 80.00, '', '', 3),
 ('bf9U1X1A4JUNc3L1e7CFv5H84', 'P7uaF1FVARLchbeYuxtjj6cx4', 1, '2023-05-11', 9, 10, '2023-05-10', '2023-05-10 16:53:05', 0, 1, 200.00, 80.00, '', '', 3),
 ('bV3iAuYM1s2GU9Xkf70QU7x5W', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-09', 8, 10, '2023-05-09', '2023-05-09 13:43:02', 2, 1, 200.00, 80.00, 'Similar Result', '', 3),
 ('cJ90GQe3faUxY1LrGH40d5ciR', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-01-10', 12, 15, '2023-01-10', '2023-01-10 13:50:04', 1, 1, 200.00, 80.00, '', '', 4),
 ('CsjxckUYiNihi56feru2FKRAj', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 3, '2023-05-06', 8, 11, '2023-05-06', '2023-05-06 13:38:01', 1, 1, 200.00, 80.00, '', '', 3),
-('CVikPM8rQ3ciRjk2GULtpj2Wj', '3a6JhQ8fJhxHiAJhk2KvvhVtL', 2, '2023-05-11', 9, 11, '2023-05-10', '2023-05-10 20:00:51', 2, 2, 200.00, 80.00, '', '', 3),
 ('diaKxGcedAW6PV29vfM2JRLeK', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 1, '2023-05-11', 9, 12, '2023-05-10', '2023-05-10 16:20:46', 2, 1, 200.00, 80.00, '', '', 3),
-('e2P8W0t8pbv7jvRHdQhYA24LW', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-14', 8, 10, '2023-04-23', '2023-04-23 13:36:53', 1, 1, 200.00, 80.00, '', '', 3),
+('e2P8W0t8pbv7jvRHdQhYA24LW', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-14', 8, 10, '2023-05-14', '2023-05-14 13:36:53', 1, 1, 200.00, 80.00, '', '', 3),
 ('e9HevvEWFEW2ecAfiYQ1NQtfa', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 5, '2023-05-25', 14, 17, '2023-05-07', '2023-05-07 13:34:07', 1, 1, 200.00, 80.00, '', '', 3),
 ('edHW78ierEHutLEHYFGk0PfXH', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-11', 8, 8, '2023-05-01', '2023-05-01 13:33:06', 1, 1, 200.00, 80.00, '', 'ddd', 3),
 ('EGRMjkQaYG7GNQc9GbKbC4P3H', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-16', 8, 10, '2023-05-05', '2023-05-05 13:33:28', 1, 1, 200.00, 80.00, '', '', 3),
 ('ERP3LL877bru92bpdPwAfufY8', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-11', 11, 12, '2023-05-10', '2023-05-10 15:53:04', 1, 3, 200.00, 80.00, '', '', 3),
-('exchiEJPpQXdjMM89k39fRXdP', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-28', 11, 14, '2023-05-03', '2023-05-03 13:39:24', 1, 1, 200.00, 80.00, '', '', 3),
+('exchiEJPpQXdjMM89k39fRXdP', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-28', 11, 14, '2023-05-28', '2023-05-28 13:39:24', 1, 1, 200.00, 80.00, '', '', 3),
 ('F8v9GCrFbXRNYFG2E8eR5FXuj', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-03-23', 16, 19, '2023-03-23', '2023-03-23 13:49:28', 1, 1, 200.00, 80.00, '', '', 4),
 ('fJ8CxURJts0G7wdF8uUEiEWr8', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 5, '2023-05-09', 11, 14, '2023-05-09', '2023-05-09 13:38:46', 1, 1, 200.00, 80.00, '', '', 3),
 ('fJb43Fj2Ww9hsEd6f68r58iLL', 'j8Ku3J2Axue78aahwFsAJFwt2', 1, '2023-05-11', 9, 10, '2023-05-10', '2023-05-10 15:53:04', 2, 1, 200.00, 80.00, '', '', 3),
 ('GAxK4w0QQWk3ktEA5091QFapJ', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-08', 15, 18, '2023-05-08', '2023-05-08 13:38:26', 1, 1, 200.00, 80.00, '', '', 3),
-('H2fxWMceLjXFJJQb0uXwaGaQF', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 1, '2023-05-29', 10, 13, '2023-05-02', '2023-05-02 13:36:34', 1, 1, 200.00, 80.00, '', '', 3),
+('H2fxWMceLjXFJJQb0uXwaGaQF', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 1, '2023-05-29', 10, 13, '2023-05-29', '2023-05-29 13:36:34', 1, 1, 200.00, 80.00, '', '', 3),
 ('iWAGWEf4dVwraGQr29rAP4usx', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-02-08', 8, 11, '2023-02-10', '2023-02-10 13:47:38', 1, 1, 200.00, 80.00, '', '', 4),
 ('JAbYYfbuu3kRKRMG1pKRsW31w', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-04-10', 12, 15, '2023-04-10', '2023-04-10 13:52:45', 1, 1, 200.00, 80.00, '', '', 3),
-('K3Lt7GpHJekYNd5u6PdxRYE9a', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-05', 13, 16, '2023-05-05', '2023-05-23 13:39:07', 1, 1, 200.00, 80.00, '', '', 3),
+('K3Lt7GpHJekYNd5u6PdxRYE9a', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-23', 13, 16, '2023-05-23', '2023-05-23 13:39:07', 1, 1, 200.00, 80.00, '', '', 3),
 ('K7CKw3b819ckFXaiwFwbcYb8Y', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-02', 9, 12, '2023-05-10', '2023-05-10 13:40:43', 1, 1, 200.00, 80.00, '', '', 3),
 ('KjQuNkxQVshYk1R23JG34KfvP', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 4, '2023-05-26', 14, 17, '2023-05-08', '2023-05-08 13:33:45', 1, 1, 200.00, 80.00, '', '', 3),
-('KVHELfNcub7bRtYc4UujdpaW8', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 1, '2023-05-27', 16, 19, '2023-05-04', '2023-05-04 13:37:38', 1, 1, 200.00, 80.00, '', '', 3),
+('KVHELfNcub7bRtYc4UujdpaW8', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 1, '2023-05-27', 16, 19, '2023-05-27', '2023-05-27 13:37:38', 1, 1, 200.00, 80.00, '', '', 3),
 ('KXXbvpKib81cNwGh72J7vjR64', 'P7uaF1FVARLchbeYuxtjj6cx4', 1, '2023-05-11', 19, 20, '2023-05-10', '2023-05-10 16:53:05', 2, 3, 200.00, 80.00, '', '', 3),
 ('LaAacW9k8xFsHWw5cPHs0ebQH', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-07', 8, 11, '2023-05-07', '2023-05-07 13:42:30', 1, 1, 200.00, 80.00, '', '', 3),
 ('Lsd4XL3p4RXHMuvCu99aRpvNa', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-02-12', 12, 15, '2023-02-12', '2023-02-12 13:46:22', 3, 1, 200.00, 80.00, '', '', 4),
-('MG2XpE51H8N9kta4stF316wM2', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 3, '2023-05-14', 14, 17, '2023-04-22', '2023-04-22 13:34:28', 1, 1, 200.00, 80.00, '', '', 3),
-('P8JAcdYhAsEaGvEF5dHK3AHXK', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 5, '2023-05-06', 14, 17, '2023-05-06', '2023-05-06 13:37:17', 1, 1, 200.00, 80.00, '', '', 3),
+('MG2XpE51H8N9kta4stF316wM2', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 3, '2023-05-14', 14, 17, '2023-05-14', '2023-05-14 13:34:28', 1, 1, 200.00, 80.00, '', '', 3),
+('P8JAcdYhAsEaGvEF5dHK3AHXK', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 5, '2023-05-22', 14, 17, '2023-05-22', '2023-05-22 13:37:17', 1, 1, 200.00, 80.00, '', '', 3),
 ('pAXpQ9jR17wNvfVLEE1bPRbce', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-03-10', 13, 16, '2023-03-10', '2023-03-10 13:49:46', 1, 1, 200.00, 80.00, '', '', 4),
 ('Qk40Qsx3icKP6fRRub99dsbd9', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 1, '2023-05-11', 9, 11, '2023-05-10', '2023-05-10 16:20:46', 2, 3, 200.00, 80.00, '', '', 3),
 ('r9QPYJsWUC6MEcb6aaGrrfCre', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-04-09', 14, 17, '2023-04-09', '2023-04-09 13:53:00', 1, 1, 200.00, 80.00, '', '', 4),
@@ -109,8 +106,7 @@ INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `Booking
 ('VWssx0jkFVceMfHFXfbhXfkYu', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-03-02', 14, 17, '2023-03-02', '2023-03-02 13:48:50', 1, 1, 200.00, 80.00, '', '', 3),
 ('wHQpU11Ciji7x3E3ActJpQ17r', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-02-10', 11, 14, '2023-02-10', '2023-02-10 13:45:24', 1, 1, 200.00, 80.00, '', '', 4),
 ('WxaCjKpssRXH9WcYMht2sp08b', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-02-10', 13, 16, '2023-02-10', '2023-02-10 13:45:51', 1, 1, 200.00, 80.00, '', '', 4),
-('Yc9AGPEEWJCFRRkia4FRKjicf', '3a6JhQ8fJhxHiAJhk2KvvhVtL', 3, '2023-05-11', 8, 10, '2023-05-10', '2023-05-10 20:00:51', 2, 3, 200.00, 80.00, '', '', 3),
-('YQs46LxECK0k0aj1PNu6uj8pd', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-21', 11, 14, '2023-05-07', '2023-05-07 13:36:06', 1, 1, 200.00, 80.00, '', '', 3);
+('YQs46LxECK0k0aj1PNu6uj8pd', 'PtPuGxNNGLLxKwPGvYMd0JkGi', 2, '2023-05-21', 11, 14, '2023-05-21', '2023-05-21 13:36:06', 1, 1, 200.00, 80.00, '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -133,11 +129,8 @@ CREATE TABLE `guess` (
 
 INSERT INTO `guess` (`GuessID`, `GuessListID`, `FirstName`, `LastName`, `Email`, `PhoneNumber`) VALUES
 ('4Fu4epWEXhWRJpRuiWfiQ2jA2', 'Y5dX7sPFKVkitruYcEHJJjVM0', 'Tom', 'Caniey', 'billy1@onionmail.org', '324432'),
-('4H6vpk4EX7fbjveQXk39f05ba', '6Pr0cNQ8651ktP2x9j0K2sVNA', 'Tom', 'Caniey', 'billy1@onionmail.org', '324432'),
-('bcrLr1xdxAHUcFdx4AMvGFdb2', '6Pr0cNQ8651ktP2x9j0K2sVNA', '&#36948;&#35488;', '&#38446;', 'Billy_0310@hotmail.com', '54206873'),
 ('G8xG214UhbQjw6U8djAxkhA3s', 'MUuvL529hJ7YPiKEYhdwV4s9p', 'Tom', 'Caniey', 'billy1@onionmail.org', '324432'),
 ('jwVhsjjXx8UrfJPvCvFxCKKw8', 'firRQ9HCuUMN0Y867J6Wi6QQ4', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873'),
-('L35JAGP3bWA3KEKHku5kNkAc3', '6UYFdRMNpa2YU8ueHju8dJt8N', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873'),
 ('LsWA7N982J50MJMdsLiCdwpNR', 'firRQ9HCuUMN0Y867J6Wi6QQ4', '&#36948;&#35488;', '&#38446;', 'billy_0310@hotmail.com', '54206873'),
 ('s9b6xVhHir7hi10Fx5pWWE1bv', 'MUuvL529hJ7YPiKEYhdwV4s9p', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873'),
 ('uKFexPbp4EwhetYd7rb95Uk8w', 'Y5dX7sPFKVkitruYcEHJJjVM0', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873');
@@ -163,23 +156,18 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`userID`, `username`, `password`, `email`, `Role`, `Enable`) VALUES
 ('2kEVpxX2p7W2suaffEx32kY6v', 'Billy0310', 'Billy0310', '3', 1, 1),
-('2LHJ5urEfWL90e8W6sdQ2JtWQ', 'abc', 'abc', 'abc', 3, 1),
-('3a6JhQ8fJhxHiAJhk2KvvhVtL', 'NewUser10', 'NewUser10', 'NewUser10', 3, 1),
+('2LHJ5urEfWL90e8W6sdQ2JtWQ', 'a', 'a', 'a', 3, 1),
 ('4GaxYXh9M7jP5HVuiXrp2XJba', 'q', 'q', 'q', 3, 1),
-('6UVVKYu3KWdXuFFth9FHX9vPC', 'Billy3', 'Billy3', 'Billy3', 3, 1),
-('bUWudGaQbEA3Mt7kYKR0Kww5N', 'SeniorManagement', 'SeniorManagement', 'SeniorManagement', 1, 1),
-('C16vuX0RYRXKcrkxaGJEcMKX4', 'NewUser2', 'NewUser2', 'NewUser', 3, 1),
+('bUWudGaQbEA3Mt7kYKR0Kww5N', 'Admin', 'Admin', 'Admin', 1, 1),
 ('hHedAuE2Ft75vp7CvLMfrXhFU', 'B1lly', 'B1lly', 'B1lly', 3, 1),
 ('iivQf91PxrMdiGMPw0r4FP0iW', 'b', 'B', 'b', 3, 1),
 ('iVJPt5eFacYHpVpGbaFVRrdWx', '423', '324', '43', 3, 1),
-('J2x0vYk8jHYWL7JH1EvvjLrKf', 'Member', 'Member', 'Member', 3, 1),
 ('j8Ku3J2Axue78aahwFsAJFwt2', 'Billy', 'Billy', 'Billy_0310@hotmail.com', 3, 1),
 ('P7uaF1FVARLchbeYuxtjj6cx4', 'Billy03100310', 'Billy03100310', 'Billy03100310', 3, 1),
 ('PtPuGxNNGLLxKwPGvYMd0JkGi', 'C', 'c', 'c', 3, 1),
 ('QM1hpb8kj31CtNMicw0pGGL8c', 'Hello', 'Hello', 'Hello', 3, 1),
 ('tbK4tpibkfuPGQVe5vW1QRYR0', 'dsa', 'sads', 'adsd', 2, 1),
-('UCNRfU19VH4hkFrNvNtE42YMu', 'Staff', 'Staff', 'Staff', 2, 1),
-('wkA5sucaWbJhECsQf1VEEPh5i', 'Billy1', 'Billy1', 'Billy1', 3, 1),
+('UCNRfU19VH4hkFrNvNtE42YMu', 'Senior', 'Senior', 'Senior', 2, 1),
 ('XXY3a5MApKtj9U0eaRx1EN5p1', 'Bi', 'Bi', 'Bi', 3, 1),
 ('YrEQPAtesPh9Fs7C9Ytx4jkLU', 'd', 'd', 'dsasda', 3, 1);
 
@@ -224,7 +212,7 @@ CREATE TABLE `venue` (
 --
 
 INSERT INTO `venue` (`venueID`, `venueTypeID`, `venueLocationID`, `venueName`, `venueDescription`, `Enable`, `PersonInCharge`) VALUES
-(1, 3, 1, 'Hong Kong Institute of Vocational Education (TM)', 'Venue For the', 1, 80.00),
+(1, 2, 1, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'Venue For the', 1, 80.00),
 (2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotels', 1, 80.00),
 (3, 1, 3, 'Hong Kong Institute Of Vocational Education (Tsing Yi)', '', 1, 80.00),
 (4, 1, 4, 'Hong Kong Institute of Vocational Education (Lee Wai Lee)', '', 1, 80.00),
