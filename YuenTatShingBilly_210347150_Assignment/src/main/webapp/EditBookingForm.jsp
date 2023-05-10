@@ -39,7 +39,79 @@
         <script>
             $(document).ready(function () {
 
+                $("#VenueTimeOfStart").change(function () {
 
+
+                    var box = document.getElementById('VenueTimeOfStart');
+
+                    StartTime = box.options[box.selectedIndex].value;
+
+
+
+                    if ((parseInt(StartTime) > parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                        alert("The Starting Time cannot later than The Ending Time.");
+                        var Total = (parseInt(StartTime) + 3);
+
+                        $("#venuetimeend").val(Total);
+
+                    }
+                    if ((parseInt(StartTime) == parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                        alert("The Starting Time Can Not be the Same of the Ending Time");
+                        var Total = (parseInt(StartTime) + 1);
+
+                        $("#venuetimeend").val(Total);
+
+                    }
+
+                    if (($("#venuetimeend").find(":selected").val() - StartTime) > 3) {
+
+                        alert("Booking Period can not Longer than 3 Hours");
+                        var Total = (parseInt(StartTime) + 3);
+
+                        $("#venuetimeend").val(Total);
+                    }
+
+
+
+
+                });
+
+                $("#venuetimeend").change(function () {
+                    var box = document.getElementById('VenueTimeOfStart');
+
+                    StartTime = box.options[box.selectedIndex].value;
+
+
+
+                    if ((parseInt(StartTime) > parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                        alert("The Starting Time cannot later than The Ending Time.");
+                        var Total = (parseInt(StartTime) + 3);
+
+                        $("#venuetimeend").val(Total);
+
+                    }
+                    if ((parseInt(StartTime) == parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                        alert("The Starting Time Can Not be the Same of the Ending Time");
+                        var Total = (parseInt(StartTime) + 1);
+
+                        $("#venuetimeend").val(Total);
+
+                    }
+
+                    if (($("#venuetimeend").find(":selected").val() - StartTime) > 3) {
+
+                        alert("Booking Period can not Longer than 3 Hours");
+                        var Total = (parseInt(StartTime) + 3);
+
+                        $("#venuetimeend").val(Total);
+                    }
+
+
+                });
 
 
             });
@@ -135,7 +207,7 @@
 
                                     </span>
                                     <select           name="BookingStart"
-                                                      id="venuetimestart"
+                                                      id="VenueTimeOfStart"
                                                       class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                         <%                                        for (int x = 8; x < 21; x++) {
                                                 if (disabledtime.contains(x)) {
@@ -170,7 +242,7 @@
                                         Venue Time (End)
                                     </span>
                                     <select           name="BookingEnd"
-
+                                                      id="venuetimeend"
                                                       class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                         <%                                        for (int x = 8; x < 21; x++) {
                                                 if (disabledtime.contains(x)) {

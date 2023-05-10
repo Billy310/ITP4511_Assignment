@@ -89,18 +89,19 @@
                 <jsp:include page="Topbar.jsp" />
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        <form action="EditBookingForm.jsp" method="GET" id="EditBookingForm"> 
+                        <form action="EditBookingForm.jsp" method="POST" id="EditBookingForm"> 
                             <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                         </form>
-                        <form action="GuessList.jsp" method="GET" id="ChangeGuessList" >        
+                        <form action="GuessList.jsp" method="POST" id="ChangeGuessList" >        
                             <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
                         </form>          
-                        <form action="Payment.jsp" method="GET" id="Payment" >        
+                        <form action="Payment.jsp" method="POST" id="Payment" >        
                             <input type="hidden" name="BookingID" value="<%=bb.getBookingID()%>" />
                             <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>"/>
-                            <input type="hidden" name="BookingFee" value="<%=bb.getBookingFee()%>" />
+                            <input type="hidden" name="BookingFee" value="<%=bb.getBookingFee()*(bb.getBookingEnd() -bb.getBookingStart())  %>" />
+                            <input type="hidden" name="Period" value="<%=(bb.getBookingEnd() -bb.getBookingStart())  %>" />
                             <input type="hidden" name="Quantity" value="<%= guessdb.QueryGuessBeanByGuessListID(bb.getBookingID()).size()%>" />
                             <input type="hidden" name="PersonInCharge" value="<%=venueDB.queueVenueByVenueID(bb.getVenueID()).getPersonInCharge() * guessdb.QueryGuessBeanByGuessListID(bb.getBookingID()).size()%>" />
                         </form>   

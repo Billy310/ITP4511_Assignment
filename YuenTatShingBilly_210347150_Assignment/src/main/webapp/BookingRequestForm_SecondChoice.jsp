@@ -43,22 +43,19 @@
                     }
 //                            console.log(date, 'change')
                 });
-                
-                      $("#submitbtn").click(function () {
-                    
+
+                $("#submitbtn").click(function () {
+
                     console.log(parseInt($("#venue").find(":selected").val()));
-                    if(parseInt($("#venue").find(":selected").val())==0){
-                        
+                    if (parseInt($("#venue").find(":selected").val()) == 0) {
+
                         alert("You Should Select the Venue First!");
-                    }
-                    
-                    else if ($("#venuedate").val() === "") {
+                    } else if ($("#venuedate").val() === "") {
 
                         alert("Booking Date Can not be Empty");
-                    }
-                    else {
+                    } else {
                         document.forms["SelectTime"].submit();
-                         
+
                     }
 
                 });
@@ -92,11 +89,15 @@
                 var venuecordX = document.getElementById("venuecordx");
                 var venuecordY = document.getElementById("venuecordy");
                 var venuelocationid = document.getElementById("venuelocationid");
+                var venuedesc = document.getElementById("venuedesc");
+                var pic = document.getElementById("pic");
                 var selectedLocationID = venuelocationid.options[selected - 1].value;
                 var selectedvalue_X = venuecordX.options[selectedLocationID - 1].value;
                 var selectedvalue_Y = venuecordY.options[selectedLocationID - 1].value;
                 initMap(selectedvalue_X, selectedvalue_Y, 20);
                 document.getElementById('venuetype').selectedIndex = selected;
+                venuedesc.selectedIndex = selected;
+                pic.selectedIndex = selected;
             }
         </script>
     </head>
@@ -199,6 +200,48 @@
 
                                 </select>
                             </label>
+
+                            <label class="block mt-4 text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">
+                                    Venue Description
+                                </span>
+                                <select   id="venuedesc" 
+                                          class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                          disabled
+                                          >
+                                    <%
+                                        out.print("<option value=>Venue Description</option>");
+                                        for (int x = 0; x < vbs.size(); x++) {
+                                            VenueBean v = vbs.get(x);
+                                            out.print("<option value=" + v.getVenueID() + ">" + v.getVenueDescription() + "</option>");
+                                        }
+                                    %> 
+
+                                </select>
+                            </label>
+                            <label class="block mt-4 text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">
+                                    Person In Charge
+                                </span>
+                                <select   id="pic" 
+                                          class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                          disabled
+                                          >
+                                    <%
+                                        out.print("<option value=>Person In Charge</option>");
+                                        for (int x = 0; x < vbs.size(); x++) {
+                                            VenueBean v = vbs.get(x);
+                                            out.print("<option value=" + v.getVenueID() + "> $" + v.getPersonInCharge() + "</option>");
+                                        }
+                                    %> 
+
+                                </select>
+                            </label>     
+
+
+
+
+
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">
                                     Select Date
@@ -221,18 +264,18 @@
                             </label>
 
 
-                            
-                        </form>
-                                    <div class="flex mt-6 text-sm">
-                                        <button 
 
-                                            class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                            value="continue"
-                                            id="submitbtn"
-                                            >
-                                            Continue
-                                        </button>
-                                    </div>  
+                        </form>
+                        <div class="flex mt-6 text-sm">
+                            <button 
+
+                                class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                value="continue"
+                                id="submitbtn"
+                                >
+                                Continue
+                            </button>
+                        </div>  
                     </div>
                 </main>
             </div>
