@@ -65,6 +65,42 @@
                 }
 
             });
+            
+              $("#passwords").keyup(function () {
+
+                if ($("#passwords").val() != ($("repassword").val())) {
+
+                    $(this).css({"border-color": "#FFC0CB",
+                        "border-width": "3px",
+                        "border-style": "solid"});
+
+                }
+                else{
+                      $(this).css({"border-color": "#FFC0CB",
+                        "border-width": "3px",
+                        "border-style": "hidden"});
+                    
+                }
+
+            });
+            
+            $("#repassword").keyup(function () {
+
+                if ($("#passwords").val() != ($("repassword").val())) {
+
+                    $(this).css({"border-color": "#FFC0CB",
+                        "border-width": "3px",
+                        "border-style": "solid"});
+
+                }
+                else{
+                    $(this).css({"border-color": "#FFC0CB",
+                        "border-width": "3px",
+                        "border-style": "hidden"});
+                    
+                }
+
+            }); 
 
 
         });
@@ -112,11 +148,11 @@
                             </div>
                             <div class="group">
                                 <label for="pass" class="label">Password</label>
-                                <input id="pass" type="password" class="input" data-type="password" name="password"  placeholder="Enter Password" />
+                                <input id="passwords" type="password" class="input" data-type="password" name="password"  placeholder="Enter Password" />
                             </div>
                             <div class="group">
                                 <label for="pass" class="label">Repeat Password</label>
-                                <input id="pass" type="password" class="input" data-type="password" name="re-password" placeholder="Repeat Password"  />
+                                <input id="repassword" type="password" class="input" data-type="password" name="re-password" placeholder="Repeat Password"  />
                             </div>
                             <div class="group">
                                 <label for="pass" class="label">Email Address</label>

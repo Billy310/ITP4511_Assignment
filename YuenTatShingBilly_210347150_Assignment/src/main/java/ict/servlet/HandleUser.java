@@ -74,13 +74,13 @@ public class HandleUser extends HttpServlet {
                     }
                 } else {
                     RequestDispatcher rd;
-                    rd = getServletContext().getRequestDispatcher("/index.jsp");
+                    rd = getServletContext().getRequestDispatcher("/LoginFail.jsp");
                     rd.forward(request, response);
 
                 }
             } else {
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/index.jsp");
+                rd = getServletContext().getRequestDispatcher("/LoginFail.jsp");
                 rd.forward(request, response);
             }
         } else if ("signup".equals(action)) {

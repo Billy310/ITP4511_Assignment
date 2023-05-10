@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+    <%@page import="ict.db.*,ict.bean.*,java.util.*" %>
+    <%
+        String dbUser = this.getServletContext().getInitParameter("dbUser");
+        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+        BookingDB db = new BookingDB(dbUrl, dbUser, dbPassword);
+        String BookingID = request.getParameter("BookingID");
+        BookingBean vb = db.QueryByID(BookingID);
+        int Status_All = db.QueryBookingWithStatus(vb.getUserID(), vb.getCreatedDate());
+    %>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,8 +25,19 @@
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
 
-        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+
+                if (parseInt($("#handled").val()) == 1) {
+
+                    $("#approvebtn").hide();
+
+                } else {
+                    $("#approvebtn").show();}
+
+            });
+        </script>
     </head>
     <body>
         <div
@@ -90,6 +111,7 @@
 
                         </div>
                         <div class="flex mt-6 text-sm">
+                            <input type="hidden" id="handled" value="<%=Status_All%>" />
                             <form action="EditBookingFrom_Admin.jsp" method="POST"> 
                                 <input type="hidden" name="userid" value="<%=request.getParameter("userid")%>" />
                                 <input type="hidden" name="BookingID" value="<%=request.getParameter("BookingID")%>" />
@@ -97,6 +119,7 @@
                                     type="submit"  
                                     class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     value="continue"
+                                    id="approvebtn"
                                     >
                                     Approve / Deny
                                 </button>

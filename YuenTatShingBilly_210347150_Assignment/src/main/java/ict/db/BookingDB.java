@@ -328,7 +328,7 @@ public class BookingDB {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.sql.Date bookingdate_date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND Status = 1 OR STATUS = 0";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND STATUS >=0 AND STATUS <=1 ";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);

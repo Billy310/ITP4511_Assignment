@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+ 
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -72,7 +73,7 @@
                                             <th class="px-4 py-3">Created Date</th>
                                             <th class="px-4 py-3">View Detail</th>
                                             <th class="px-4 py-3">Status</th>
-                                         
+
                                         </tr>
                                     </thead>
                                     <tbody
