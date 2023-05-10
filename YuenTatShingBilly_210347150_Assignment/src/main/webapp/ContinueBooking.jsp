@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="ict.db.*,ict.bean.*,java.util.ArrayList" %>
+<%@page import="ict.db.*,ict.bean.*,java.util.*" %>
 <%
     String dbUser = this.getServletContext().getInitParameter("dbUser");
     String dbPassword = this.getServletContext().getInitParameter("dbPassword");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 10, 2023 at 06:31 PM
+-- Generation Time: May 10, 2023 at 01:49 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -162,66 +162,24 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`, `email`, `Role`, `Enable`) VALUES
-('06d4L7Fitt98fpu6UKKNpkaEX', '321231', '231213', '321321', 3, 1),
-('2FkhYt0ps0H54wdG5RcQWH2ke', '243234243243', '423243243', '432423', 3, 1),
 ('2kEVpxX2p7W2suaffEx32kY6v', 'Billy0310', 'Billy0310', '3', 1, 1),
 ('2LHJ5urEfWL90e8W6sdQ2JtWQ', 'abc', 'abc', 'abc', 3, 1),
-('329bJN23Qr4HJ9abYMMRju8rH', '24123', '2321321', '123', 3, 1),
 ('3a6JhQ8fJhxHiAJhk2KvvhVtL', 'NewUser10', 'NewUser10', 'NewUser10', 3, 1),
-('3ir8uJxUNeYJj5iLaJKFbpeaG', 'fasf', 'safdsada', 'dsasadsad', 3, 1),
-('3rbHeN83x6JFAiC2E99FWaRVJ', 'Ty', 'ty', 'Ty', 3, 1),
 ('4GaxYXh9M7jP5HVuiXrp2XJba', 'q', 'q', 'q', 3, 1),
-('5thF1Nw9j86xNKJGvVAMewGbE', '243243', '423234243', '432234', 3, 1),
 ('6UVVKYu3KWdXuFFth9FHX9vPC', 'Billy3', 'Billy3', 'Billy3', 3, 1),
-('79Epfjs4NcPAjuMVPiV8N6CaJ', ' 2344', '32432423', '432234', 3, 1),
-('8M1Wi75PpC9rshQ76w2H5tarN', '132231', '213321123', '231213', 3, 1),
-('AF2aJ7kH62trAhjL5VHKkbjeP', '423234', '234423', '234342', 3, 1),
-('AiR7b8C3E0re6QYhveudeWM3x', 'Ghhh', 'hhh', 'H', 3, 1),
-('ak4YhpQXLfhe21J7kacA9fMKb', 'fffff', 'fffff', 'fffff', 3, 1),
-('b10wF78u3PhXdhNXCuMuePWFX', 'wadwda', 'dawawddaw', 'dwawda', 3, 1),
 ('bUWudGaQbEA3Mt7kYKR0Kww5N', 'SeniorManagement', 'SeniorManagement', 'SeniorManagement', 1, 1),
-('c0pbhfQuLJ9u2hjkMY22bQJV4', '231231', '213312', '321321', 3, 1),
 ('C16vuX0RYRXKcrkxaGJEcMKX4', 'NewUser2', 'NewUser2', 'NewUser', 3, 1),
-('cpjw0uLb9WEk4KF3CcX1NbsRk', '342', '432423', '234432', 3, 1),
-('CsR1ii41FWYuEA48KjGM0XvPi', '243423423', '423324324', '234432432', 3, 1),
-('e8sK2sr48pAxKNM8ejQpYiW0c', '234234', '324324234', '243', 3, 1),
-('eE8wjt8RRH4dVhG7cCxQ7vEY4', '355325', '325235', '235523', 3, 1),
-('EtYhMK15kKvbddvs3CPHJKCUN', '423423', '42342324', '342', 3, 1),
-('EVN584YCpWAuRMXWJ8YPQNjX1', 'F', 'F', 'F', 3, 1),
-('fbc2GVF04PN6Jc9bMAbjKe860', '32243', '432432', '432', 3, 1),
-('fJvipGiNvHUe1VKpNQPEs0c7c', 'asd', 'asd', 'asd', 3, 1),
-('FkrH56Ex3G4fP2iKpvWF9MvWX', '214241', '241241241', '421214', 3, 1),
 ('hHedAuE2Ft75vp7CvLMfrXhFU', 'B1lly', 'B1lly', 'B1lly', 3, 1),
-('hJKkEab9cbuEAsJCW5Y7Cwbck', '342324', '4323422', '243', 3, 1),
 ('iivQf91PxrMdiGMPw0r4FP0iW', 'b', 'B', 'b', 3, 1),
-('iKJA2XkvGE2L8rpJAUuPNhuE2', '345534', '543543', '543', 3, 1),
 ('iVJPt5eFacYHpVpGbaFVRrdWx', '423', '324', '43', 3, 1),
 ('J2x0vYk8jHYWL7JH1EvvjLrKf', 'Member', 'Member', 'Member', 3, 1),
-('j5UU91R8uKiuAvE0PpCAxa2i3', 'billy0310.yts', 'billy0310.yts', 'billy0310.yts', 3, 1),
 ('j8Ku3J2Axue78aahwFsAJFwt2', 'Billy', 'Billy', 'Billy_0310@hotmail.com', 3, 1),
-('KNCMXGPLLs8s88e5Wi8EMvJww', 'asd', 'dsa', 'dsa', 3, 1),
-('kpA1P8HicYC8tJFtuG6x4YrMc', '423234', '234342234', '423342342', 3, 1),
-('KuRC7P8NQ352NiWw6vtjcjxb2', 'Adwa', 'wdadwaawd', 'dwawda', 3, 1),
-('MJiRc1NNsMsGxX4Wr5Wd7EfF3', 'r', 'r', 'r', 3, 1),
-('NKPJrAaRHEEGcphpRhLdFQQ4F', '321231', '231321', '321321', 3, 1),
-('NsJEEHX9NuRtwtrpkpUjUpi41', '231231', '213321', '312321', 3, 1),
-('P6bAC4uJ0W2udHdwvj1Lb6Wvj', '32432', '423423', '234342', 3, 1),
 ('P7uaF1FVARLchbeYuxtjj6cx4', 'Billy03100310', 'Billy03100310', 'Billy03100310', 3, 1),
-('PRhdwcYkJ0GiEkd4ibLQ4HvJp', 'NewUser11', 'NewUser11', 'NewUser11', 3, 1),
 ('PtPuGxNNGLLxKwPGvYMd0JkGi', 'C', 'c', 'c', 3, 1),
 ('QM1hpb8kj31CtNMicw0pGGL8c', 'Hello', 'Hello', 'Hello', 3, 1),
-('r7RijYJ7cNuUCfWWt8Ji6saW7', '24324', '23423432', '432', 3, 1),
 ('tbK4tpibkfuPGQVe5vW1QRYR0', 'dsa', 'sads', 'adsd', 2, 1),
-('trfRsUrQ4GRVhRvX7Qf5HsM7L', '243234234', '234423234', '423243', 3, 1),
 ('UCNRfU19VH4hkFrNvNtE42YMu', 'Staff', 'Staff', 'Staff', 2, 1),
-('UCPYwNEfAGjkc0GMpUrwwkQ4Y', 'fff', 'fff', 'fff', 3, 1),
-('V2uW9YfRKb7xcbvJ7R2RWa9CV', '432342', '234243', '4324', 3, 1),
-('VbeKJC7MiLkP96AJbUAJAuuCU', '325523', '3525', 'Admin253253', 3, 1),
 ('wkA5sucaWbJhECsQf1VEEPh5i', 'Billy1', 'Billy1', 'Billy1', 3, 1),
-('X95WQ1REHxiVLi2A97MeQ0LRx', '342342', '234234234', '', 3, 1),
-('xCR22FY4P16xhEwFkkucYCu59', 'abc', 'abc', 'abc', 3, 1),
-('xGf2LNfh4ERE5EYx6t2H3VpNV', 'Tom', 't', 'T', 3, 1),
-('XVfJfi6GfsQwfeXkpVeu4348j', '234324', '324243', '432', 3, 1),
 ('XXY3a5MApKtj9U0eaRx1EN5p1', 'Bi', 'Bi', 'Bi', 3, 1),
 ('YrEQPAtesPh9Fs7C9Ytx4jkLU', 'd', 'd', 'dsasda', 3, 1);
 
