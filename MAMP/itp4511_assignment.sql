@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 05, 2023 at 08:21 PM
+-- Generation Time: May 10, 2023 at 02:40 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -50,10 +50,9 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`BookingID`, `UserID`, `VenueID`, `BookingDate`, `BookingStart`, `BookingEnd`, `CreatedDate`, `CreatedTime`, `Status`, `Priority`, `BookingFee`, `PersonInCharge`, `Remark`, `Comment`, `CheckStatus`) VALUES
-('4322cjAji7r3V34', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 1, 1, 200.00, 80.00, '', '', 1),
-('jNJuhJLRKeN2V43V', 'iivQf91PxrMdiGMPw0r4FP0iW', 1, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 2, 1, 200.00, 80.00, '', '', 3),
-('jNJuhJLRKeNVd2cjAji7j8r3V', 'iivQf91PxrMdiGMPw0r4FP0iW', 2, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 2, 1, 200.00, 80.00, '', '', 3),
-('jNJuhJLRKeNVd2cjAji7r3V34', 'iivQf91PxrMdiGMPw0r4FP0iW', 2, '2023-05-04', 9, 12, '2023-05-03', '2023-05-03 21:35:45', 1, 1, 200.00, 80.00, '', '', 3);
+('3hiHLsaK4A5Rb0hd8Ncphvehc', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 1, '2023-05-11', 12, 14, '2023-05-10', '2023-05-10 02:22:13', 3, 2, 200.00, 80.00, '', '', 3),
+('6Y762d63efRHwQvWNs06QxhjL', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 2, '2023-05-11', 8, 10, '2023-05-10', '2023-05-10 02:22:13', 3, 3, 200.00, 80.00, '', '', 3),
+('aVJci4rK4fjkGRAaXP0W1F0Xj', '2LHJ5urEfWL90e8W6sdQ2JtWQ', 1, '2023-05-11', 8, 11, '2023-05-10', '2023-05-10 02:22:13', 3, 1, 200.00, 80.00, '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -75,7 +74,10 @@ CREATE TABLE `guess` (
 --
 
 INSERT INTO `guess` (`GuessID`, `GuessListID`, `FirstName`, `LastName`, `Email`, `PhoneNumber`) VALUES
-('WxbtMMQUVPfGhwpfNUwEWWfjf', '8swksdc79e0fuaPr1KcRGPu4A', '423', '423', '432', '324');
+('4Fu4epWEXhWRJpRuiWfiQ2jA2', 'Y5dX7sPFKVkitruYcEHJJjVM0', 'Tom', 'Caniey', 'billy1@onionmail.org', '324432'),
+('jwVhsjjXx8UrfJPvCvFxCKKw8', 'firRQ9HCuUMN0Y867J6Wi6QQ4', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873'),
+('LsWA7N982J50MJMdsLiCdwpNR', 'firRQ9HCuUMN0Y867J6Wi6QQ4', '&#36948;&#35488;', '&#38446;', 'billy_0310@hotmail.com', '54206873'),
+('uKFexPbp4EwhetYd7rb95Uk8w', 'Y5dX7sPFKVkitruYcEHJJjVM0', 'Billy', 'Yuen Tat Shing', 'billy0310.yts@gmail.com', '54206873');
 
 -- --------------------------------------------------------
 
@@ -100,8 +102,10 @@ INSERT INTO `user` (`userID`, `username`, `password`, `email`, `Role`, `Enable`)
 ('2kEVpxX2p7W2suaffEx32kY6v', 'Billy0310', 'Billy0310', '3', 1, 1),
 ('2LHJ5urEfWL90e8W6sdQ2JtWQ', 'a', 'a', 'a', 3, 1),
 ('bUWudGaQbEA3Mt7kYKR0Kww5N', 'Admin', 'Admin', 'Admin', 1, 1),
+('hHedAuE2Ft75vp7CvLMfrXhFU', 'B1lly', 'B1lly', 'B1lly', 3, 1),
 ('iivQf91PxrMdiGMPw0r4FP0iW', 'b', 'B', 'b', 3, 1),
 ('iVJPt5eFacYHpVpGbaFVRrdWx', '423', '324', '43', 3, 1),
+('PtPuGxNNGLLxKwPGvYMd0JkGi', 'C', 'c', 'c', 3, 1),
 ('QM1hpb8kj31CtNMicw0pGGL8c', 'Hello', 'Hello', 'Hello', 3, 1),
 ('tbK4tpibkfuPGQVe5vW1QRYR0', 'dsa', 'sads', 'adsd', 2, 1),
 ('UCNRfU19VH4hkFrNvNtE42YMu', 'Senior', 'Senior', 'Senior', 2, 1);
@@ -124,7 +128,9 @@ CREATE TABLE `usertype` (
 INSERT INTO `usertype` (`UserTypeID`, `UserTypeName`) VALUES
 (1, 'Admin'),
 (2, 'Senior Manager'),
-(3, 'Member');
+(3, 'Member'),
+(4, 'FF'),
+(5, 'FF');
 
 -- --------------------------------------------------------
 
@@ -147,7 +153,7 @@ CREATE TABLE `venue` (
 --
 
 INSERT INTO `venue` (`venueID`, `venueTypeID`, `venueLocationID`, `venueName`, `venueDescription`, `Enable`, `PersonInCharge`) VALUES
-(1, 2, 3, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'Venue For the', 1, 80.00),
+(1, 2, 1, 'Hong Kong Institute of Vocational Education (Tuen Mun)', 'Venue For the', 1, 80.00),
 (2, 1, 2, 'Hong Kong Institute of Vocational Education (Sha Tin)', 'HotelsHotels', 1, 80.00),
 (3, 1, 3, 'Hong Kong Institute Of Vocational Education (Tsing Yi)', '', 1, 80.00),
 (4, 1, 4, 'Hong Kong Institute of Vocational Education (Lee Wai Lee)', '', 1, 80.00),
@@ -196,8 +202,7 @@ CREATE TABLE `venuetype` (
 
 INSERT INTO `venuetype` (`VenueTypeID`, `VenueTypeName`, `Enable`) VALUES
 (1, 'Resort', 1),
-(2, 'Art Galleries', 1),
-(3, '43435354', 1);
+(2, 'Art Galleries', 1);
 
 --
 -- Indexes for dumped tables
