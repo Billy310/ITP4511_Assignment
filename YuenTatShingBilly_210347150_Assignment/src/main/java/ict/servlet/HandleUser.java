@@ -102,7 +102,7 @@ public class HandleUser extends HttpServlet {
             String userid = request.getParameter("userid");
             db.DisableAccount(userid);
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/SearchUser_Admin.jsp");
+            rd = getServletContext().getRequestDispatcher("/UserSearch_Admin.jsp");
             rd.forward(request, response);
 
         } else if ("edit".equals(action)) {
@@ -113,7 +113,7 @@ public class HandleUser extends HttpServlet {
             int Status = Integer.parseInt(request.getParameter("status"));
             db.EditRecord(UserID, Username, Password, Status, Email);
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/SearchUser_Admin.jsp");
+            rd = getServletContext().getRequestDispatcher("/UserSearch_Admin.jsp");
             rd.forward(request, response);
         } else if ("editpersonal".equals(action)) {
             String UserID = request.getParameter("userid");
