@@ -10,12 +10,12 @@
     VenueDB vb = new VenueDB(dbUrl, dbUser, dbPassword);
     BookingDB bdb = new BookingDB(dbUrl, dbUser, dbPassword);
     BookingBean bb = bdb.QueryByID(request.getParameter("BookingID"));
-    ArrayList<BookingBean> bbs = bdb.QueryVenueBookingSameDateSameVenueSameUser(bb.getVenueID(), bb.getBookingDate().toString(),bb.getUserID(),bb.getBookingID());
+    ArrayList<BookingBean> bbs = bdb.QueryVenueBookingSameDateSameVenueSameUser(bb.getVenueID(), bb.getBookingDate().toString(), bb.getUserID(), bb.getBookingID());
     ArrayList<Integer> disabledtime = new ArrayList();
     for (int x = 0; x < bbs.size(); x++) {
         int starttime = bbs.get(x).getBookingStart();
         int endtime = bbs.get(x).getBookingEnd();
-        for (int y = starttime; y <= endtime; y++) {
+        for (int y = starttime; y < endtime; y++) {
             disabledtime.add(y);
         }
     }
@@ -38,10 +38,10 @@
 
         <script>
             $(document).ready(function () {
-                
-                
-                
-                
+
+
+
+
             });
 
         </script>

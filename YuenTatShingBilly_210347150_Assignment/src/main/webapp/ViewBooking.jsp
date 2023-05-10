@@ -15,8 +15,7 @@
         ></script>
         <script src="./assets/js/init-alpine.js"></script>
 
-        <script src="./assets/js/charts-lines.js" defer></script>
-        <script src="./assets/js/charts-pie.js" defer></script>
+
     </head>
     <body>
         <div
@@ -72,7 +71,7 @@
                                             <th class="px-4 py-3">Booked Time</th>
                                             <th class="px-4 py-3">Created Time</th>
                                             <th class="px-4 py-3">View Details</th>
-
+                                            <th class="px-4 py-3">Cancel Booking</th>
                                         </tr>
                                     </thead>
                                     <tbody

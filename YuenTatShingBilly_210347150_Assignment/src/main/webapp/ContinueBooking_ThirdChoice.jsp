@@ -17,20 +17,20 @@
             disabledtime.add(y);
         }
     }
-    if ((Integer.parseInt(request.getParameter("venue")) == Integer.parseInt(request.getParameter("BookingVenue1"))) && request.getParameter("venuedate").equals(request.getParameter("BookingDate1"))) {
-        int starttime = Integer.parseInt(request.getParameter("BookingStart1"));
-        int endtime = Integer.parseInt(request.getParameter("BookingEnd1"));
-        for (int x = starttime; x <= endtime; x++) {
-            disabledtime.add(x);
-        }
-    }
-    if ((Integer.parseInt(request.getParameter("venue")) == Integer.parseInt(request.getParameter("BookingVenue2"))) && request.getParameter("venuedate").equals(request.getParameter("BookingDate2"))) {
-        int starttime = Integer.parseInt(request.getParameter("BookingStart2"));
-        int endtime = Integer.parseInt(request.getParameter("BookingEnd2"));
-        for (int x = starttime; x <= endtime; x++) {
-            disabledtime.add(x);
-        }
-    }
+//    if ((Integer.parseInt(request.getParameter("venue")) == Integer.parseInt(request.getParameter("BookingVenue1"))) && request.getParameter("venuedate").equals(request.getParameter("BookingDate1"))) {
+//        int starttime = Integer.parseInt(request.getParameter("BookingStart1"));
+//        int endtime = Integer.parseInt(request.getParameter("BookingEnd1"));
+//        for (int x = starttime; x <= endtime; x++) {
+//            disabledtime.add(x);
+//        }
+//    }
+//    if ((Integer.parseInt(request.getParameter("venue")) == Integer.parseInt(request.getParameter("BookingVenue2"))) && request.getParameter("venuedate").equals(request.getParameter("BookingDate2"))) {
+//        int starttime = Integer.parseInt(request.getParameter("BookingStart2"));
+//        int endtime = Integer.parseInt(request.getParameter("BookingEnd2"));
+//        for (int x = starttime; x <= endtime; x++) {
+//            disabledtime.add(x);
+//        }
+//    }
 %>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
     <head>
@@ -55,7 +55,7 @@
                 var selectedvalue_X = document.getElementById("useless_x").value;
                 var selectedvalue_Y = document.getElementById("useless_y").value;
                 initMap(selectedvalue_X, selectedvalue_Y, 20);
-
+                $("#venuetimeend").val(parseInt($("#VenueTimeOfStart").val()) + 1);
 
                 $("#venuetimestart").css({"border-color": "#C1E0FF",
                     "border-width": "2px",
@@ -87,6 +87,14 @@
                         $("#venuetimeend").val(Total);
 
                     }
+                    if ((parseInt(StartTime) == parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                        alert("The Starting Time Can Not be the Same of the Ending Time");
+                        var Total = (parseInt(StartTime) + 1);
+
+                        $("#venuetimeend").val(Total);
+
+                    }
 
                     if (($("#venuetimeend").find(":selected").val() - StartTime) > 3) {
 
@@ -112,6 +120,14 @@
 
                         alert("The Starting Time cannot later than The Ending Time.");
                         var Total = (parseInt(StartTime) + 3);
+
+                        $("#venuetimeend").val(Total);
+
+                    }
+                    if ((parseInt(StartTime) == parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                        alert("The Starting Time Can Not be the Same of the Ending Time");
+                        var Total = (parseInt(StartTime) + 1);
 
                         $("#venuetimeend").val(Total);
 
@@ -170,7 +186,7 @@
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
-                            Select Venue <% out.print("Count" + disabledtime.size());%>
+                            Select Venue 
                         </h4>
                         <form method="POST" action="HandleBooking"  > 
 

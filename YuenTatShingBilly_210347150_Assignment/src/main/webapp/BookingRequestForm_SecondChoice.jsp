@@ -43,6 +43,25 @@
                     }
 //                            console.log(date, 'change')
                 });
+                
+                      $("#submitbtn").click(function () {
+                    
+                    console.log(parseInt($("#venue").find(":selected").val()));
+                    if(parseInt($("#venue").find(":selected").val())==0){
+                        
+                        alert("You Should Select the Venue First!");
+                    }
+                    
+                    else if ($("#venuedate").val() === "") {
+
+                        alert("Booking Date Can not be Empty");
+                    }
+                    else {
+                        document.forms["SelectTime"].submit();
+                         
+                    }
+
+                });
 
 
             });
@@ -110,7 +129,7 @@
                             >
                             Select Venue
                         </h4>
-                        <form method="POST" action="ContinueBooking_SecondChoice.jsp">
+                        <form method="POST" action="ContinueBooking_SecondChoice.jsp" id="SelectTime">
 
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
                             <input type="hidden" name="BookingDate1" value="<%=request.getParameter("BookingDate1")%>" />
@@ -132,7 +151,7 @@
                                         onchange="getvalue()"
                                         >
                                     <%
-                                        out.print("<option  value=>Please Select Booking Location</option>");
+                                        out.print("<option  value=0 >Please Select Booking Location</option>");
                                         for (int x = 0; x < vbs.size(); x++) {
                                             VenueBean v = vbs.get(x);
                                             out.print("<option value=" + v.getVenueID() + ">" + v.getVenueName() + "</option>");
@@ -202,15 +221,18 @@
                             </label>
 
 
-                            <div class="flex mt-6 text-sm">
-                                <button 
-                                    type="submit"  
-                                    class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    >
-                                    Continue
-                                </button>
-                            </div>
+                            
                         </form>
+                                    <div class="flex mt-6 text-sm">
+                                        <button 
+
+                                            class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                            value="continue"
+                                            id="submitbtn"
+                                            >
+                                            Continue
+                                        </button>
+                                    </div>  
                     </div>
                 </main>
             </div>

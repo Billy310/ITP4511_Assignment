@@ -78,7 +78,7 @@ public class BookingDB {
                     + "PRIMARY KEY (BookingID)"
                     + ")";
             stmnt.execute(sql);
-             
+
             stmnt.close();
             cnnct.close();
         } catch (SQLException ex) {
@@ -168,7 +168,7 @@ public class BookingDB {
             while (rs.next()) {
                 BookingBean bookingbean;
                 bookingbean = new BookingBean(
-                            rs.getString("BookingID"),
+                        rs.getString("BookingID"),
                         rs.getString("UserID"),
                         rs.getInt("VenueID"),
                         rs.getDate("BookingDate"),
@@ -269,7 +269,7 @@ public class BookingDB {
         Connection cnnct = null;
         ResultSet rs = null;
         ArrayList<BookingBean> bookingBeans = new ArrayList<BookingBean>();
-        
+
         try {
 
             String preQueryStatement = "SELECT * FROM BOOKING WHERE USERID = ?";
@@ -328,7 +328,7 @@ public class BookingDB {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.sql.Date bookingdate_date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND Status = 1";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND Status = 1 OR STATUS = 0";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -798,8 +798,7 @@ public class BookingDB {
             pStmnt.setString(2, BookingID);
 
             pStmnt.executeUpdate();
-            
-            
+
             int Priority = bb.getPriority();
 
             preQueryStatment = "Select * FROM Booking WHERE CREATEDDATE = ? AND USERID = ? AND Priority = ?";
@@ -992,7 +991,7 @@ public class BookingDB {
 
         try {
 
-            String preQueryStatement = "SELECT * FROM BOOKING  WHERE VENUEID = ? AND BOOKINGDATE = ? AND BOOKINGSTART >= ? AND BOOKINGEND <= ? AND BOOKINGID != ? ORDER BY CREATEDTIME ASC";
+            String preQueryStatement = "SELECT * FROM BOOKING  WHERE VENUEID = ? AND BOOKINGDATE = ? AND BOOKINGSTART >= ? AND BOOKINGEND <= ? AND BOOKINGID != ? AND STATUS = 0 ORDER BY CREATEDTIME ASC";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -1100,7 +1099,7 @@ public class BookingDB {
 
     }
 
-    public boolean ChangeBookingCheckStatus(String BookingID, int BookingCheckStatus) {
+    public boolean ChangeBookingCheckStatus(String BookingID, int BookingCheckStatus, String Remark) {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -1108,10 +1107,11 @@ public class BookingDB {
         try {
 
             cnnct = getConnection();
-            String preQueryStatment = "UPDATE BOOKING SET CHECKSTATUS = ? WHERE BOOKINGID = ?";
+            String preQueryStatment = "UPDATE BOOKING SET CHECKSTATUS = ?, REMARK = ? WHERE BOOKINGID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setInt(1, BookingCheckStatus);
-            pStmnt.setString(2, BookingID);
+            pStmnt.setString(2, Remark);
+            pStmnt.setString(3, BookingID);
 
             int rowCount = pStmnt.executeUpdate();
 
@@ -1140,7 +1140,7 @@ public class BookingDB {
 
         try {
 //            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate >= ? AND BookingDate <= ?  ";
-             String preQueryStatement = "SELECT * FROM BOOKING WHERE VenueID = ? AND BookingDate >= ? AND BookingDate <= ? AND CHECKSTATUS = 4";
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE VenueID = ? AND BookingDate >= ? AND BookingDate <= ? AND CHECKSTATUS = 4";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -1636,8 +1636,8 @@ public class BookingDB {
         return Status;
 
     }
-    
-       public boolean SetToPay(String BookingID) {
+
+    public boolean SetToPay(String BookingID) {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -1645,12 +1645,11 @@ public class BookingDB {
         try {
 
             cnnct = getConnection();
-          
+
 //            String preQueryStatment = "DELETE FROM BOOKING WHERE BOOKINGID != ? AND CREATEDDATE = ? AND USERID = ?";
             String preQueryStatment = "UPDATE BOOKING SET STATUS = 1 WHERE  BOOKINGID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatment);
             pStmnt.setString(1, BookingID);
-
 
             pStmnt.executeUpdate();
 
@@ -1669,9 +1668,8 @@ public class BookingDB {
         }
         return isSuccess;
     }
-       
-       
-       public boolean UpdateRemark(String BookingID, String Remark) {
+
+    public boolean UpdateRemark(String BookingID, String Remark) {
 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -1701,9 +1699,8 @@ public class BookingDB {
         }
         return isSuccess;
     }
-       
-       
-          public ArrayList<BookingBean> QueryVenueBookingSameDateSameVenueSameUser(int VenueID, String BookingDate, String UserID,String BookingID) throws ParseException {
+
+    public ArrayList<BookingBean> QueryVenueBookingSameDateSameVenueSameUser(int VenueID, String BookingDate, String UserID, String BookingID) throws ParseException {
 
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
@@ -1713,7 +1710,7 @@ public class BookingDB {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.sql.Date bookingdate_date = new java.sql.Date(dateFormat.parse(BookingDate).getTime());
-            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND USERID = ? AND BOOKINGID != ?" ;
+            String preQueryStatement = "SELECT * FROM BOOKING WHERE venueID = ? AND BookingDate = ? AND USERID = ? AND BOOKINGID != ?";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -1761,5 +1758,42 @@ public class BookingDB {
         return bookingBeans;
 
     }
+
+    public boolean CancelBooking(String BookingID) {
+
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+
+            cnnct = getConnection();
+            BookingBean bb = QueryByID(BookingID);
+            String UserID = bb.getUserID();
+            java.sql.Date create_date = bb.getCreatedDate();
+            String preQueryStatment = "DELETE FROM BOOKING WHERE USERID = ? AND CREATEDDATE = ? ";
+            pStmnt = cnnct.prepareStatement(preQueryStatment);
+            pStmnt.setString(1, UserID);
+            pStmnt.setDate(2, create_date);
+
+            pStmnt.executeUpdate();
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+    
+    
+  
 
 }

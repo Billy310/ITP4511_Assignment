@@ -28,7 +28,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Windmill Dashboard - Forms</title>
+        <title> </title>
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -47,6 +47,8 @@
         var selectedvalue_X = document.getElementById("useless_x").value;
         var selectedvalue_Y = document.getElementById("useless_y").value;
         initMap(selectedvalue_X, selectedvalue_Y, 20);
+        $("#venuetimeend").val(parseInt($("#VenueTimeOfStart").val())+1);
+        
 
 
         $("#VenueTimeOfStart").css({"border-color": "#C1E0FF",
@@ -65,7 +67,7 @@
         $("#VenueTimeOfStart").change(function () {
 
 
-              var box = document.getElementById('VenueTimeOfStart');
+            var box = document.getElementById('VenueTimeOfStart');
 
             StartTime = box.options[box.selectedIndex].value;
 
@@ -79,6 +81,14 @@
                 $("#venuetimeend").val(Total);
 
             }
+            if ((parseInt(StartTime) == parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                alert("The Starting Time Can Not be the Same of the Ending Time");
+                var Total = (parseInt(StartTime) + 1);
+
+                $("#venuetimeend").val(Total);
+
+            }
 
             if (($("#venuetimeend").find(":selected").val() - StartTime) > 3) {
 
@@ -87,10 +97,10 @@
 
                 $("#venuetimeend").val(Total);
             }
-             
-            
-            
-            
+
+
+
+
         });
 
         $("#venuetimeend").change(function () {
@@ -104,6 +114,14 @@
 
                 alert("The Starting Time cannot later than The Ending Time.");
                 var Total = (parseInt(StartTime) + 3);
+
+                $("#venuetimeend").val(Total);
+
+            }
+            if ((parseInt(StartTime) == parseInt($("#venuetimeend").find(":selected").val()))) {
+
+                alert("The Starting Time Can Not be the Same of the Ending Time");
+                var Total = (parseInt(StartTime) + 1);
 
                 $("#venuetimeend").val(Total);
 

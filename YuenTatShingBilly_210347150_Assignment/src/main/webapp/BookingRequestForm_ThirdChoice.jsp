@@ -42,6 +42,36 @@
                         $('#venuedate').val(new Date());
                     }
                 });
+
+                $('#venuedate').change(function () {
+                    const date_today = new Date();
+                    var date = $(this).val();
+                    if (new Date(date_today.getTime()) > new Date(date)) {
+
+                        console.log("over");
+                        alert("The Date could not be earlier than TODAY!");
+                        $('#venuedate').val(new Date());
+                    }
+                });
+
+
+                $("#submitbtn").click(function () {
+
+                    console.log(parseInt($("#venue").find(":selected").val()));
+                    if (parseInt($("#venue").find(":selected").val()) == 0) {
+
+                        alert("You Should Select the Venue First!");
+                    } else if ($("#venuedate").val() === "") {
+
+                        alert("Booking Date Can not be Empty");
+                    } else {
+                        document.forms["SelectTime"].submit();
+
+                    }
+
+                });
+
+
             });
         </script>
         <script src="./assets/js/init-alpine.js"></script>
@@ -85,7 +115,7 @@
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
 
-            
+
             <jsp:include page="MobileScreenSideBar.jsp">
                 <jsp:param name="pagename" value="<%=request.getRequestURI()%>" />
             </jsp:include>
@@ -98,13 +128,13 @@
                             >
                             Venue Booking Request Form -- Third Selection
                         </h2>
-                        
+
                         <h4
                             class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                             >
                             Select Venue
                         </h4>
-                        <form method="POST" action="ContinueBooking_ThirdChoice.jsp">
+                        <form method="POST" action="ContinueBooking_ThirdChoice.jsp"   id="SelectTime">
 
 
                             <input type="hidden" name="BookingVenue1" value="<%=request.getParameter("BookingVenue1")%>" />
@@ -204,15 +234,18 @@
                             </label>
 
 
-                            <div class="flex mt-6 text-sm">
-                                <button 
-                                    type="submit"  
-                                    class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    >
-                                    Continue
-                                </button>
-                            </div>
+
                         </form>
+                        <div class="flex mt-6 text-sm">
+                            <button 
+
+                                class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                value="continue"
+                                id="submitbtn"
+                                >
+                                Continue
+                            </button>
+                        </div>  
                     </div>
                 </main>
             </div>

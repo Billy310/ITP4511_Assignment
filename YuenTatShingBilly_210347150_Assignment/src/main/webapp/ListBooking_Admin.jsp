@@ -63,7 +63,7 @@
                 out.print("<tr class=\"text-gray-700 dark:text-gray-400\">");
 
                 out.print("<td class=\"px-4 py-3 text-sm\">" + userdb.QueryUserByID(vb.getUserID()).getUsername() + "</td>");
-                out.print("<td class=\"px-4 py-3 text-sm\">" + TransferDate(vb.getCreatedTime()) + "</td>");
+                out.print("<td class=\"px-4 py-3 text-sm\">" +  vb.getCreatedTime()  + "</td>");
                 out.print("<form action=ViewBookingPriority_Admin.jsp method=GET>");
                 out.print("<input type=hidden name=userid value=" + request.getParameter("userid") + " />");
                 out.print("<input type=hidden name=BookingID value=" + vb.getBookingID() + "   />");
