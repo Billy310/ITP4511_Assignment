@@ -280,7 +280,7 @@ public class UserDB {
         UserBean userbean = null;
         try {
 
-            String preQueryStatement = "SELECT * FROM USER WHERE LOWER(USERNAME)=LOWER(?)";
+            String preQueryStatement = "SELECT * FROM USER WHERE LOWER(USERNAME)=LOWER(?) AND ENABLE = 1";
             cnnct = getConnection();
             ResultSet rs = null;
             pStmnt = cnnct.prepareStatement(preQueryStatement);

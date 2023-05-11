@@ -136,7 +136,7 @@ public class VenueDB {
 
         try {
 
-            String preQueryStatement = "SELECT * FROM VENUE";
+            String preQueryStatement = "SELECT * FROM VENUE WHERE ENABLE = 1";
             cnnct = getConnection();
 
             pStmnt = cnnct.prepareStatement(preQueryStatement);
